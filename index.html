@@ -496,6 +496,30 @@
        </div>
        <div class="border-t border-gray-100 pt-6 flex justify-end"><button type="submit" id="btn-save-defendant-vicio" class="px-6 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <i class="fa fa-floppy-o" aria-hidden="true"></i> <span>Salvar réu</span> </button>
        </div>
+      </form><!-- Form para Voo/Bagagens (Card 3) -->
+      <form id="defendant-form-voo" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
+       <div class="flex justify-end"><span class="text-xs text-red-500 font-medium">* Campos obrigatórios</span></div>
+       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:items-end">
+        <div class="md:col-span-8">
+         <label for="def-voo-vendedora" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique a Companhia Aérea que vendeu o bilhete (passagem) *</label>
+         <select id="def-voo-vendedora" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-gray-800 text-sm bg-white focus:outline-none focus:border-blue-500">
+          <option value="" selected disabled>Selecione...</option>
+          <option>AIR CANADA</option><option>AMERICAN AIRLINES INC</option><option>AZUL LINHAS AEREAS BRASILEIRAS S.A</option><option>GOL LINHAS AEREAS S.A</option><option>LATAM AIRLINES GROUP S.A</option>
+         </select>
+        </div>
+        <div class="md:col-span-4"><label for="def-voo-vendedora-cnpj" class="text-xs font-bold text-gray-700 uppercase block mb-1">CNPJ *</label><input id="def-voo-vendedora-cnpj" type="text" readonly placeholder="CNPJ *" class="w-full h-11 px-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-600 text-sm font-semibold cursor-not-allowed"></div>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:items-end">
+        <div class="md:col-span-8">
+         <label for="def-voo-operadora" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique a Companhia Aérea que fez o voo *</label>
+         <select id="def-voo-operadora" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-gray-800 text-sm bg-white focus:outline-none focus:border-blue-500">
+          <option value="" selected disabled>Selecione...</option>
+          <option>AIR CANADA</option><option>AMERICAN AIRLINES INC</option><option>AZUL LINHAS AEREAS BRASILEIRAS S.A</option><option>GOL LINHAS AEREAS S.A</option><option>LATAM AIRLINES GROUP S.A</option>
+         </select>
+        </div>
+        <div class="md:col-span-4"><label for="def-voo-operadora-cnpj" class="text-xs font-bold text-gray-700 uppercase block mb-1">CNPJ *</label><input id="def-voo-operadora-cnpj" type="text" readonly placeholder="CNPJ *" class="w-full h-11 px-3 bg-gray-100 border border-gray-200 rounded-lg text-gray-600 text-sm font-semibold cursor-not-allowed"></div>
+       </div>
+       <div class="border-t border-gray-100 pt-6 flex justify-end"><button type="submit" class="px-6 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"><i class="fa fa-floppy-o" aria-hidden="true"></i><span>Salvar réu</span></button></div>
       </form><!-- Form para Acidente de Trânsito (Card 4) -->
       <form id="defendant-form-transito" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
        <div class="space-y-1">
@@ -583,6 +607,12 @@
           <h4 class="font-bold text-gray-900 text-base">Réu (Acidente): <span id="def-summary-transito-nome" class="font-semibold text-gray-800">-</span></h4>
           <p class="text-xs text-gray-500 font-medium">Doc (CPF/CNPJ): <span id="def-summary-transito-doc">-</span></p>
           <p class="text-xs text-gray-500 font-medium">Endereço: <span id="def-summary-transito-endereco">-</span></p>
+         </div>
+         <div id="def-summary-voo-details" class="hidden text-sm">
+          <h4 class="font-bold text-gray-900 text-base">Companhia que vendeu o bilhete: <span id="def-summary-voo-vendedora" class="font-semibold text-gray-800">-</span></h4>
+          <p class="text-xs text-gray-500 font-medium">CNPJ: <span id="def-summary-voo-vendedora-cnpj">-</span></p>
+          <h4 class="font-bold text-gray-900 text-base mt-2">Companhia que fez o voo: <span id="def-summary-voo-operadora" class="font-semibold text-gray-800">-</span></h4>
+          <p class="text-xs text-gray-500 font-medium">CNPJ: <span id="def-summary-voo-operadora-cnpj">-</span></p>
          </div>
         </div><button type="button" id="btn-edit-defendant" class="w-full md:w-auto px-4 py-1.5 border border-blue-600 text-blue-700 hover:bg-blue-50 font-semibold rounded-lg text-xs flex items-center justify-center gap-1.5 transition"> <i class="fa fa-pencil" aria-hidden="true"></i> <span data-template-id="btn-edit-def-text" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Editar</span> </button>
        </div>
@@ -728,6 +758,39 @@
         </div>
        </div><!-- Buttons Footer -->
        <div class="border-t border-gray-100 pt-6 flex justify-between items-center"><button type="button" class="btn-facts-back-vicio px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"> <i class="fa fa-chevron-left text-xs" aria-hidden="true"></i> <span data-template-id="btn-facts-back-text" class="canva-text" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Voltar</span> </button> <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <span data-template-id="btn-facts-continue-text" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Continuar</span> <i class="fa fa-chevron-right text-xs" aria-hidden="true"></i> </button>
+       </div>
+      </form><!-- Informações do Voo (Card 3) -->
+      <form id="facts-form-voo" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+        <h3 class="font-bold text-gray-900 text-lg">Informações do voo</h3><span class="text-xs text-red-500 font-medium">* Campos obrigatórios</span>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label for="voo-numero" class="text-xs font-bold text-gray-700 uppercase block mb-1">Número do voo *</label><input id="voo-numero" type="text" required placeholder="Ex.: 2222" maxlength="12" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+        <div><label for="voo-data" class="text-xs font-bold text-gray-700 uppercase block mb-1">Data programada para o voo *</label><input id="voo-data" type="date" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+        <div><label for="voo-horario" class="text-xs font-bold text-gray-700 uppercase block mb-1">Horário programado para o voo *</label><input id="voo-horario" type="time" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+        <div><label for="voo-valor-bilhete" class="text-xs font-bold text-gray-700 uppercase block mb-1">Valor total pago pelo bilhete *</label><input id="voo-valor-bilhete" type="text" required inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+       </div>
+       <div class="space-y-2">
+        <label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui a cópia do bilhete ou cartão de embarque *</label>
+        <p class="text-xs text-gray-500">Limite de 3 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p>
+        <div class="border-2 border-dashed border-gray-200 hover:border-blue-300 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center justify-center gap-3 transition">
+         <button id="btn-voo-bilhete-upload" type="button" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs flex items-center gap-2 shadow-sm transition"><i class="fa fa-plus" aria-hidden="true"></i><span>Selecionar arquivos</span></button>
+         <span id="voo-bilhete-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 3 arquivos.</span>
+        </div>
+        <p id="voo-bilhete-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p>
+       </div>
+       <div class="space-y-2">
+        <label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante de pagamento do bilhete *</label>
+        <p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p>
+        <div class="border-2 border-dashed border-gray-200 hover:border-blue-300 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center justify-center gap-3 transition">
+         <button id="btn-voo-pagamento-upload" type="button" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs flex items-center gap-2 shadow-sm transition"><i class="fa fa-plus" aria-hidden="true"></i><span>Selecionar o arquivo</span></button>
+         <span id="voo-pagamento-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span>
+        </div>
+        <p id="voo-pagamento-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p>
+       </div>
+       <div class="border-t border-gray-100 pt-6 flex justify-between items-center">
+        <button type="button" id="btn-voo-back" class="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-2"><i class="fa fa-chevron-left text-xs"></i>Voltar</button>
+        <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm flex items-center gap-2">Continuar<i class="fa fa-chevron-right text-xs"></i></button>
        </div>
       </form><!-- Vício do Produto Facts Form -->
       <form id="facts-form-vicio" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
@@ -1549,6 +1612,127 @@ document.addEventListener("DOMContentLoaded", function () {
        </div><!-- Buttons Footer -->
        <div class="border-t border-gray-100 pt-6 flex justify-between items-center"><button type="button" class="btn-facts-back-negativacao px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"> <i class="fa fa-chevron-left text-xs" aria-hidden="true"></i> <span>Voltar</span> </button> <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <span>Continuar</span> <i class="fa fa-chevron-right text-xs" aria-hidden="true"></i> </button>
        </div>
+      </form>
+     </div>
+    </div><!-- ETAPAS EXCLUSIVAS DE VOO: PROBLEMA E OUTROS PREJUÍZOS -->
+    <div id="page-flight-problem" class="space-y-6 hidden">
+     <div class="max-w-4xl mx-auto flex items-center justify-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider py-1 border-b border-gray-200/50"><i class="fa fa-plane text-blue-600"></i><span>Atraso/cancelamento de voo ou problemas com bagagens</span></div>
+     <div class="max-w-4xl mx-auto py-4 bg-white border border-gray-200 rounded-xl shadow-sm px-2 md:px-6"><div class="flex items-center justify-between text-center relative"></div></div>
+     <div class="max-w-4xl mx-auto">
+      <h2 class="font-bold text-gray-900 text-xl">Identificação do problema</h2>
+      <p class="text-sm text-gray-600 mt-1">Informe o ocorrido</p>
+      <div id="flight-problem-picker-panel" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div>
+        <h3 class="font-bold text-gray-900 text-lg">O que aconteceu? *</h3>
+        <p class="text-sm text-gray-600 mt-1">Clique para adicionar o tipo de problema. Só é possível adicionar três problemas.</p>
+       </div>
+       <div id="flight-problem-options" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Bagagem extraviada e não mais localizada"><i class="fa fa-plus"></i><span>Bagagem extraviada e não mais localizada</span></button>
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Bagagem extraviada e entregue com atraso"><i class="fa fa-plus"></i><span>Bagagem extraviada e entregue com atraso</span></button>
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Bagagem violada (itens desaparecidos)"><i class="fa fa-plus"></i><span>Bagagem violada (itens desaparecidos)</span></button>
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Bagagem danificada (mala quebrada etc.)"><i class="fa fa-plus"></i><span>Bagagem danificada (mala quebrada etc.)</span></button>
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Atraso/Cancelamento do voo"><i class="fa fa-plus"></i><span>Atraso/Cancelamento do voo</span></button>
+        <button type="button" class="flight-problem-option bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm flex items-center gap-3 transition text-left" data-problem="Embarque não autorizado"><i class="fa fa-plus"></i><span>Embarque Não Autorizado</span></button>
+       </div>
+       <p id="flight-problem-error" class="hidden text-sm text-red-600 font-medium">Selecione pelo menos um problema.</p>
+       <div id="flight-selected-problems" class="space-y-3"></div>
+       <div class="border-t border-gray-100 pt-6 flex justify-between"><button type="button" id="btn-flight-problem-back" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar</button><button type="button" id="btn-flight-problem-continue" class="px-6 py-2.5 bg-emerald-600 text-white font-bold rounded-lg">Continuar<i class="fa fa-chevron-right ml-2"></i></button></div>
+      </div>
+      <form id="flight-lost-baggage-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-suitcase mr-2"></i>Bagagem extraviada e não mais localizada</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <div><label for="flight-lost-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva a bagagem (malas e itens desaparecidos) *</label><textarea id="flight-lost-description" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-lost-description-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="md:w-1/2"><label for="flight-lost-items-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total dos itens desaparecidos *</label><input id="flight-lost-items-value" type="text" inputmode="numeric" required placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o recibo de entrega da bagagem à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-lost-receipt" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-lost-receipt-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-lost-receipt-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Foi feita reclamação à Companhia Aérea? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-lost-complaint" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-lost-complaint" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-lost-complaint-panel" class="hidden space-y-2 border-l-4 border-blue-200 pl-4"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui a cópia do formulário de reclamação feita à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-lost-complaint-file" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-lost-complaint-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-lost-complaint-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui as notas e/ou recibos referentes aos itens desaparecidos (opcional)</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-lost-notes" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-lost-notes-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Precisou adquirir bens para substituir os itens desaparecidos? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-lost-replacement" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-lost-replacement" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-lost-replacement-panel" class="hidden space-y-5 border-l-4 border-blue-200 pl-4">
+        <div><label for="flight-lost-replacement-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva os bens que precisou adquirir *</label><textarea id="flight-lost-replacement-description" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-lost-replacement-description-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+        <div class="md:w-1/2"><label for="flight-lost-replacement-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-lost-replacement-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+        <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui as notas e/ou recibos dos bens adquiridos *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-lost-replacement-files" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-lost-replacement-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-lost-replacement-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       </div>
+       <div><label for="flight-lost-summary" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva brevemente o que aconteceu *</label><textarea id="flight-lost-summary" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-lost-summary-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-lost-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+      <form id="flight-damaged-baggage-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-suitcase mr-2"></i>Bagagem danificada</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <div><label for="flight-damaged-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva a bagagem danificada *</label><textarea id="flight-damaged-description" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-damaged-description-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="md:w-1/2"><label for="flight-damaged-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total do dano *</label><input id="flight-damaged-value" type="text" inputmode="numeric" required placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o recibo de entrega da bagagem à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-damaged-delivery" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-damaged-delivery-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-damaged-delivery-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Foi feita reclamação à Companhia Aérea? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-damaged-complaint" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-damaged-complaint" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-damaged-complaint-panel" class="hidden space-y-2 border-l-4 border-blue-200 pl-4"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui a cópia do formulário de reclamação feita à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-damaged-complaint" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-damaged-complaint-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-damaged-complaint-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o orçamento/recibo referente ao reparo da bagagem danificada *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-damaged-repair" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-damaged-repair-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-damaged-repair-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <div><label for="flight-damaged-summary" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva brevemente o que aconteceu *</label><textarea id="flight-damaged-summary" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-damaged-summary-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-damaged-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+      <form id="flight-delayed-baggage-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-suitcase mr-2"></i>Bagagem extraviada e entregue com atraso</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Indique o período de atraso na entrega da bagagem *</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label for="flight-delayed-from" class="text-xs font-semibold text-gray-600 block mb-1">De:</label><input id="flight-delayed-from" type="datetime-local" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div><div><label for="flight-delayed-to" class="text-xs font-semibold text-gray-600 block mb-1">Até:</label><input id="flight-delayed-to" type="datetime-local" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div></div></fieldset>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o recibo de entrega da bagagem à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delayed-delivery" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-delayed-delivery-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-delayed-delivery-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Foi feita reclamação à Companhia Aérea? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-delayed-complaint" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-delayed-complaint" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-delayed-complaint-panel" class="hidden space-y-2 border-l-4 border-blue-200 pl-4"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui a cópia do formulário de reclamação feita à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delayed-complaint" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-delayed-complaint-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-delayed-complaint-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase block mb-2">Precisou adquirir bens para substituir os itens desaparecidos? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-delayed-replacement" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-delayed-replacement" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-delayed-replacement-panel" class="hidden space-y-5 border-l-4 border-blue-200 pl-4"><div><label for="flight-delayed-replacement-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva os bens que precisou adquirir *</label><textarea id="flight-delayed-replacement-description" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-delayed-replacement-description-count">0</span> letras digitadas (Máximo de 4000)</div></div><div class="md:w-1/2"><label for="flight-delayed-replacement-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-delayed-replacement-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui as notas e/ou recibos dos bens adquiridos *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delayed-replacement" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-delayed-replacement-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-delayed-replacement-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <div><label for="flight-delayed-summary" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva brevemente o que aconteceu *</label><textarea id="flight-delayed-summary" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-delayed-summary-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-delayed-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+      <form id="flight-delay-cancel-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-plane mr-2"></i>Atraso/Cancelamento do voo</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <div class="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900"><strong>AVISO:</strong> por força da decisão do Supremo Tribunal Federal - STF no Recurso Extraordinário nº 1.560.244/RJ, o seu processo pode vir a ser suspenso caso a companhia aérea alegue que o atraso/cancelamento do voo foi causado por fatos considerados imprevisíveis, inevitáveis e/ou fora do âmbito de responsabilidade da empresa.</div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label for="flight-delay-arrival-time" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o horário programado para a chegada no destino *</label><input id="flight-delay-arrival-time" type="time" required class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div><div><label for="flight-delay-hours" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o tempo de atraso (em horas) *</label><input id="flight-delay-hours" type="number" min="1" step="1" required placeholder="Ex.: 2" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"><p class="text-xs text-gray-500 mt-1">Exemplo: 2 horas, insira “2”. Para 1 dia, insira “24”.</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Teve gastos com alimentação no período do atraso? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-food" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-food" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-delay-food-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div class="md:w-1/2"><label for="flight-delay-food-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-delay-food-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante das despesas com alimentação *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delay-food" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-delay-food-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-delay-food-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Teve gastos com hospedagem no período de atraso? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-hotel" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-hotel" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-delay-hotel-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div class="md:w-1/2"><label for="flight-delay-hotel-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-delay-hotel-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante das despesas com hospedagem *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delay-hotel" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-delay-hotel-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-delay-hotel-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Precisou adquirir outro bilhete para conseguir viajar? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-ticket" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-delay-ticket" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-delay-ticket-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div class="md:w-1/2"><label for="flight-delay-ticket-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Quanto pagou pelo novo bilhete *</label><input id="flight-delay-ticket-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante de pagamento do novo bilhete *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-delay-ticket" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-delay-ticket-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-delay-ticket-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <div><label for="flight-delay-summary" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva brevemente o que aconteceu *</label><textarea id="flight-delay-summary" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-delay-summary-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-delay-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+      <form id="flight-violated-baggage-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-suitcase mr-2"></i>Bagagem violada (itens desaparecidos)</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <div><label for="flight-violated-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva os itens desaparecidos *</label><textarea id="flight-violated-description" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-violated-description-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="md:w-1/2"><label for="flight-violated-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total dos itens desaparecidos *</label><input id="flight-violated-value" type="text" inputmode="numeric" required placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui as notas e/ou recibos referentes aos itens desaparecidos (opcional)</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-violated-notes" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-violated-notes-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div></div>
+       <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o recibo de entrega da bagagem à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-violated-delivery" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-violated-delivery-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-violated-delivery-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Foi feita reclamação à Companhia Aérea? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-violated-complaint" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-violated-complaint" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-violated-complaint-panel" class="hidden space-y-2 border-l-4 border-blue-200 pl-4"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui a cópia do formulário de reclamação feita à Companhia Aérea *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-violated-complaint" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-violated-complaint-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-violated-complaint-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Precisou adquirir bens para substituir os itens desaparecidos? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-violated-replacement" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-violated-replacement" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-violated-replacement-panel" class="hidden space-y-5 border-l-4 border-blue-200 pl-4"><div><label for="flight-violated-replacement-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva os bens que precisou adquirir *</label><textarea id="flight-violated-replacement-description" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-violated-replacement-description-count">0</span> letras digitadas (Máximo de 4000)</div></div><div class="md:w-1/2"><label for="flight-violated-replacement-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto com novos bens adquiridos *</label><input id="flight-violated-replacement-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui as notas e/ou recibos dos bens adquiridos *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-violated-replacement" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-violated-replacement-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-violated-replacement-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <div><label for="flight-violated-summary" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva brevemente o que aconteceu *</label><textarea id="flight-violated-summary" rows="5" maxlength="4000" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-violated-summary-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-violated-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+      <form id="flight-denied-boarding-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-between items-center border-b border-gray-100 pb-3"><div><h3 class="font-bold text-gray-900 text-lg">Inclusão de problema</h3><p class="text-sm text-blue-700 font-semibold mt-1"><i class="fa fa-ban mr-2"></i>Embarque não autorizado</p></div><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Você foi impedido de embarcar por problemas de documento, autorização ou visto? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-document" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-document" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-denied-document-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div><label for="flight-denied-document-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva o problema *</label><textarea id="flight-denied-document-description" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-denied-document-description-count">0</span> letras digitadas (Máximo de 4000)</div></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o documento que foi apontado como irregular *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-denied-document" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-denied-document-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-denied-document-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Você foi impedido de embarcar por outros motivos? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-other" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-other" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-denied-other-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div><label for="flight-denied-other-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva o problema *</label><textarea id="flight-denied-other-description" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-denied-other-description-count">0</span> letras digitadas (Máximo de 4000)</div></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o documento relativo ao relato *</label><p class="text-xs text-gray-500">Limite de 1 arquivo. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-denied-other" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar o arquivo</button><span id="flight-denied-other-indicator" class="text-xs text-gray-500 italic">Nenhum arquivo selecionado</span></div><p id="flight-denied-other-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">A Companhia aérea remarcou o seu voo? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-rebooked" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-rebooked" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-denied-rebooked-panel" class="hidden border-l-4 border-blue-200 pl-4"><label for="flight-denied-solution" class="text-xs font-bold text-gray-700 uppercase block mb-1">Descreva a solução do problema (compra de nova passagem, desistência da viagem etc.) *</label><textarea id="flight-denied-solution" rows="4" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-denied-solution-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Teve gastos com alimentação por não conseguir viajar? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-food" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-food" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-denied-food-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div class="md:w-1/2"><label for="flight-denied-food-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-denied-food-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante das despesas com alimentação *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-denied-food" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-denied-food-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-denied-food-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <fieldset><legend class="text-xs font-bold text-gray-700 uppercase mb-2">Teve gastos com hospedagem por não conseguir viajar? *</legend><div class="flex gap-5"><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-hotel" value="sim" required>Sim</label><label class="flex gap-2 items-center"><input type="radio" name="flight-denied-hotel" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-denied-hotel-panel" class="hidden space-y-4 border-l-4 border-blue-200 pl-4"><div class="md:w-1/2"><label for="flight-denied-hotel-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total gasto *</label><input id="flight-denied-hotel-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm"></div><div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante das despesas com hospedagem *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF até 10,5 MB - Imagens até 1,5 MB.</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-denied-hotel" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-denied-hotel-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-denied-hotel-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div></div>
+       <div class="border-t border-gray-100 pt-6 flex flex-col-reverse sm:flex-row justify-end gap-3"><button id="btn-flight-denied-cancel" type="button" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar para a lista de problemas</button><button type="submit" class="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-lg"><i class="fa fa-save mr-2"></i>Salvar problema</button></div>
+      </form>
+     </div>
+    </div>
+    <div id="page-flight-losses" class="space-y-6 hidden">
+     <div class="max-w-4xl mx-auto flex items-center justify-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider py-1 border-b border-gray-200/50"><i class="fa fa-plane text-blue-600"></i><span>Atraso/cancelamento de voo ou problemas com bagagens</span></div>
+     <div class="max-w-4xl mx-auto py-4 bg-white border border-gray-200 rounded-xl shadow-sm px-2 md:px-6"><div class="flex items-center justify-between text-center relative"></div></div>
+     <div class="max-w-4xl mx-auto">
+      <h2 class="font-bold text-gray-900 text-xl">Outros Prejuízos</h2>
+      <form id="flight-other-losses-form" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mt-4 space-y-6">
+       <div class="flex justify-end"><span class="text-xs text-red-500">* Campos obrigatórios</span></div>
+       <fieldset><legend class="text-sm font-bold text-gray-800 mb-2">Sofreu outros prejuízos? *</legend><div class="flex gap-5"><label class="flex items-center gap-2"><input type="radio" name="flight-other-losses" value="sim" required>Sim</label><label class="flex items-center gap-2"><input type="radio" name="flight-other-losses" value="nao" required>Não</label></div></fieldset>
+       <div id="flight-other-losses-panel" class="hidden space-y-5 border-l-4 border-blue-200 pl-4">
+        <div><label for="flight-other-losses-description" class="text-xs font-bold text-gray-700 uppercase block mb-1">Quais os demais prejuízos além daqueles já descritos anteriormente (gastos com alimentação, hospedagem, itens de bagagem desaparecidos/adquiridos, atraso/cancelamento de voo etc.)? Descreva-os brevemente. *</label><textarea id="flight-other-losses-description" rows="6" maxlength="4000" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></textarea><div class="text-right text-xs text-gray-400"><span id="flight-other-losses-description-count">0</span> letras digitadas (Máximo de 4000)</div></div>
+        <div class="md:w-1/2"><label for="flight-other-losses-value" class="text-xs font-bold text-gray-700 uppercase block mb-1">Indique o valor total dos demais prejuízos sofridos *</label><input id="flight-other-losses-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-full h-11 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></div>
+        <div class="space-y-2"><label class="text-xs font-bold text-gray-700 uppercase block">Carregue aqui o comprovante dos demais prejuízos sofridos *</label><p class="text-xs text-gray-500">Limite de 5 arquivos. Preferencialmente PDF (PDF, application/pdf): até 10,5 MB - Imagens (PNG, JPG ou JPEG): até 1,5 MB</p><div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-slate-50/50 flex flex-col items-center gap-3"><button id="btn-flight-other-losses-files" type="button" class="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg text-xs"><i class="fa fa-plus mr-2"></i>Selecionar arquivos</button><span id="flight-other-losses-indicator" class="text-xs text-gray-500 italic">Arraste os arquivos aqui ou clique para escolher.</span><span class="text-xs text-gray-500">Limite de 5 arquivos.</span></div><p id="flight-other-losses-error" class="hidden text-xs text-red-600 font-medium">Campo obrigatório</p></div>
+       </div>
+       <div class="border-t border-gray-100 pt-6 flex justify-between"><button type="button" id="btn-flight-losses-back" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-semibold"><i class="fa fa-chevron-left mr-2"></i>Voltar</button><button type="submit" id="btn-flight-losses-continue" class="px-6 py-2.5 bg-emerald-600 text-white font-bold rounded-lg">Continuar<i class="fa fa-chevron-right ml-2"></i></button></div>
       </form>
      </div>
     </div><!-- PAGE 6: OUTRAS PROVAS --> <!-- PAGE 6: OUTRAS PROVAS -->
@@ -2524,6 +2708,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const pageAuthorQualification = document.getElementById('page-author-qualification');
     const pageDefendantQualification = document.getElementById('page-defendant-qualification');
     const pageFactsArguments = document.getElementById('page-facts-arguments');
+    const pageFlightProblem = document.getElementById('page-flight-problem');
+    const pageFlightLosses = document.getElementById('page-flight-losses');
     const pageOtherProofs = document.getElementById('page-other-proofs');
     const pageRequestsMain = document.getElementById('page-requests-step');
     const pageProcessLocation = document.getElementById('page-process-location');
@@ -2537,6 +2723,8 @@ document.addEventListener("DOMContentLoaded", function () {
       pageAuthorQualification,
       pageDefendantQualification,
       pageFactsArguments,
+      pageFlightProblem,
+      pageFlightLosses,
       pageOtherProofs,
       pageRequestsMain,
       pageProcessLocation,
@@ -2885,10 +3073,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function resetDefendantQualificationState() {
       const serviceForm = document.getElementById('defendant-form');
       const productForm = document.getElementById('defendant-form-vicio');
+      const flightForm = document.getElementById('defendant-form-voo');
       const trafficForm = document.getElementById('defendant-form-transito');
       const summary = document.getElementById('defendant-summary');
 
-      [serviceForm, productForm, trafficForm].forEach(form => {
+      [serviceForm, productForm, flightForm, trafficForm].forEach(form => {
         if (form) {
           form.reset();
           form.classList.add('hidden');
@@ -2903,6 +3092,10 @@ document.addEventListener("DOMContentLoaded", function () {
         'def-cnpj-fabricante',
         'def-vendedor',
         'def-cnpj-vendedor',
+        'def-voo-vendedora',
+        'def-voo-vendedora-cnpj',
+        'def-voo-operadora',
+        'def-voo-operadora-cnpj',
         'def-transito-cnpj',
         'def-transito-cpf',
         'def-transito-nome-empresarial',
@@ -2958,6 +3151,10 @@ document.addEventListener("DOMContentLoaded", function () {
         'def-summary-cnpj-fab',
         'def-summary-vendedor',
         'def-summary-cnpj-vend',
+        'def-summary-voo-vendedora',
+        'def-summary-voo-vendedora-cnpj',
+        'def-summary-voo-operadora',
+        'def-summary-voo-operadora-cnpj',
         'def-summary-transito-nome',
         'def-summary-transito-doc',
         'def-summary-transito-endereco'
@@ -2975,12 +3172,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (currentSelectedCardIndex === 2) {
         if (productForm) productForm.classList.remove('hidden');
+      } else if (currentSelectedCardIndex === 3) {
+        if (flightForm) flightForm.classList.remove('hidden');
       } else if (currentSelectedCardIndex === 4) {
         if (trafficForm) trafficForm.classList.remove('hidden');
       } else if ([1, 5, 6].includes(currentSelectedCardIndex)) {
         if (serviceForm) serviceForm.classList.remove('hidden');
         updateDefendantDropdown();
       }
+    }
+
+    // Garante que o formulário correto seja exibido em qualquer caminho que abra
+    // a etapa de qualificação do réu (avanço, voltar ou edição).
+    if (pageDefendantQualification) {
+      const defendantPageObserver = new MutationObserver(() => {
+        if (!pageDefendantQualification.classList.contains('hidden')) {
+          resetDefendantQualificationState();
+          const backContainer = document.getElementById('def-back-btn-container');
+          if (backContainer) backContainer.classList.remove('hidden');
+        }
+      });
+      defendantPageObserver.observe(pageDefendantQualification, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
     }
 
     // Toggle Details function
@@ -3039,15 +3254,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const defForm = document.getElementById('defendant-form');
         const defFormVicio = document.getElementById('defendant-form-vicio');
+        const defFormVoo = document.getElementById('defendant-form-voo');
         const defFormTransito = document.getElementById('defendant-form-transito');
 
         // Esconde todos antes de mostrar somente o formulário da categoria escolhida.
         if (defForm) defForm.classList.add('hidden');
         if (defFormVicio) defFormVicio.classList.add('hidden');
+        if (defFormVoo) defFormVoo.classList.add('hidden');
         if (defFormTransito) defFormTransito.classList.add('hidden');
 
         if (currentSelectedCardIndex === 2) {
           if (defFormVicio) defFormVicio.classList.remove('hidden');
+        } else if (currentSelectedCardIndex === 3) {
+          if (defFormVoo) defFormVoo.classList.remove('hidden');
         } else if (currentSelectedCardIndex === 4) {
           if (defFormTransito) defFormTransito.classList.remove('hidden');
         } else if ([1, 5, 6].includes(currentSelectedCardIndex)) {
@@ -3134,6 +3353,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Toggle summary details visibility
         document.getElementById('def-summary-service-details').classList.remove('hidden');
         document.getElementById('def-summary-vicio-details').classList.add('hidden');
+        document.getElementById('def-summary-transito-details').classList.add('hidden');
+        document.getElementById('def-summary-voo-details').classList.add('hidden');
 
         // Show summary and hide form
         defendantForm.classList.add('hidden');
@@ -3335,6 +3556,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Toggle summary details visibility
         document.getElementById('def-summary-service-details').classList.add('hidden');
         document.getElementById('def-summary-transito-details').classList.add('hidden');
+        document.getElementById('def-summary-voo-details').classList.add('hidden');
         document.getElementById('def-summary-vicio-details').classList.remove('hidden');
 
         defendantFormVicio.classList.add('hidden');
@@ -3438,6 +3660,50 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     applyCNPJMask(document.getElementById('def-transito-cnpj'));
 
+    const airlineCnpjMap = {
+      'AIR CANADA': '05.385.049/0001-23',
+      'AMERICAN AIRLINES INC': '36.212.637/0001-99',
+      'AZUL LINHAS AEREAS BRASILEIRAS S.A': '09.296.295/0001-60',
+      'GOL LINHAS AEREAS S.A': '07.575.651/0001-59',
+      'LATAM AIRLINES GROUP S.A': '02.012.862/0001-60'
+    };
+    const defendantFormVoo = document.getElementById('defendant-form-voo');
+    const defVooVendedora = document.getElementById('def-voo-vendedora');
+    const defVooOperadora = document.getElementById('def-voo-operadora');
+    const defVooVendedoraCnpj = document.getElementById('def-voo-vendedora-cnpj');
+    const defVooOperadoraCnpj = document.getElementById('def-voo-operadora-cnpj');
+
+    function connectAirlineCnpj(select, cnpjInput) {
+      if (!select || !cnpjInput) return;
+      select.addEventListener('change', () => {
+        cnpjInput.value = airlineCnpjMap[select.value] || '';
+      });
+    }
+    connectAirlineCnpj(defVooVendedora, defVooVendedoraCnpj);
+    connectAirlineCnpj(defVooOperadora, defVooOperadoraCnpj);
+
+    if (defendantFormVoo) {
+      defendantFormVoo.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!defVooVendedora.value || !defVooOperadora.value) {
+          showNotification('Aviso', 'Selecione as duas companhias aéreas.', true);
+          return;
+        }
+        document.getElementById('def-summary-voo-vendedora').textContent = defVooVendedora.value;
+        document.getElementById('def-summary-voo-vendedora-cnpj').textContent = defVooVendedoraCnpj.value;
+        document.getElementById('def-summary-voo-operadora').textContent = defVooOperadora.value;
+        document.getElementById('def-summary-voo-operadora-cnpj').textContent = defVooOperadoraCnpj.value;
+        document.getElementById('def-summary-service-details').classList.add('hidden');
+        document.getElementById('def-summary-vicio-details').classList.add('hidden');
+        document.getElementById('def-summary-transito-details').classList.add('hidden');
+        document.getElementById('def-summary-voo-details').classList.remove('hidden');
+        defendantFormVoo.classList.add('hidden');
+        if (defBackBtnContainer) defBackBtnContainer.classList.add('hidden');
+        if (defendantSummary) defendantSummary.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
     const defendantFormTransito = document.getElementById('defendant-form-transito');
     if (defendantFormTransito) {
       defendantFormTransito.addEventListener('submit', (e) => {
@@ -3470,6 +3736,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('def-summary-service-details').classList.add('hidden');
         document.getElementById('def-summary-vicio-details').classList.add('hidden');
+        document.getElementById('def-summary-voo-details').classList.add('hidden');
         document.getElementById('def-summary-transito-details').classList.remove('hidden');
 
         defendantFormTransito.classList.add('hidden');
@@ -3526,16 +3793,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show correct facts form
         const formNormal = document.getElementById('facts-form');
         const formVicio = document.getElementById('facts-form-vicio');
+        const formVoo = document.getElementById('facts-form-voo');
         const formToi = document.getElementById('facts-form-toi');
         const formTransito = document.getElementById('facts-form-transito');
         const formNegativacao = document.getElementById('facts-form-negativacao');
 
-        [formNormal, formVicio, formToi, formTransito, formNegativacao].forEach(form => {
+        [formNormal, formVicio, formVoo, formToi, formTransito, formNegativacao].forEach(form => {
           if (form) form.classList.add('hidden');
         });
 
         if (currentSelectedCardIndex === 2) {
           if (formVicio) formVicio.classList.remove('hidden');
+        } else if (currentSelectedCardIndex === 3) {
+          if (formVoo) {
+            formVoo.reset();
+            resetFlightUploadState();
+            resetFlightProblemState();
+            formVoo.classList.remove('hidden');
+          }
         } else if (currentSelectedCardIndex === 6) {
           if (formToi) formToi.classList.remove('hidden');
         } else if (currentSelectedCardIndex === 4) {
@@ -4595,6 +4870,878 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    const factsFormVoo = document.getElementById('facts-form-voo');
+    const vooValorBilhete = document.getElementById('voo-valor-bilhete');
+    const vooBilheteButton = document.getElementById('btn-voo-bilhete-upload');
+    const vooPagamentoButton = document.getElementById('btn-voo-pagamento-upload');
+    const vooBilheteIndicator = document.getElementById('voo-bilhete-indicator');
+    const vooPagamentoIndicator = document.getElementById('voo-pagamento-indicator');
+
+    function resetFlightUploadState() {
+      [
+        [vooBilheteButton, vooBilheteIndicator, 'Arraste os arquivos aqui ou clique para escolher.'],
+        [vooPagamentoButton, vooPagamentoIndicator, 'Nenhum arquivo selecionado']
+      ].forEach(([button, indicator, initialText]) => {
+        if (button) button.dataset.selected = '';
+        if (indicator) {
+          indicator.textContent = initialText;
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+      });
+      document.getElementById('voo-bilhete-error')?.classList.add('hidden');
+      document.getElementById('voo-pagamento-error')?.classList.add('hidden');
+    }
+
+    if (vooValorBilhete) vooValorBilhete.addEventListener('input', formatBRL);
+    if (vooBilheteButton) {
+      vooBilheteButton.addEventListener('click', () => {
+        vooBilheteButton.dataset.selected = 'true';
+        vooBilheteIndicator.textContent = 'bilhete_cartao_embarque.pdf (1,3 MB)';
+        vooBilheteIndicator.className = 'text-xs text-green-600 font-semibold';
+        document.getElementById('voo-bilhete-error')?.classList.add('hidden');
+      });
+    }
+    if (vooPagamentoButton) {
+      vooPagamentoButton.addEventListener('click', () => {
+        vooPagamentoButton.dataset.selected = 'true';
+        vooPagamentoIndicator.textContent = 'comprovante_pagamento_bilhete.pdf (980 KB)';
+        vooPagamentoIndicator.className = 'text-xs text-green-600 font-semibold';
+        document.getElementById('voo-pagamento-error')?.classList.add('hidden');
+      });
+    }
+    if (factsFormVoo) {
+      factsFormVoo.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const hasTicket = vooBilheteButton?.dataset.selected === 'true';
+        const hasPayment = vooPagamentoButton?.dataset.selected === 'true';
+        document.getElementById('voo-bilhete-error')?.classList.toggle('hidden', hasTicket);
+        document.getElementById('voo-pagamento-error')?.classList.toggle('hidden', hasPayment);
+        if (!hasTicket || !hasPayment) {
+          showNotification('Aviso', 'Inclua os documentos obrigatórios do voo.', true);
+          return;
+        }
+        if (pageFactsArguments) pageFactsArguments.classList.add('hidden');
+        if (pageFlightProblem) pageFlightProblem.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    const btnVooBack = document.getElementById('btn-voo-back');
+    if (btnVooBack) {
+      btnVooBack.addEventListener('click', () => {
+        if (pageFactsArguments) pageFactsArguments.classList.add('hidden');
+        if (pageDefendantQualification) pageDefendantQualification.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    document.getElementById('btn-flight-problem-back')?.addEventListener('click', () => {
+      showOnlyPage(pageFactsArguments);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const selectedFlightProblems = new Set();
+    const selectedFlightProblemsContainer = document.getElementById('flight-selected-problems');
+    const flightProblemError = document.getElementById('flight-problem-error');
+    const flightProblemPickerPanel = document.getElementById('flight-problem-picker-panel');
+    const flightLostBaggageForm = document.getElementById('flight-lost-baggage-form');
+    const flightLostReceiptButton = document.getElementById('btn-flight-lost-receipt');
+    const flightLostNotesButton = document.getElementById('btn-flight-lost-notes');
+    const flightLostComplaintPanel = document.getElementById('flight-lost-complaint-panel');
+    const flightLostComplaintFileButton = document.getElementById('btn-flight-lost-complaint-file');
+    const flightLostReplacementPanel = document.getElementById('flight-lost-replacement-panel');
+    const flightLostReplacementFilesButton = document.getElementById('btn-flight-lost-replacement-files');
+    const flightDamagedForm = document.getElementById('flight-damaged-baggage-form');
+    const flightDamagedDeliveryButton = document.getElementById('btn-flight-damaged-delivery');
+    const flightDamagedComplaintPanel = document.getElementById('flight-damaged-complaint-panel');
+    const flightDamagedComplaintButton = document.getElementById('btn-flight-damaged-complaint');
+    const flightDamagedRepairButton = document.getElementById('btn-flight-damaged-repair');
+    const flightDelayedForm = document.getElementById('flight-delayed-baggage-form');
+    const flightDelayedDeliveryButton = document.getElementById('btn-flight-delayed-delivery');
+    const flightDelayedComplaintPanel = document.getElementById('flight-delayed-complaint-panel');
+    const flightDelayedComplaintButton = document.getElementById('btn-flight-delayed-complaint');
+    const flightDelayedReplacementPanel = document.getElementById('flight-delayed-replacement-panel');
+    const flightDelayedReplacementButton = document.getElementById('btn-flight-delayed-replacement');
+    const flightDelayCancelForm = document.getElementById('flight-delay-cancel-form');
+    const flightDelayConditionalKinds = ['food', 'hotel', 'ticket'];
+    const flightViolatedForm = document.getElementById('flight-violated-baggage-form');
+    const flightViolatedNotesButton = document.getElementById('btn-flight-violated-notes');
+    const flightViolatedDeliveryButton = document.getElementById('btn-flight-violated-delivery');
+    const flightViolatedComplaintPanel = document.getElementById('flight-violated-complaint-panel');
+    const flightViolatedComplaintButton = document.getElementById('btn-flight-violated-complaint');
+    const flightViolatedReplacementPanel = document.getElementById('flight-violated-replacement-panel');
+    const flightViolatedReplacementButton = document.getElementById('btn-flight-violated-replacement');
+    const flightDeniedForm = document.getElementById('flight-denied-boarding-form');
+    const flightDeniedConfigs = [
+      { kind: 'document', showValue: 'sim', fieldId: 'flight-denied-document-description', upload: true },
+      { kind: 'other', showValue: 'sim', fieldId: 'flight-denied-other-description', upload: true },
+      { kind: 'rebooked', showValue: 'nao', fieldId: 'flight-denied-solution', upload: false },
+      { kind: 'food', showValue: 'sim', fieldId: 'flight-denied-food-value', upload: true },
+      { kind: 'hotel', showValue: 'sim', fieldId: 'flight-denied-hotel-value', upload: true }
+    ];
+
+    function showFlightProblemPicker() {
+      flightLostBaggageForm?.classList.add('hidden');
+      flightDamagedForm?.classList.add('hidden');
+      flightDelayedForm?.classList.add('hidden');
+      flightDelayCancelForm?.classList.add('hidden');
+      flightViolatedForm?.classList.add('hidden');
+      flightDeniedForm?.classList.add('hidden');
+      flightProblemPickerPanel?.classList.remove('hidden');
+    }
+
+    function resetFlightProblemState() {
+      selectedFlightProblems.clear();
+      flightProblemError?.classList.add('hidden');
+      if (flightLostBaggageForm) flightLostBaggageForm.reset();
+      if (flightLostReceiptButton) flightLostReceiptButton.dataset.selected = '';
+      if (flightLostNotesButton) flightLostNotesButton.dataset.selected = '';
+      if (flightLostComplaintFileButton) flightLostComplaintFileButton.dataset.selected = '';
+      if (flightLostReplacementFilesButton) flightLostReplacementFilesButton.dataset.selected = '';
+      if (flightDamagedForm) flightDamagedForm.reset();
+      [flightDamagedDeliveryButton, flightDamagedComplaintButton, flightDamagedRepairButton].forEach(button => {
+        if (button) button.dataset.selected = '';
+      });
+      flightDamagedComplaintPanel?.classList.add('hidden');
+      if (flightDelayedForm) flightDelayedForm.reset();
+      [flightDelayedDeliveryButton, flightDelayedComplaintButton, flightDelayedReplacementButton].forEach(button => {
+        if (button) button.dataset.selected = '';
+      });
+      flightDelayedComplaintPanel?.classList.add('hidden');
+      flightDelayedReplacementPanel?.classList.add('hidden');
+      const delayedReplacementDescription = document.getElementById('flight-delayed-replacement-description');
+      const delayedReplacementValue = document.getElementById('flight-delayed-replacement-value');
+      if (delayedReplacementDescription) delayedReplacementDescription.required = false;
+      if (delayedReplacementValue) delayedReplacementValue.required = false;
+      flightLostComplaintPanel?.classList.add('hidden');
+      flightLostReplacementPanel?.classList.add('hidden');
+      const replacementDescription = document.getElementById('flight-lost-replacement-description');
+      const replacementValue = document.getElementById('flight-lost-replacement-value');
+      if (replacementDescription) replacementDescription.required = false;
+      if (replacementValue) replacementValue.required = false;
+      const receiptIndicator = document.getElementById('flight-lost-receipt-indicator');
+      const notesIndicator = document.getElementById('flight-lost-notes-indicator');
+      const complaintIndicator = document.getElementById('flight-lost-complaint-indicator');
+      const replacementIndicator = document.getElementById('flight-lost-replacement-indicator');
+      if (receiptIndicator) {
+        receiptIndicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+        receiptIndicator.className = 'text-xs text-gray-500 italic';
+      }
+      if (notesIndicator) {
+        notesIndicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+        notesIndicator.className = 'text-xs text-gray-500 italic';
+      }
+      if (complaintIndicator) {
+        complaintIndicator.textContent = 'Nenhum arquivo selecionado';
+        complaintIndicator.className = 'text-xs text-gray-500 italic';
+      }
+      if (replacementIndicator) {
+        replacementIndicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+        replacementIndicator.className = 'text-xs text-gray-500 italic';
+      }
+      document.getElementById('flight-lost-receipt-error')?.classList.add('hidden');
+      document.getElementById('flight-lost-complaint-error')?.classList.add('hidden');
+      document.getElementById('flight-lost-replacement-error')?.classList.add('hidden');
+      document.getElementById('flight-lost-description-count').textContent = '0';
+      document.getElementById('flight-lost-summary-count').textContent = '0';
+      document.getElementById('flight-lost-replacement-description-count').textContent = '0';
+      document.getElementById('flight-damaged-description-count').textContent = '0';
+      document.getElementById('flight-damaged-summary-count').textContent = '0';
+      document.getElementById('flight-delayed-summary-count').textContent = '0';
+      document.getElementById('flight-delayed-replacement-description-count').textContent = '0';
+      ['delivery', 'complaint', 'repair'].forEach(kind => {
+        document.getElementById(`flight-damaged-${kind}-error`)?.classList.add('hidden');
+      });
+      const damagedIndicatorDefaults = {
+        delivery: 'Arraste os arquivos aqui ou clique para escolher.',
+        complaint: 'Nenhum arquivo selecionado',
+        repair: 'Arraste os arquivos aqui ou clique para escolher.'
+      };
+      Object.entries(damagedIndicatorDefaults).forEach(([kind, text]) => {
+        const indicator = document.getElementById(`flight-damaged-${kind}-indicator`);
+        if (indicator) {
+          indicator.textContent = text;
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+      });
+      const delayedIndicatorDefaults = {
+        delivery: 'Arraste os arquivos aqui ou clique para escolher.',
+        complaint: 'Nenhum arquivo selecionado',
+        replacement: 'Arraste os arquivos aqui ou clique para escolher.'
+      };
+      Object.entries(delayedIndicatorDefaults).forEach(([kind, text]) => {
+        const indicator = document.getElementById(`flight-delayed-${kind}-indicator`);
+        if (indicator) {
+          indicator.textContent = text;
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+        document.getElementById(`flight-delayed-${kind}-error`)?.classList.add('hidden');
+      });
+      if (flightDelayCancelForm) flightDelayCancelForm.reset();
+      flightDelayConditionalKinds.forEach(kind => {
+        const button = document.getElementById(`btn-flight-delay-${kind}`);
+        const panel = document.getElementById(`flight-delay-${kind}-panel`);
+        const value = document.getElementById(`flight-delay-${kind}-value`);
+        const indicator = document.getElementById(`flight-delay-${kind}-indicator`);
+        if (button) button.dataset.selected = '';
+        panel?.classList.add('hidden');
+        if (value) value.required = false;
+        if (indicator) {
+          indicator.textContent = kind === 'ticket' ? 'Nenhum arquivo selecionado' : 'Arraste os arquivos aqui ou clique para escolher.';
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+        document.getElementById(`flight-delay-${kind}-error`)?.classList.add('hidden');
+      });
+      document.getElementById('flight-delay-summary-count').textContent = '0';
+      if (flightViolatedForm) flightViolatedForm.reset();
+      [flightViolatedNotesButton, flightViolatedDeliveryButton, flightViolatedComplaintButton, flightViolatedReplacementButton].forEach(button => {
+        if (button) button.dataset.selected = '';
+      });
+      flightViolatedComplaintPanel?.classList.add('hidden');
+      flightViolatedReplacementPanel?.classList.add('hidden');
+      const violatedReplacementDescription = document.getElementById('flight-violated-replacement-description');
+      const violatedReplacementValue = document.getElementById('flight-violated-replacement-value');
+      if (violatedReplacementDescription) violatedReplacementDescription.required = false;
+      if (violatedReplacementValue) violatedReplacementValue.required = false;
+      document.getElementById('flight-violated-description-count').textContent = '0';
+      document.getElementById('flight-violated-replacement-description-count').textContent = '0';
+      document.getElementById('flight-violated-summary-count').textContent = '0';
+      ['notes', 'delivery', 'complaint', 'replacement'].forEach(kind => {
+        const indicator = document.getElementById(`flight-violated-${kind}-indicator`);
+        if (indicator) {
+          indicator.textContent = kind === 'complaint' ? 'Nenhum arquivo selecionado' : 'Arraste os arquivos aqui ou clique para escolher.';
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+        document.getElementById(`flight-violated-${kind}-error`)?.classList.add('hidden');
+      });
+      if (flightDeniedForm) flightDeniedForm.reset();
+      flightDeniedConfigs.forEach(config => {
+        const panel = document.getElementById(`flight-denied-${config.kind}-panel`);
+        const field = document.getElementById(config.fieldId);
+        const button = document.getElementById(`btn-flight-denied-${config.kind}`);
+        panel?.classList.add('hidden');
+        if (field) field.required = false;
+        if (button) button.dataset.selected = '';
+        const indicator = document.getElementById(`flight-denied-${config.kind}-indicator`);
+        if (indicator) {
+          indicator.textContent = ['food', 'hotel'].includes(config.kind) ? 'Arraste os arquivos aqui ou clique para escolher.' : 'Nenhum arquivo selecionado';
+          indicator.className = 'text-xs text-gray-500 italic';
+        }
+        document.getElementById(`flight-denied-${config.kind}-error`)?.classList.add('hidden');
+      });
+      ['document-description', 'other-description', 'solution'].forEach(suffix => {
+        const counter = document.getElementById(`flight-denied-${suffix}-count`);
+        if (counter) counter.textContent = '0';
+      });
+      const otherLossesForm = document.getElementById('flight-other-losses-form');
+      const otherLossesPanel = document.getElementById('flight-other-losses-panel');
+      const otherLossesDescription = document.getElementById('flight-other-losses-description');
+      const otherLossesValue = document.getElementById('flight-other-losses-value');
+      const otherLossesButton = document.getElementById('btn-flight-other-losses-files');
+      if (otherLossesForm) otherLossesForm.reset();
+      otherLossesPanel?.classList.add('hidden');
+      if (otherLossesDescription) otherLossesDescription.required = false;
+      if (otherLossesValue) otherLossesValue.required = false;
+      if (otherLossesButton) otherLossesButton.dataset.selected = '';
+      document.getElementById('flight-other-losses-description-count').textContent = '0';
+      document.getElementById('flight-other-losses-error')?.classList.add('hidden');
+      const otherLossesIndicator = document.getElementById('flight-other-losses-indicator');
+      if (otherLossesIndicator) {
+        otherLossesIndicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+        otherLossesIndicator.className = 'text-xs text-gray-500 italic';
+      }
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+    }
+
+    function renderSelectedFlightProblems() {
+      if (!selectedFlightProblemsContainer) return;
+      selectedFlightProblemsContainer.innerHTML = Array.from(selectedFlightProblems).map(problem => `
+        <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm flex items-center justify-between gap-4" data-selected-problem="${problem}">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center shrink-0"><i class="fa fa-plane"></i></div>
+            <div class="min-w-0"><p class="font-semibold text-gray-900">${problem}</p><button type="button" class="flight-problem-details text-xs text-blue-600 hover:underline mt-1">Clique aqui para visualizar detalhes</button><p class="flight-problem-detail-text hidden text-xs text-gray-500 mt-2">Problema selecionado para esta reclamação.</p></div>
+          </div>
+          <button type="button" class="flight-problem-remove px-3 py-2 border border-red-300 text-red-600 hover:bg-red-50 rounded-lg text-xs font-semibold shrink-0"><i class="fa fa-trash mr-1"></i>Excluir</button>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.flight-problem-option').forEach(button => {
+        const selected = selectedFlightProblems.has(button.dataset.problem);
+        button.classList.toggle('bg-blue-600', !selected);
+        button.classList.toggle('hover:bg-blue-700', !selected);
+        button.classList.toggle('bg-blue-400', selected);
+        button.classList.toggle('cursor-default', selected);
+        const icon = button.querySelector('i');
+        if (icon) icon.className = selected ? 'fa fa-check' : 'fa fa-plus';
+      });
+    }
+
+    document.querySelectorAll('.flight-problem-option').forEach(button => {
+      button.addEventListener('click', () => {
+        const problem = button.dataset.problem;
+        if (selectedFlightProblems.has(problem)) return;
+        if (selectedFlightProblems.size >= 3) {
+          showNotification('Aviso', 'É possível adicionar no máximo três problemas.', true);
+          return;
+        }
+        if (problem === 'Bagagem extraviada e não mais localizada') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightLostBaggageForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (problem === 'Bagagem extraviada e entregue com atraso') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightDelayedForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (problem === 'Bagagem violada (itens desaparecidos)') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightViolatedForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (problem === 'Bagagem danificada (mala quebrada etc.)') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightDamagedForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (problem === 'Atraso/Cancelamento do voo') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightDelayCancelForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (problem === 'Embarque não autorizado') {
+          flightProblemPickerPanel?.classList.add('hidden');
+          flightDeniedForm?.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        selectedFlightProblems.add(problem);
+        flightProblemError?.classList.add('hidden');
+        renderSelectedFlightProblems();
+      });
+    });
+
+    ['flight-lost-description', 'flight-lost-summary', 'flight-lost-replacement-description'].forEach((id) => {
+      const field = document.getElementById(id);
+      const counter = document.getElementById(`${id}-count`);
+      field?.addEventListener('input', () => {
+        if (counter) counter.textContent = field.value.length;
+      });
+    });
+    document.getElementById('flight-lost-items-value')?.addEventListener('input', formatBRL);
+    document.getElementById('flight-lost-replacement-value')?.addEventListener('input', formatBRL);
+    document.getElementsByName('flight-lost-complaint').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightLostComplaintPanel?.classList.toggle('hidden', !show);
+        if (!show && radio.checked) {
+          if (flightLostComplaintFileButton) flightLostComplaintFileButton.dataset.selected = '';
+          document.getElementById('flight-lost-complaint-error')?.classList.add('hidden');
+        }
+      });
+    });
+    document.getElementsByName('flight-lost-replacement').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightLostReplacementPanel?.classList.toggle('hidden', !show);
+        const description = document.getElementById('flight-lost-replacement-description');
+        const value = document.getElementById('flight-lost-replacement-value');
+        if (description) description.required = show;
+        if (value) value.required = show;
+        if (!show && radio.checked) {
+          if (description) description.value = '';
+          if (value) value.value = '';
+          if (flightLostReplacementFilesButton) flightLostReplacementFilesButton.dataset.selected = '';
+          document.getElementById('flight-lost-replacement-description-count').textContent = '0';
+          document.getElementById('flight-lost-replacement-error')?.classList.add('hidden');
+        }
+      });
+    });
+    if (flightLostReceiptButton) {
+      flightLostReceiptButton.addEventListener('click', () => {
+        flightLostReceiptButton.dataset.selected = 'true';
+        const indicator = document.getElementById('flight-lost-receipt-indicator');
+        if (indicator) {
+          indicator.textContent = 'recibo_entrega_bagagem.pdf (1,1 MB)';
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById('flight-lost-receipt-error')?.classList.add('hidden');
+      });
+    }
+    if (flightLostNotesButton) {
+      flightLostNotesButton.addEventListener('click', () => {
+        flightLostNotesButton.dataset.selected = 'true';
+        const indicator = document.getElementById('flight-lost-notes-indicator');
+        if (indicator) {
+          indicator.textContent = 'notas_itens_desaparecidos.pdf (920 KB)';
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+      });
+    }
+    if (flightLostComplaintFileButton) {
+      flightLostComplaintFileButton.addEventListener('click', () => {
+        flightLostComplaintFileButton.dataset.selected = 'true';
+        const indicator = document.getElementById('flight-lost-complaint-indicator');
+        if (indicator) {
+          indicator.textContent = 'formulario_reclamacao_companhia_aerea.pdf (870 KB)';
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById('flight-lost-complaint-error')?.classList.add('hidden');
+      });
+    }
+    if (flightLostReplacementFilesButton) {
+      flightLostReplacementFilesButton.addEventListener('click', () => {
+        flightLostReplacementFilesButton.dataset.selected = 'true';
+        const indicator = document.getElementById('flight-lost-replacement-indicator');
+        if (indicator) {
+          indicator.textContent = 'recibos_bens_adquiridos.pdf (1,2 MB)';
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById('flight-lost-replacement-error')?.classList.add('hidden');
+      });
+    }
+    document.getElementById('btn-flight-lost-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightLostBaggageForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const hasReceipt = flightLostReceiptButton?.dataset.selected === 'true';
+      const complaintYes = document.querySelector('input[name="flight-lost-complaint"]:checked')?.value === 'sim';
+      const replacementYes = document.querySelector('input[name="flight-lost-replacement"]:checked')?.value === 'sim';
+      const hasComplaintFile = flightLostComplaintFileButton?.dataset.selected === 'true';
+      const hasReplacementFiles = flightLostReplacementFilesButton?.dataset.selected === 'true';
+      document.getElementById('flight-lost-receipt-error')?.classList.toggle('hidden', hasReceipt);
+      document.getElementById('flight-lost-complaint-error')?.classList.toggle('hidden', !complaintYes || hasComplaintFile);
+      document.getElementById('flight-lost-replacement-error')?.classList.toggle('hidden', !replacementYes || hasReplacementFiles);
+      if (!hasReceipt || (complaintYes && !hasComplaintFile) || (replacementYes && !hasReplacementFiles)) {
+        showNotification('Aviso', 'Preencha e carregue os comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Bagagem extraviada e não mais localizada');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    ['flight-damaged-description', 'flight-damaged-summary'].forEach(id => {
+      const field = document.getElementById(id);
+      const counter = document.getElementById(`${id}-count`);
+      field?.addEventListener('input', () => {
+        if (counter) counter.textContent = field.value.length;
+      });
+    });
+    document.getElementById('flight-damaged-value')?.addEventListener('input', formatBRL);
+    document.getElementsByName('flight-damaged-complaint').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightDamagedComplaintPanel?.classList.toggle('hidden', !show);
+        if (!show && radio.checked) {
+          if (flightDamagedComplaintButton) flightDamagedComplaintButton.dataset.selected = '';
+          document.getElementById('flight-damaged-complaint-error')?.classList.add('hidden');
+          const indicator = document.getElementById('flight-damaged-complaint-indicator');
+          if (indicator) {
+            indicator.textContent = 'Nenhum arquivo selecionado';
+            indicator.className = 'text-xs text-gray-500 italic';
+          }
+        }
+      });
+    });
+    [
+      [flightDamagedDeliveryButton, 'flight-damaged-delivery-indicator', 'recibo_entrega_bagagem.pdf (1,1 MB)', 'flight-damaged-delivery-error'],
+      [flightDamagedComplaintButton, 'flight-damaged-complaint-indicator', 'formulario_reclamacao_companhia_aerea.pdf (870 KB)', 'flight-damaged-complaint-error'],
+      [flightDamagedRepairButton, 'flight-damaged-repair-indicator', 'orcamento_reparo_bagagem.pdf (1,4 MB)', 'flight-damaged-repair-error']
+    ].forEach(([button, indicatorId, fileName, errorId]) => {
+      button?.addEventListener('click', () => {
+        button.dataset.selected = 'true';
+        const indicator = document.getElementById(indicatorId);
+        if (indicator) {
+          indicator.textContent = fileName;
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById(errorId)?.classList.add('hidden');
+      });
+    });
+    document.getElementById('btn-flight-damaged-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightDamagedForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const complaintYes = document.querySelector('input[name="flight-damaged-complaint"]:checked')?.value === 'sim';
+      const hasDelivery = flightDamagedDeliveryButton?.dataset.selected === 'true';
+      const hasComplaint = flightDamagedComplaintButton?.dataset.selected === 'true';
+      const hasRepair = flightDamagedRepairButton?.dataset.selected === 'true';
+      document.getElementById('flight-damaged-delivery-error')?.classList.toggle('hidden', hasDelivery);
+      document.getElementById('flight-damaged-complaint-error')?.classList.toggle('hidden', !complaintYes || hasComplaint);
+      document.getElementById('flight-damaged-repair-error')?.classList.toggle('hidden', hasRepair);
+      if (!hasDelivery || !hasRepair || (complaintYes && !hasComplaint)) {
+        showNotification('Aviso', 'Preencha e carregue os comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Bagagem danificada (mala quebrada etc.)');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    ['flight-delayed-summary', 'flight-delayed-replacement-description'].forEach(id => {
+      const field = document.getElementById(id);
+      const counter = document.getElementById(`${id}-count`);
+      field?.addEventListener('input', () => {
+        if (counter) counter.textContent = field.value.length;
+      });
+    });
+    document.getElementById('flight-delayed-replacement-value')?.addEventListener('input', formatBRL);
+    document.getElementsByName('flight-delayed-complaint').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightDelayedComplaintPanel?.classList.toggle('hidden', !show);
+        if (!show && radio.checked) {
+          if (flightDelayedComplaintButton) flightDelayedComplaintButton.dataset.selected = '';
+          document.getElementById('flight-delayed-complaint-error')?.classList.add('hidden');
+        }
+      });
+    });
+    document.getElementsByName('flight-delayed-replacement').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightDelayedReplacementPanel?.classList.toggle('hidden', !show);
+        const description = document.getElementById('flight-delayed-replacement-description');
+        const value = document.getElementById('flight-delayed-replacement-value');
+        if (description) description.required = show;
+        if (value) value.required = show;
+        if (!show && radio.checked) {
+          if (description) description.value = '';
+          if (value) value.value = '';
+          if (flightDelayedReplacementButton) flightDelayedReplacementButton.dataset.selected = '';
+          document.getElementById('flight-delayed-replacement-description-count').textContent = '0';
+          document.getElementById('flight-delayed-replacement-error')?.classList.add('hidden');
+        }
+      });
+    });
+    [
+      [flightDelayedDeliveryButton, 'flight-delayed-delivery-indicator', 'recibo_entrega_bagagem.pdf (1,1 MB)', 'flight-delayed-delivery-error'],
+      [flightDelayedComplaintButton, 'flight-delayed-complaint-indicator', 'formulario_reclamacao_companhia_aerea.pdf (870 KB)', 'flight-delayed-complaint-error'],
+      [flightDelayedReplacementButton, 'flight-delayed-replacement-indicator', 'recibos_bens_adquiridos.pdf (1,2 MB)', 'flight-delayed-replacement-error']
+    ].forEach(([button, indicatorId, fileName, errorId]) => {
+      button?.addEventListener('click', () => {
+        button.dataset.selected = 'true';
+        const indicator = document.getElementById(indicatorId);
+        if (indicator) {
+          indicator.textContent = fileName;
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById(errorId)?.classList.add('hidden');
+      });
+    });
+    document.getElementById('btn-flight-delayed-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightDelayedForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const from = document.getElementById('flight-delayed-from')?.value || '';
+      const to = document.getElementById('flight-delayed-to')?.value || '';
+      if (from && to && new Date(to) < new Date(from)) {
+        showNotification('Aviso', 'A data final deve ser posterior à data inicial.', true);
+        return;
+      }
+      const complaintYes = document.querySelector('input[name="flight-delayed-complaint"]:checked')?.value === 'sim';
+      const replacementYes = document.querySelector('input[name="flight-delayed-replacement"]:checked')?.value === 'sim';
+      const hasDelivery = flightDelayedDeliveryButton?.dataset.selected === 'true';
+      const hasComplaint = flightDelayedComplaintButton?.dataset.selected === 'true';
+      const hasReplacement = flightDelayedReplacementButton?.dataset.selected === 'true';
+      document.getElementById('flight-delayed-delivery-error')?.classList.toggle('hidden', hasDelivery);
+      document.getElementById('flight-delayed-complaint-error')?.classList.toggle('hidden', !complaintYes || hasComplaint);
+      document.getElementById('flight-delayed-replacement-error')?.classList.toggle('hidden', !replacementYes || hasReplacement);
+      if (!hasDelivery || (complaintYes && !hasComplaint) || (replacementYes && !hasReplacement)) {
+        showNotification('Aviso', 'Preencha e carregue os comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Bagagem extraviada e entregue com atraso');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const flightDelaySummary = document.getElementById('flight-delay-summary');
+    flightDelaySummary?.addEventListener('input', () => {
+      document.getElementById('flight-delay-summary-count').textContent = flightDelaySummary.value.length;
+    });
+    flightDelayConditionalKinds.forEach(kind => {
+      const valueInput = document.getElementById(`flight-delay-${kind}-value`);
+      const uploadButton = document.getElementById(`btn-flight-delay-${kind}`);
+      const panel = document.getElementById(`flight-delay-${kind}-panel`);
+      valueInput?.addEventListener('input', formatBRL);
+      document.getElementsByName(`flight-delay-${kind}`).forEach(radio => {
+        radio.addEventListener('change', () => {
+          const show = radio.value === 'sim' && radio.checked;
+          panel?.classList.toggle('hidden', !show);
+          if (valueInput) valueInput.required = show;
+          if (!show && radio.checked) {
+            if (valueInput) valueInput.value = '';
+            if (uploadButton) uploadButton.dataset.selected = '';
+            document.getElementById(`flight-delay-${kind}-error`)?.classList.add('hidden');
+            const indicator = document.getElementById(`flight-delay-${kind}-indicator`);
+            if (indicator) {
+              indicator.textContent = kind === 'ticket' ? 'Nenhum arquivo selecionado' : 'Arraste os arquivos aqui ou clique para escolher.';
+              indicator.className = 'text-xs text-gray-500 italic';
+            }
+          }
+        });
+      });
+      uploadButton?.addEventListener('click', () => {
+        uploadButton.dataset.selected = 'true';
+        const indicator = document.getElementById(`flight-delay-${kind}-indicator`);
+        const names = {
+          food: 'comprovantes_alimentacao.pdf (980 KB)',
+          hotel: 'comprovantes_hospedagem.pdf (1,3 MB)',
+          ticket: 'comprovante_novo_bilhete.pdf (1,1 MB)'
+        };
+        if (indicator) {
+          indicator.textContent = names[kind];
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById(`flight-delay-${kind}-error`)?.classList.add('hidden');
+      });
+    });
+    document.getElementById('btn-flight-delay-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightDelayCancelForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let conditionalValid = true;
+      flightDelayConditionalKinds.forEach(kind => {
+        const yes = document.querySelector(`input[name="flight-delay-${kind}"]:checked`)?.value === 'sim';
+        const selected = document.getElementById(`btn-flight-delay-${kind}`)?.dataset.selected === 'true';
+        document.getElementById(`flight-delay-${kind}-error`)?.classList.toggle('hidden', !yes || selected);
+        if (yes && !selected) conditionalValid = false;
+      });
+      if (!conditionalValid) {
+        showNotification('Aviso', 'Carregue os comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Atraso/Cancelamento do voo');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    ['flight-violated-description', 'flight-violated-replacement-description', 'flight-violated-summary'].forEach(id => {
+      const field = document.getElementById(id);
+      const counter = document.getElementById(`${id}-count`);
+      field?.addEventListener('input', () => {
+        if (counter) counter.textContent = field.value.length;
+      });
+    });
+    document.getElementById('flight-violated-value')?.addEventListener('input', formatBRL);
+    document.getElementById('flight-violated-replacement-value')?.addEventListener('input', formatBRL);
+    document.getElementsByName('flight-violated-complaint').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightViolatedComplaintPanel?.classList.toggle('hidden', !show);
+        if (!show && radio.checked) {
+          if (flightViolatedComplaintButton) flightViolatedComplaintButton.dataset.selected = '';
+          const indicator = document.getElementById('flight-violated-complaint-indicator');
+          if (indicator) {
+            indicator.textContent = 'Nenhum arquivo selecionado';
+            indicator.className = 'text-xs text-gray-500 italic';
+          }
+          document.getElementById('flight-violated-complaint-error')?.classList.add('hidden');
+        }
+      });
+    });
+    document.getElementsByName('flight-violated-replacement').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightViolatedReplacementPanel?.classList.toggle('hidden', !show);
+        const description = document.getElementById('flight-violated-replacement-description');
+        const value = document.getElementById('flight-violated-replacement-value');
+        if (description) description.required = show;
+        if (value) value.required = show;
+        if (!show && radio.checked) {
+          if (description) description.value = '';
+          if (value) value.value = '';
+          if (flightViolatedReplacementButton) flightViolatedReplacementButton.dataset.selected = '';
+          document.getElementById('flight-violated-replacement-description-count').textContent = '0';
+          const indicator = document.getElementById('flight-violated-replacement-indicator');
+          if (indicator) {
+            indicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+            indicator.className = 'text-xs text-gray-500 italic';
+          }
+          document.getElementById('flight-violated-replacement-error')?.classList.add('hidden');
+        }
+      });
+    });
+    [
+      [flightViolatedNotesButton, 'notes', 'notas_itens_desaparecidos.pdf (920 KB)'],
+      [flightViolatedDeliveryButton, 'delivery', 'recibo_entrega_bagagem.pdf (1,1 MB)'],
+      [flightViolatedComplaintButton, 'complaint', 'formulario_reclamacao_companhia_aerea.pdf (870 KB)'],
+      [flightViolatedReplacementButton, 'replacement', 'recibos_bens_adquiridos.pdf (1,2 MB)']
+    ].forEach(([button, kind, fileName]) => {
+      button?.addEventListener('click', () => {
+        button.dataset.selected = 'true';
+        const indicator = document.getElementById(`flight-violated-${kind}-indicator`);
+        if (indicator) {
+          indicator.textContent = fileName;
+          indicator.className = 'text-xs text-green-600 font-semibold';
+        }
+        document.getElementById(`flight-violated-${kind}-error`)?.classList.add('hidden');
+      });
+    });
+    document.getElementById('btn-flight-violated-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightViolatedForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const complaintYes = document.querySelector('input[name="flight-violated-complaint"]:checked')?.value === 'sim';
+      const replacementYes = document.querySelector('input[name="flight-violated-replacement"]:checked')?.value === 'sim';
+      const hasDelivery = flightViolatedDeliveryButton?.dataset.selected === 'true';
+      const hasComplaint = flightViolatedComplaintButton?.dataset.selected === 'true';
+      const hasReplacement = flightViolatedReplacementButton?.dataset.selected === 'true';
+      document.getElementById('flight-violated-delivery-error')?.classList.toggle('hidden', hasDelivery);
+      document.getElementById('flight-violated-complaint-error')?.classList.toggle('hidden', !complaintYes || hasComplaint);
+      document.getElementById('flight-violated-replacement-error')?.classList.toggle('hidden', !replacementYes || hasReplacement);
+      if (!hasDelivery || (complaintYes && !hasComplaint) || (replacementYes && !hasReplacement)) {
+        showNotification('Aviso', 'Preencha e carregue os comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Bagagem violada (itens desaparecidos)');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    ['flight-denied-document-description', 'flight-denied-other-description', 'flight-denied-solution'].forEach(id => {
+      const field = document.getElementById(id);
+      const counter = document.getElementById(`${id}-count`);
+      field?.addEventListener('input', () => {
+        if (counter) counter.textContent = field.value.length;
+      });
+    });
+    ['flight-denied-food-value', 'flight-denied-hotel-value'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', formatBRL);
+    });
+    flightDeniedConfigs.forEach(config => {
+      const panel = document.getElementById(`flight-denied-${config.kind}-panel`);
+      const field = document.getElementById(config.fieldId);
+      const uploadButton = document.getElementById(`btn-flight-denied-${config.kind}`);
+      document.getElementsByName(`flight-denied-${config.kind}`).forEach(radio => {
+        radio.addEventListener('change', () => {
+          const show = radio.value === config.showValue && radio.checked;
+          panel?.classList.toggle('hidden', !show);
+          if (field) field.required = show;
+          if (!show && radio.checked) {
+            if (field) field.value = '';
+            if (uploadButton) uploadButton.dataset.selected = '';
+            const counter = document.getElementById(`${config.fieldId}-count`);
+            if (counter) counter.textContent = '0';
+            const indicator = document.getElementById(`flight-denied-${config.kind}-indicator`);
+            if (indicator) {
+              indicator.textContent = ['food', 'hotel'].includes(config.kind) ? 'Arraste os arquivos aqui ou clique para escolher.' : 'Nenhum arquivo selecionado';
+              indicator.className = 'text-xs text-gray-500 italic';
+            }
+            document.getElementById(`flight-denied-${config.kind}-error`)?.classList.add('hidden');
+          }
+        });
+      });
+      if (config.upload) {
+        uploadButton?.addEventListener('click', () => {
+          uploadButton.dataset.selected = 'true';
+          const names = {
+            document: 'documento_apontado_irregular.pdf (740 KB)',
+            other: 'documento_relativo_relato.pdf (820 KB)',
+            food: 'comprovantes_alimentacao.pdf (980 KB)',
+            hotel: 'comprovantes_hospedagem.pdf (1,3 MB)'
+          };
+          const indicator = document.getElementById(`flight-denied-${config.kind}-indicator`);
+          if (indicator) {
+            indicator.textContent = names[config.kind];
+            indicator.className = 'text-xs text-green-600 font-semibold';
+          }
+          document.getElementById(`flight-denied-${config.kind}-error`)?.classList.add('hidden');
+        });
+      }
+    });
+    document.getElementById('btn-flight-denied-cancel')?.addEventListener('click', showFlightProblemPicker);
+    flightDeniedForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let uploadsValid = true;
+      flightDeniedConfigs.filter(config => config.upload).forEach(config => {
+        const active = document.querySelector(`input[name="flight-denied-${config.kind}"]:checked`)?.value === config.showValue;
+        const selected = document.getElementById(`btn-flight-denied-${config.kind}`)?.dataset.selected === 'true';
+        document.getElementById(`flight-denied-${config.kind}-error`)?.classList.toggle('hidden', !active || selected);
+        if (active && !selected) uploadsValid = false;
+      });
+      if (!uploadsValid) {
+        showNotification('Aviso', 'Carregue os documentos e comprovantes obrigatórios.', true);
+        return;
+      }
+      selectedFlightProblems.add('Embarque não autorizado');
+      showFlightProblemPicker();
+      renderSelectedFlightProblems();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    selectedFlightProblemsContainer?.addEventListener('click', (e) => {
+      const card = e.target.closest('[data-selected-problem]');
+      if (!card) return;
+      if (e.target.closest('.flight-problem-remove')) {
+        selectedFlightProblems.delete(card.dataset.selectedProblem);
+        renderSelectedFlightProblems();
+      } else if (e.target.closest('.flight-problem-details')) {
+        card.querySelector('.flight-problem-detail-text')?.classList.toggle('hidden');
+      }
+    });
+    document.getElementById('btn-flight-problem-continue')?.addEventListener('click', () => {
+      if (selectedFlightProblems.size === 0) {
+        flightProblemError?.classList.remove('hidden');
+        showNotification('Aviso', 'Selecione pelo menos um problema.', true);
+        return;
+      }
+      showOnlyPage(pageFlightLosses);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('btn-flight-losses-back')?.addEventListener('click', () => {
+      showOnlyPage(pageFlightProblem);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const flightOtherLossesForm = document.getElementById('flight-other-losses-form');
+    const flightOtherLossesPanel = document.getElementById('flight-other-losses-panel');
+    const flightOtherLossesDescription = document.getElementById('flight-other-losses-description');
+    const flightOtherLossesValue = document.getElementById('flight-other-losses-value');
+    const flightOtherLossesFilesButton = document.getElementById('btn-flight-other-losses-files');
+    document.getElementsByName('flight-other-losses').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'sim' && radio.checked;
+        flightOtherLossesPanel?.classList.toggle('hidden', !show);
+        if (flightOtherLossesDescription) flightOtherLossesDescription.required = show;
+        if (flightOtherLossesValue) flightOtherLossesValue.required = show;
+        if (!show && radio.checked) {
+          if (flightOtherLossesDescription) flightOtherLossesDescription.value = '';
+          if (flightOtherLossesValue) flightOtherLossesValue.value = '';
+          if (flightOtherLossesFilesButton) flightOtherLossesFilesButton.dataset.selected = '';
+          document.getElementById('flight-other-losses-description-count').textContent = '0';
+          document.getElementById('flight-other-losses-error')?.classList.add('hidden');
+          const indicator = document.getElementById('flight-other-losses-indicator');
+          if (indicator) {
+            indicator.textContent = 'Arraste os arquivos aqui ou clique para escolher.';
+            indicator.className = 'text-xs text-gray-500 italic';
+          }
+        }
+      });
+    });
+    flightOtherLossesDescription?.addEventListener('input', () => {
+      document.getElementById('flight-other-losses-description-count').textContent = flightOtherLossesDescription.value.length;
+    });
+    flightOtherLossesValue?.addEventListener('input', formatBRL);
+    flightOtherLossesFilesButton?.addEventListener('click', () => {
+      flightOtherLossesFilesButton.dataset.selected = 'true';
+      const indicator = document.getElementById('flight-other-losses-indicator');
+      if (indicator) {
+        indicator.textContent = 'comprovantes_demais_prejuizos.pdf (1,2 MB)';
+        indicator.className = 'text-xs text-green-600 font-semibold';
+      }
+      document.getElementById('flight-other-losses-error')?.classList.add('hidden');
+    });
+    flightOtherLossesForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const hasOtherLosses = document.querySelector('input[name="flight-other-losses"]:checked')?.value === 'sim';
+      const hasFiles = flightOtherLossesFilesButton?.dataset.selected === 'true';
+      document.getElementById('flight-other-losses-error')?.classList.toggle('hidden', !hasOtherLosses || hasFiles);
+      if (hasOtherLosses && !hasFiles) {
+        showNotification('Aviso', 'Carregue o comprovante dos demais prejuízos.', true);
+        return;
+      }
+      showOnlyPage(pageOtherProofs);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     if (btnFactsBack) {
       btnFactsBack.addEventListener('click', (e) => {
         e.preventDefault();
@@ -4619,7 +5766,11 @@ document.addEventListener("DOMContentLoaded", function () {
       btnProofsBack.addEventListener('click', (e) => {
         e.preventDefault();
         if (pageOtherProofs) pageOtherProofs.classList.add('hidden');
-        if (pageFactsArguments) pageFactsArguments.classList.remove('hidden');
+        if (currentSelectedCardIndex === 3) {
+          if (pageFlightLosses) pageFlightLosses.classList.remove('hidden');
+        } else if (pageFactsArguments) {
+          pageFactsArguments.classList.remove('hidden');
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
@@ -5174,6 +6325,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const vendedor = document.getElementById('def-vendedor').value || '-';
             const cnpjVend = document.getElementById('def-cnpj-vendedor').value || 'Não informado';
             prevConcessionaria.textContent = `Fabricante: ${fabricante} (CNPJ: ${cnpjFab}) / Vendedor: ${vendedor} (CNPJ: ${cnpjVend})`;
+          } else if (currentSelectedCardIndex === 3) {
+            const vendedora = currentValue('def-voo-vendedora') || '-';
+            const cnpjVendedora = currentValue('def-voo-vendedora-cnpj') || 'Não informado';
+            const operadora = currentValue('def-voo-operadora') || '-';
+            const cnpjOperadora = currentValue('def-voo-operadora-cnpj') || 'Não informado';
+            prevConcessionaria.textContent = `Companhia que vendeu o bilhete: ${vendedora} (CNPJ: ${cnpjVendedora}) / Companhia que fez o voo: ${operadora} (CNPJ: ${cnpjOperadora})`;
           } else if (currentSelectedCardIndex === 4) {
             const type = transitoSelectedType.value;
             if (type === 'empresa') {
@@ -6043,20 +7200,86 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    const originalStepperMarkup = new WeakMap();
+
     function syncTrafficStepperLayout() {
       const isTraffic = currentSelectedCardIndex === 4;
+      const isFlight = currentSelectedCardIndex === 3;
       const pageIds = [
         'page-author-qualification',
         'page-defendant-qualification',
         'page-facts-arguments',
+        'page-flight-problem',
+        'page-flight-losses',
         'page-other-proofs',
-        'page-requests-step'
+        'page-requests-step',
+        'page-petition-preview'
+      ];
+      const flightActiveStep = {
+        'page-author-qualification': 1,
+        'page-defendant-qualification': 2,
+        'page-facts-arguments': 3,
+        'page-flight-problem': 4,
+        'page-flight-losses': 5,
+        'page-other-proofs': 6,
+        'page-requests-step': 7,
+        'page-petition-preview': 8
+      };
+      const flightSteps = [
+        'Autor',
+        'Réu',
+        'Voo',
+        'Problema',
+        'Outros Prejuízos',
+        'Outras Provas',
+        'Pedido',
+        'Petição'
       ];
 
       pageIds.forEach(pageId => {
         const page = document.getElementById(pageId);
         const stepper = page?.querySelector('.flex.items-center.justify-between.text-center.relative');
         if (!stepper) return;
+        if (!originalStepperMarkup.has(stepper)) {
+          originalStepperMarkup.set(stepper, stepper.innerHTML);
+        }
+
+        const factsMainTitle = document.querySelector('[data-template-id="facts-main-title"]');
+        if (factsMainTitle) {
+          factsMainTitle.textContent = currentSelectedCardIndex === 3 ? 'Voo' : 'Fatos e fundamentos';
+        }
+
+        if (isFlight) {
+          const activeStep = flightActiveStep[pageId] || 1;
+          stepper.classList.remove('traffic-stepper');
+          stepper.classList.add('flight-stepper');
+          stepper.innerHTML = `
+            <div class="absolute left-4 right-4 top-5 h-0.5 bg-gray-200 -z-10"></div>
+            ${flightSteps.map((label, index) => {
+              const number = index + 1;
+              const completed = number < activeStep;
+              const active = number === activeStep;
+              const circleClass = completed
+                ? 'border-emerald-600 bg-emerald-50 text-emerald-600'
+                : active
+                  ? 'border-blue-600 bg-blue-50 text-blue-600'
+                  : 'border-gray-300 bg-white text-gray-500';
+              const labelClass = active ? 'font-bold text-blue-700' : 'font-medium text-gray-500';
+              return `<div class="flex-1 min-w-0 flex flex-col items-center${number > activeStep ? ' opacity-60' : ''}">
+                <div class="w-9 h-9 rounded-full border-2 ${circleClass} font-bold flex items-center justify-center text-xs shadow-sm">
+                  ${completed ? '<i class="fa fa-check" aria-hidden="true"></i>' : number}
+                </div>
+                <span class="text-[11px] ${labelClass} mt-2 leading-tight px-1">${label}</span>
+              </div>`;
+            }).join('')}
+          `;
+          return;
+        }
+
+        if (stepper.classList.contains('flight-stepper')) {
+          stepper.innerHTML = originalStepperMarkup.get(stepper);
+          stepper.classList.remove('flight-stepper');
+        }
         stepper.classList.toggle('traffic-stepper', isTraffic);
 
         const petitionStep = Array.from(stepper.children).find(child =>
