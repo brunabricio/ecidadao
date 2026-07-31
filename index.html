@@ -50,6 +50,205 @@
       line-height: 1.2;
       overflow-wrap: anywhere;
     }
+
+    /* Campos nativos de data e hora com aparência moderna e consistente. */
+    input[type="date"],
+    input[type="time"],
+    input[type="datetime-local"] {
+      color-scheme: light;
+      min-height: 46px;
+      padding: 0.625rem 0.75rem;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      color: #1e293b;
+      font-variant-numeric: tabular-nums;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+    input[type="date"]:hover,
+    input[type="time"]:hover,
+    input[type="datetime-local"]:hover {
+      border-color: #93c5fd;
+      background-color: #f8fbff;
+    }
+    input[type="date"]:focus,
+    input[type="time"]:focus,
+    input[type="datetime-local"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14), 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      box-sizing: content-box;
+      padding: 0.45rem;
+      margin-left: 0.5rem;
+      border-radius: 0.5rem;
+      background-color: #eff6ff;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: background-color 160ms ease, transform 160ms ease, opacity 160ms ease;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator:hover,
+    input[type="time"]::-webkit-calendar-picker-indicator:hover,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+      background-color: #dbeafe;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="time"]::-webkit-datetime-edit,
+    input[type="datetime-local"]::-webkit-datetime-edit {
+      padding: 0.1rem 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      input[type="date"],
+      input[type="time"],
+      input[type="datetime-local"],
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator,
+      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        transition: none;
+      }
+    }
+    .custom-calendar-input {
+      padding-right: 3rem !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='3'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      cursor: pointer;
+    }
+    #modern-calendar-popover {
+      position: fixed;
+      z-index: 99999;
+      width: min(340px, calc(100vw - 24px));
+      padding: 1rem;
+      border: 1px solid #dbe3ee;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2), 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+    #modern-calendar-popover[hidden] { display: none; }
+    .modern-calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .modern-calendar-title { color: #0f172a; font-size: 0.95rem; font-weight: 700; text-transform: capitalize; }
+    .modern-calendar-nav { width: 2.25rem; height: 2.25rem; border-radius: 0.65rem; color: #1d4ed8; background: #eff6ff; transition: background-color 150ms ease; }
+    .modern-calendar-nav:hover { background: #dbeafe; }
+    .modern-calendar-weekdays, .modern-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+    .modern-calendar-weekdays span { padding: 0.35rem 0; color: #64748b; font-size: 0.7rem; font-weight: 700; text-align: center; }
+    .modern-calendar-day { aspect-ratio: 1; border-radius: 0.65rem; color: #334155; font-size: 0.8rem; font-weight: 600; transition: background-color 120ms ease, color 120ms ease, transform 120ms ease; }
+    .modern-calendar-day:hover { color: #1d4ed8; background: #eff6ff; transform: translateY(-1px); }
+    .modern-calendar-day.is-today { box-shadow: inset 0 0 0 1px #60a5fa; }
+    .modern-calendar-day.is-selected { color: #ffffff; background: #2563eb; box-shadow: 0 5px 12px rgba(37, 99, 235, 0.28); }
+    .modern-calendar-empty { aspect-ratio: 1; }
+    .modern-calendar-time { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid #e2e8f0; }
+    .modern-calendar-time input { width: 8rem; min-height: 2.5rem; }
+    .modern-calendar-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; }
+    .modern-calendar-link { padding: 0.45rem 0.65rem; border-radius: 0.55rem; color: #2563eb; font-size: 0.78rem; font-weight: 700; }
+    .modern-calendar-link:hover { background: #eff6ff; }
+    .modern-calendar-apply { padding: 0.55rem 0.9rem; border-radius: 0.65rem; color: #ffffff; background: #2563eb; font-size: 0.78rem; font-weight: 700; }
+    #def-voo-vendedora,
+    #def-voo-operadora {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0.65rem 3rem 0.65rem 0.9rem !important;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      color: #334155;
+      font-weight: 500;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      cursor: pointer;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+    #def-voo-vendedora:hover,
+    #def-voo-operadora:hover { border-color: #93c5fd; background-color: #f8fbff; }
+    #def-voo-vendedora:focus,
+    #def-voo-operadora:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14); }
+    .custom-time-input {
+      padding-right: 3rem !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 7 12 12 15 14'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      cursor: pointer;
+    }
+    #modern-time-popover {
+      position: fixed;
+      z-index: 100000;
+      width: min(330px, calc(100vw - 24px));
+      padding: 1rem;
+      border: 1px solid #dbe3ee;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2), 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+    #modern-time-popover[hidden] { display: none; }
+    .modern-time-title { margin-bottom: 0.8rem; color: #0f172a; font-size: 0.95rem; font-weight: 700; }
+    .modern-time-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .modern-time-column-label { display: block; margin-bottom: 0.35rem; color: #64748b; font-size: 0.68rem; font-weight: 700; text-align: center; text-transform: uppercase; }
+    .modern-time-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25rem; max-height: 180px; padding: 0.25rem; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #f8fafc; }
+    .modern-time-option { padding: 0.45rem 0.25rem; border-radius: 0.5rem; color: #475569; font-size: 0.75rem; font-weight: 700; }
+    .modern-time-option:hover { color: #1d4ed8; background: #eaf2ff; }
+    .modern-time-option.is-selected { color: #ffffff; background: #2563eb; }
+    .modern-time-footer { display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid #e2e8f0; }
+    .airline-dropdown { position: relative; width: 100%; }
+    .airline-dropdown-trigger {
+      display: flex;
+      width: 100%;
+      height: 44px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      color: #1f2937;
+      font-size: 0.875rem;
+      font-weight: 400;
+      text-align: left;
+      transition: border-color 150ms ease;
+    }
+    .airline-dropdown-trigger:hover { border-color: #d1d5db; background: #ffffff; }
+    .airline-dropdown-trigger:focus,
+    .airline-dropdown-trigger[aria-expanded="true"] { outline: none; border-color: #3b82f6; box-shadow: none; }
+    .airline-dropdown-trigger .fa { color: #9ca3af; font-size: 0.75rem; transition: transform 150ms ease; }
+    .airline-dropdown-trigger[aria-expanded="true"] .fa { transform: rotate(180deg); }
+    .airline-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+      right: 0;
+      left: 0;
+      z-index: 80;
+      max-height: 12rem;
+      overflow-y: auto;
+      padding: 0;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+    .airline-dropdown-menu[hidden] { display: none; }
+    .airline-dropdown-option {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 0.625rem 0.75rem;
+      border-bottom: 1px solid #f3f4f6;
+      color: #374151;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+      transition: background-color 150ms ease;
+    }
+    .airline-dropdown-option:last-child { border-bottom: 0; }
+    .airline-dropdown-option:hover,
+    .airline-dropdown-option:focus { outline: none; color: #374151; background: #f8fafc; }
+    .airline-dropdown-option.is-selected { color: #374151; background: #f8fafc; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
  </head>
@@ -354,7 +553,7 @@
         </div><!-- Toggle Detalhes -->
         <div><button type="button" id="btn-toggle-details" class="text-blue-700 hover:text-blue-900 text-sm font-semibold flex items-center gap-1.5 transition"> <i class="fa fa-chevron-down text-xs transition-transform duration-200" id="details-chevron" aria-hidden="true"></i> <span data-template-id="btn-toggle-details-text" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Clique aqui para visualizar detalhes</span> </button>
         </div><!-- Painel de Detalhes -->
-        <div id="summary-details-panel" class="space-y-6 pt-2"><!-- Linha 1: Estado Civil, Profissão, País de Nascimento -->
+        <div id="summary-details-panel" class="space-y-6 pt-2 hidden"><!-- Linha 1: Estado Civil, Profissão, País de Nascimento -->
          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-b border-gray-100 pb-4">
           <div><span data-template-id="sum-lbl-civil" class="canva-text text-xs font-bold text-gray-500 uppercase block mb-1" style="font-weight: 400; font-style: normal; font-size: 16px;">Estado civil</span> <span id="sum-val-civil" class="text-sm font-semibold text-gray-800">-</span>
           </div>
@@ -1902,7 +2101,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
          </div>
         </div><!-- Q2: Indenização Materiais -->
-        <div class="space-y-3 pt-4"><label class="canva-text text-sm font-semibold text-gray-800 block" data-template-id="lbl-req-material" style="font-weight: 400; font-style: normal; font-size: 16px;">Quer indenização pelos danos materiais (prejuízos sofridos em razão do problema do produto)? *</label>
+        <div class="space-y-3 pt-4"><label class="canva-text text-sm font-semibold text-gray-800 block" data-template-id="lbl-req-material" style="font-weight: 400; font-style: normal; font-size: 16px;">Quer indenização pelos danos materiais (prejuízos sofridos com a suspensão/interrupção, etc)? *</label>
          <div class="flex gap-4"><label class="flex items-center gap-2 cursor-pointer text-sm"> <input type="radio" name="req-material" value="sim" class="w-4 h-4 text-blue-600 focus:ring-blue-500"> <span data-template-id="radio-sim-req2" class="canva-text">Sim</span> </label> <label class="flex items-center gap-2 cursor-pointer text-sm"> <input type="radio" name="req-material" value="nao" class="w-4 h-4 text-blue-600 focus:ring-blue-500"> <span data-template-id="radio-nao-req2" class="canva-text">Não</span> </label>
          </div><!-- Conditional Material Value -->
          <div id="req-material-val-container" class="hidden pl-2 pt-2"><label for="req-material-val" data-template-id="lbl-req-material-val" class="text-xs font-bold text-gray-700 block mb-1" style="font-weight: 400; font-style: normal; font-size: 16px;">Valor do prejuízo *</label> <input id="req-material-val" type="text" placeholder="R$ 0,00" class="w-48 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 bg-white">
@@ -1919,6 +2118,41 @@ document.addEventListener("DOMContentLoaded", function () {
        </div><!-- Buttons Footer -->
        <div class="border-t border-gray-100 pt-6 flex justify-between items-center"><button type="button" id="btn-requests-back" class="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"> <i class="fa fa-chevron-left text-xs" aria-hidden="true"></i> <span data-template-id="btn-requests-back-text" class="canva-text">Voltar</span> </button> <button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <span data-template-id="btn-requests-continue-text" class="canva-text">Continuar</span> <i class="fa fa-chevron-right text-xs" aria-hidden="true"></i> </button>
        </div>
+      </form><!-- FORMULÁRIO EXCLUSIVO DE VOO E BAGAGENS (CARD 3) -->
+      <form id="requests-form-voo" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
+       <div class="flex justify-between items-center"><span class="text-sm font-bold text-blue-800 uppercase tracking-wide">Pedidos</span><span class="text-xs text-red-500 font-medium">* Campos obrigatórios</span></div>
+       <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-xs text-amber-800 leading-relaxed">
+        <p>O valor do seu pedido não pode passar de <strong class="font-bold">R$ 32.420,00</strong> (equivalente a 20 salários-mínimos).</p>
+        <p class="mt-1">Se o valor for maior, você vai precisar de um advogado e não poderá usar este formulário.</p>
+       </div>
+       <div class="space-y-6 divide-y divide-gray-100">
+        <div class="space-y-3 pt-4 first:pt-0 border-t-0">
+         <label class="text-sm font-semibold text-gray-800 block">Quer indenização pelos danos morais? *</label>
+         <div class="flex gap-4"><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-moral" value="sim" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Sim</span></label><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-moral" value="nao" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Não</span></label></div>
+         <div id="req-voo-moral-panel" class="hidden pl-2 pt-2 space-y-4">
+          <div><label for="req-voo-moral-value" class="text-xs font-bold text-gray-700 block mb-1">Qual o valor entende necessário para compensar os danos morais sofridos? *</label><input id="req-voo-moral-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-48 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 bg-white"></div>
+          <div><label for="req-voo-moral-reason" class="text-xs font-bold text-gray-700 block mb-1">Justifique/Explique em breves palavras *</label><textarea id="req-voo-moral-reason" maxlength="4000" rows="4" placeholder="Campo obrigatório" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 resize-y"></textarea><div class="flex justify-between mt-1 text-xs text-gray-500"><span><span data-count-for="req-voo-moral-reason">0</span> letras digitadas (Máximo de 4000)</span><span class="text-red-500">Campo obrigatório</span></div></div>
+         </div>
+        </div>
+        <div class="space-y-3 pt-4">
+         <label class="text-sm font-semibold text-gray-800 block">Quer a restituição do valor do bilhete original? *</label>
+         <div class="flex gap-4"><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-bilhete" value="sim" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Sim</span></label><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-bilhete" value="nao" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Não</span></label></div>
+         <div id="req-voo-bilhete-panel" class="hidden pl-2 pt-2 space-y-4">
+          <div><label for="req-voo-bilhete-value" class="text-xs font-bold text-gray-700 block mb-1">Indique o valor pago pelo bilhete original *</label><input id="req-voo-bilhete-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-48 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 bg-white"></div>
+          <div><label for="req-voo-bilhete-reason" class="text-xs font-bold text-gray-700 block mb-1">Justifique/Explique em breves palavras *</label><textarea id="req-voo-bilhete-reason" maxlength="4000" rows="4" placeholder="Campo obrigatório" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 resize-y"></textarea><div class="flex justify-between mt-1 text-xs text-gray-500"><span><span data-count-for="req-voo-bilhete-reason">0</span> letras digitadas (Máximo de 4000)</span><span class="text-red-500">Campo obrigatório</span></div></div>
+         </div>
+        </div>
+        <div class="space-y-3 pt-4">
+         <label class="text-sm font-semibold text-gray-800 block">Quer indenização pelos danos materiais? *</label>
+         <div class="flex gap-4"><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-material" value="sim" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Sim</span></label><label class="flex items-center gap-2 cursor-pointer text-sm"><input type="radio" name="req-voo-material" value="nao" class="w-4 h-4 text-blue-600 focus:ring-blue-500"><span>Não</span></label></div>
+         <div id="req-voo-material-panel" class="hidden pl-2 pt-2 space-y-4">
+          <div><label for="req-voo-material-value" class="text-xs font-bold text-gray-700 block mb-1">Valor do prejuízo *</label><input id="req-voo-material-value" type="text" inputmode="numeric" placeholder="R$ 0,00" class="w-48 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 bg-white"></div>
+          <div><label for="req-voo-material-reason" class="text-xs font-bold text-gray-700 block mb-1">Justifique/Explique em breves palavras *</label><textarea id="req-voo-material-reason" maxlength="4000" rows="4" placeholder="Campo obrigatório" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 resize-y"></textarea><div class="flex justify-between mt-1 text-xs text-gray-500"><span><span data-count-for="req-voo-material-reason">0</span> letras digitadas (Máximo de 4000)</span><span class="text-red-500">Campo obrigatório</span></div></div>
+         </div>
+        </div>
+       </div>
+       <div id="requests-voo-validation-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-xs font-semibold"><i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i><span>Responda todas as perguntas obrigatórias e marque pelo menos um pedido como Sim.</span></div>
+       <div class="border-t border-gray-100 pt-6 flex justify-between items-center"><button type="button" class="btn-requests-voo-back px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"><i class="fa fa-chevron-left text-xs" aria-hidden="true"></i><span>Voltar</span></button><button type="submit" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"><span>Continuar</span><i class="fa fa-chevron-right text-xs" aria-hidden="true"></i></button></div>
       </form><!-- FORMULÁRIO EXCLUSIVO DE ACIDENTE DE TRÂNSITO (CARD 4) -->
       <form id="requests-form-transito" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
        <div class="flex justify-between items-center"><span class="text-sm font-bold text-blue-800 uppercase tracking-wide">Pedidos</span> <span class="text-xs text-red-500 font-medium">* Campos obrigatórios</span>
@@ -2758,6 +2992,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const savedContinueBtns = document.querySelectorAll('.saved-continue-btn');
 
     let currentSelectedCardIndex = null;
+    // Mantida no escopo principal porque a lista também é usada na prévia da
+    // petição e na limpeza final do fluxo.
+    let witnessesArray = [];
 
     // Open GOV.BR Login
     if (reqGovBtn) {
@@ -2823,7 +3060,7 @@ document.addEventListener("DOMContentLoaded", function () {
           label: 'Indique a Concessionária do serviço público *',
           placeholder: 'Campo obrigatório',
           options: [
-            { value: 'aguas-niteroi', text: 'ÁGUAS DE NITEROI', cnpj: '' },
+            { value: 'aguas-niteroi', text: 'ÁGUAS DE NITEROI', cnpj: '02.150.336/0001-66' },
             { value: 'aguas-imperador', text: 'ÁGUAS DO IMPERADOR', cnpj: '83.200.006/0001-30' },
             { value: 'aguas-rio', text: 'ÁGUAS DO RIO', cnpj: '41.979.866/0001-20' },
             { value: 'cedae', text: 'CEDAE', cnpj: '33.393.875/0001-10' },
@@ -3070,6 +3307,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnAddNewAuthor = document.getElementById('btn-add-new-author');
     const btnSummaryContinue = document.getElementById('btn-summary-continue');
 
+    function closeAuthorDetails() {
+      if (!summaryDetailsPanel) return;
+      summaryDetailsPanel.classList.add('hidden');
+      if (detailsChevron) detailsChevron.style.transform = 'rotate(-90deg)';
+      if (btnToggleDetails) btnToggleDetails.setAttribute('aria-expanded', 'false');
+    }
+
+    closeAuthorDetails();
+    if (pageAuthorQualification) {
+      new MutationObserver(() => {
+        if (!pageAuthorQualification.classList.contains('hidden')) closeAuthorDetails();
+      }).observe(pageAuthorQualification, { attributes: true, attributeFilter: ['class'] });
+    }
+
     function resetDefendantQualificationState() {
       const serviceForm = document.getElementById('defendant-form');
       const productForm = document.getElementById('defendant-form-vicio');
@@ -3202,6 +3453,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (btnToggleDetails) {
       btnToggleDetails.addEventListener('click', () => {
         const isHidden = summaryDetailsPanel.classList.toggle('hidden');
+        btnToggleDetails.setAttribute('aria-expanded', String(!isHidden));
         if (isHidden) {
           detailsChevron.style.transform = 'rotate(-90deg)';
         } else {
@@ -5433,8 +5685,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('btn-flight-delayed-cancel')?.addEventListener('click', showFlightProblemPicker);
     flightDelayedForm?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const from = document.getElementById('flight-delayed-from')?.value || '';
-      const to = document.getElementById('flight-delayed-to')?.value || '';
+      const fromField = document.getElementById('flight-delayed-from');
+      const toField = document.getElementById('flight-delayed-to');
+      const from = fromField?.dataset.isoValue || fromField?.value || '';
+      const to = toField?.dataset.isoValue || toField?.value || '';
       if (from && to && new Date(to) < new Date(from)) {
         showNotification('Aviso', 'A data final deve ser posterior à data inicial.', true);
         return;
@@ -5778,6 +6032,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // References to Pedidos page elements
     const pageRequestsStep = document.getElementById('page-requests-step');
     const requestsForm = document.getElementById('requests-form');
+    const requestsFormVoo = document.getElementById('requests-form-voo');
     const requestsFormTransito = document.getElementById('requests-form-transito');
     const requestsFormToi = document.getElementById('requests-form-toi');
     const requestsFormNegativacao = document.getElementById('requests-form-negativacao');
@@ -5786,6 +6041,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const requestsToiValidationError = document.getElementById('requests-toi-validation-error');
     const requestsNegValidationError = document.getElementById('requests-neg-validation-error');
     const requestsTransitoValidationError = document.getElementById('requests-transito-validation-error');
+    const requestsVooValidationError = document.getElementById('requests-voo-validation-error');
     let pendingTransitoRequests = null;
 
     function buildCurrentAddress(prefix) {
@@ -5891,6 +6147,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
       if (input) input.addEventListener('input', formatBRL);
+    });
+
+    [
+      ['req-voo-moral', 'req-voo-moral-panel', 'req-voo-moral-value', 'req-voo-moral-reason'],
+      ['req-voo-bilhete', 'req-voo-bilhete-panel', 'req-voo-bilhete-value', 'req-voo-bilhete-reason'],
+      ['req-voo-material', 'req-voo-material-panel', 'req-voo-material-value', 'req-voo-material-reason']
+    ].forEach(([radioName, panelId, valueId, reasonId]) => {
+      const panel = document.getElementById(panelId);
+      const valueInput = document.getElementById(valueId);
+      const reasonInput = document.getElementById(reasonId);
+      const counter = document.querySelector(`[data-count-for="${reasonId}"]`);
+      document.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+        radio.addEventListener('change', event => {
+          const show = event.target.value === 'sim';
+          panel?.classList.toggle('hidden', !show);
+          [valueInput, reasonInput].forEach(input => {
+            if (!input) return;
+            input.required = show;
+            if (!show) input.value = '';
+          });
+          if (!show && counter) counter.textContent = '0';
+        });
+      });
+      valueInput?.addEventListener('input', formatBRL);
+      reasonInput?.addEventListener('input', () => {
+        if (counter) counter.textContent = String(reasonInput.value.length);
+      });
     });
 
     // Vicio Dropdown elements
@@ -6090,23 +6373,36 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
+    document.querySelectorAll('.btn-requests-voo-back').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pageRequestsStep.classList.add('hidden');
+        pageOtherProofs.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
     // Logic to handle transitioning to the requests step based on Card index
     function showCorrectRequestsForm() {
       const q1Normal = document.getElementById('q1-normal-container');
       const q1Vicio = document.getElementById('q1-vicio-container');
+      const reqMaterialLabel = document.querySelector('[data-template-id="lbl-req-material"]');
       
       if (currentSelectedCardIndex === 6) {
         requestsForm.classList.add('hidden');
+        if (requestsFormVoo) requestsFormVoo.classList.add('hidden');
         if (requestsFormTransito) requestsFormTransito.classList.add('hidden');
         requestsFormToi.classList.remove('hidden');
         if (requestsFormNegativacao) requestsFormNegativacao.classList.add('hidden');
       } else if (currentSelectedCardIndex === 5) {
         requestsForm.classList.add('hidden');
+        if (requestsFormVoo) requestsFormVoo.classList.add('hidden');
         if (requestsFormTransito) requestsFormTransito.classList.add('hidden');
         requestsFormToi.classList.add('hidden');
         if (requestsFormNegativacao) requestsFormNegativacao.classList.remove('hidden');
       } else if (currentSelectedCardIndex === 4) {
         requestsForm.classList.add('hidden');
+        if (requestsFormVoo) requestsFormVoo.classList.add('hidden');
         requestsFormToi.classList.add('hidden');
         if (requestsFormNegativacao) requestsFormNegativacao.classList.add('hidden');
         if (requestsFormTransito) {
@@ -6120,20 +6416,57 @@ document.addEventListener("DOMContentLoaded", function () {
             input.value = '';
           });
         }
+      } else if (currentSelectedCardIndex === 3) {
+        requestsForm.classList.add('hidden');
+        if (requestsFormTransito) requestsFormTransito.classList.add('hidden');
+        requestsFormToi.classList.add('hidden');
+        if (requestsFormNegativacao) requestsFormNegativacao.classList.add('hidden');
+        if (requestsFormVoo) {
+          requestsFormVoo.reset();
+          requestsFormVoo.classList.remove('hidden');
+          requestsFormVoo.querySelectorAll('[id$="-panel"]').forEach(panel => panel.classList.add('hidden'));
+          requestsFormVoo.querySelectorAll('input[type="text"], textarea').forEach(input => {
+            input.required = false;
+            input.value = '';
+          });
+          requestsFormVoo.querySelectorAll('[data-count-for]').forEach(counter => counter.textContent = '0');
+          requestsVooValidationError?.classList.add('hidden');
+        }
       } else {
         requestsForm.classList.remove('hidden');
+        if (requestsFormVoo) requestsFormVoo.classList.add('hidden');
         if (requestsFormTransito) requestsFormTransito.classList.add('hidden');
         requestsFormToi.classList.add('hidden');
         if (requestsFormNegativacao) requestsFormNegativacao.classList.add('hidden');
         
         if (currentSelectedCardIndex === 2) {
+          if (reqMaterialLabel) reqMaterialLabel.textContent = 'Quer indenização pelos danos materiais (prejuízos sofridos em razão do problema do produto)? *';
           if (q1Normal) q1Normal.classList.add('hidden');
           if (q1Vicio) q1Vicio.classList.remove('hidden');
         } else {
+          if (reqMaterialLabel) reqMaterialLabel.textContent = 'Quer indenização pelos danos materiais (prejuízos sofridos com a suspensão/interrupção, etc)? *';
           if (q1Normal) q1Normal.classList.remove('hidden');
           if (q1Vicio) q1Vicio.classList.add('hidden');
         }
       }
+    }
+
+    if (requestsFormVoo) {
+      requestsFormVoo.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const moral = document.querySelector('input[name="req-voo-moral"]:checked')?.value;
+        const bilhete = document.querySelector('input[name="req-voo-bilhete"]:checked')?.value;
+        const material = document.querySelector('input[name="req-voo-material"]:checked')?.value;
+        const allAnswered = moral && bilhete && material;
+        const hasAnyRequest = [moral, bilhete, material].some(value => value === 'sim');
+        if (!allAnswered || !hasAnyRequest || !requestsFormVoo.checkValidity()) {
+          requestsVooValidationError?.classList.remove('hidden');
+          requestsFormVoo.reportValidity();
+          return;
+        }
+        requestsVooValidationError?.classList.add('hidden');
+        proceedToPreview('nao', material, moral, { type: 'voo', bilhete });
+      });
     }
 
     // Submit for Normal Requests
@@ -6399,6 +6732,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const prevHasMaterial = document.getElementById('prev-val-has-material');
         const isMaterialChecked = currentSelectedCardIndex === 6
           ? document.querySelector('input[name="req-toi-danos-materiais"]:checked')?.value
+          : currentSelectedCardIndex === 3
+            ? document.querySelector('input[name="req-voo-material"]:checked')?.value
           : currentSelectedCardIndex === 2
             ? document.querySelector('input[name="vicio-has-material"]:checked')?.value
             : document.querySelector('input[name="has-material-damage"]:checked')?.value;
@@ -6409,6 +6744,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const prevHasMoral = document.getElementById('prev-val-has-moral');
         const isMoralChecked = currentSelectedCardIndex === 6
           ? document.querySelector('input[name="req-toi-danos-morais"]:checked')?.value
+          : currentSelectedCardIndex === 3
+            ? document.querySelector('input[name="req-voo-moral"]:checked')?.value
           : currentSelectedCardIndex === 2
             ? document.querySelector('input[name="vicio-has-moral"]:checked')?.value
             : document.querySelector('input[name="has-moral-damage"]:checked')?.value;
@@ -6432,7 +6769,23 @@ document.addEventListener("DOMContentLoaded", function () {
         if (prevRequestsList) {
           let reqListHtml = '';
           if (toiExtras) {
-            if (currentSelectedCardIndex === 4 && toiExtras.type === 'transito') {
+            if (currentSelectedCardIndex === 3 && toiExtras.type === 'voo') {
+              if (morVal === 'sim') {
+                const amount = document.getElementById('req-voo-moral-value')?.value || 'Não informado';
+                const reason = document.getElementById('req-voo-moral-reason')?.value || 'Não informado';
+                reqListHtml += `<li>Requer indenização pelos danos morais no valor de ${amount}. Justificativa: ${reason}</li>`;
+              }
+              if (toiExtras.bilhete === 'sim') {
+                const amount = document.getElementById('req-voo-bilhete-value')?.value || 'Não informado';
+                const reason = document.getElementById('req-voo-bilhete-reason')?.value || 'Não informado';
+                reqListHtml += `<li>Requer a restituição do valor do bilhete original, no valor de ${amount}. Justificativa: ${reason}</li>`;
+              }
+              if (matVal === 'sim') {
+                const amount = document.getElementById('req-voo-material-value')?.value || 'Não informado';
+                const reason = document.getElementById('req-voo-material-reason')?.value || 'Não informado';
+                reqListHtml += `<li>Requer indenização pelos danos materiais no valor de ${amount}. Justificativa: ${reason}</li>`;
+              }
+            } else if (currentSelectedCardIndex === 4 && toiExtras.type === 'transito') {
               if (matVal === 'sim') {
                 const materialAmount = document.getElementById('req-transito-material-value')?.value || 'Não informado';
                 reqListHtml += `<li>Requer indenização pelos danos do veículo/danos materiais no valor de ${materialAmount}.</li>`;
@@ -6786,8 +7139,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const inputWitnessAddress = document.getElementById('witness-address');
       const inputWitnessPhone = document.getElementById('witness-phone');
       const inputWitnessEmail = document.getElementById('witness-email');
-
-      let witnessesArray = [];
 
       function renderWitnesses() {
         if (witnessesArray.length === 0) {
@@ -7537,6 +7888,461 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     });
     }
+
+    // Calendário visual próprio para todos os campos de data e data/hora.
+    (() => {
+      const calendarInputs = Array.from(document.querySelectorAll('input[type="date"], input[type="datetime-local"]'));
+      if (!calendarInputs.length) return;
+
+      const popover = document.createElement('div');
+      popover.id = 'modern-calendar-popover';
+      popover.hidden = true;
+      popover.setAttribute('role', 'dialog');
+      popover.setAttribute('aria-label', 'Selecionar data');
+      popover.innerHTML = `
+        <div class="modern-calendar-header">
+          <button type="button" class="modern-calendar-nav" data-calendar-action="previous" aria-label="Mês anterior"><i class="fa fa-chevron-left"></i></button>
+          <div class="modern-calendar-title" aria-live="polite"></div>
+          <button type="button" class="modern-calendar-nav" data-calendar-action="next" aria-label="Próximo mês"><i class="fa fa-chevron-right"></i></button>
+        </div>
+        <div class="modern-calendar-weekdays"><span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span></div>
+        <div class="modern-calendar-grid"></div>
+        <div class="modern-calendar-time" hidden><label class="text-xs font-bold text-gray-600" for="modern-calendar-time-input">Horário</label><input id="modern-calendar-time-input" type="time" class="border border-gray-300 rounded-lg px-3 py-2"></div>
+        <div class="modern-calendar-footer">
+          <div><button type="button" class="modern-calendar-link" data-calendar-action="clear">Limpar</button><button type="button" class="modern-calendar-link" data-calendar-action="today">Hoje</button></div>
+          <button type="button" class="modern-calendar-apply" data-calendar-action="apply" hidden>Aplicar</button>
+        </div>`;
+      document.body.appendChild(popover);
+
+      const title = popover.querySelector('.modern-calendar-title');
+      const grid = popover.querySelector('.modern-calendar-grid');
+      const timeRow = popover.querySelector('.modern-calendar-time');
+      const timeInput = popover.querySelector('#modern-calendar-time-input');
+      const applyButton = popover.querySelector('[data-calendar-action="apply"]');
+      let activeInput = null;
+      let viewDate = new Date();
+      let selectedDate = null;
+
+      const pad = value => String(value).padStart(2, '0');
+      const isoDate = date => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+      const displayDate = date => `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`;
+      const validDate = date => date instanceof Date && !Number.isNaN(date.getTime());
+
+      function parseValue(value) {
+        if (!value) return null;
+        const isoMatch = value.match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);
+        const brMatch = value.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?/);
+        const parts = isoMatch
+          ? { year: +isoMatch[1], month: +isoMatch[2], day: +isoMatch[3], hour: +(isoMatch[4] || 0), minute: +(isoMatch[5] || 0) }
+          : brMatch
+            ? { year: +brMatch[3], month: +brMatch[2], day: +brMatch[1], hour: +(brMatch[4] || 0), minute: +(brMatch[5] || 0) }
+            : null;
+        if (!parts) return null;
+        const date = new Date(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute);
+        return validDate(date) && date.getFullYear() === parts.year && date.getMonth() === parts.month - 1 && date.getDate() === parts.day ? date : null;
+      }
+
+      function setInputDate(input, date, time = '') {
+        const mode = input.dataset.calendarMode;
+        const chosenTime = mode === 'datetime-local' ? (time || '00:00') : '';
+        input.value = `${displayDate(date)}${chosenTime ? ` ${chosenTime}` : ''}`;
+        input.dataset.isoValue = `${isoDate(date)}${chosenTime ? `T${chosenTime}` : ''}`;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      function renderCalendar() {
+        title.textContent = viewDate.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+        grid.innerHTML = '';
+        const year = viewDate.getFullYear();
+        const month = viewDate.getMonth();
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (let index = 0; index < firstWeekday; index += 1) {
+          const empty = document.createElement('span');
+          empty.className = 'modern-calendar-empty';
+          grid.appendChild(empty);
+        }
+        const today = new Date();
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const date = new Date(year, month, day);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'modern-calendar-day';
+          button.textContent = day;
+          button.dataset.date = isoDate(date);
+          if (isoDate(date) === isoDate(today)) button.classList.add('is-today');
+          if (selectedDate && isoDate(date) === isoDate(selectedDate)) button.classList.add('is-selected');
+          button.setAttribute('aria-label', date.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }));
+          grid.appendChild(button);
+        }
+      }
+
+      function positionPopover() {
+        if (!activeInput) return;
+        const rect = activeInput.getBoundingClientRect();
+        const width = Math.min(340, window.innerWidth - 24);
+        const left = Math.max(12, Math.min(rect.left, window.innerWidth - width - 12));
+        const estimatedHeight = activeInput.dataset.calendarMode === 'datetime-local' ? 440 : 385;
+        const below = rect.bottom + estimatedHeight <= window.innerHeight - 12;
+        popover.style.left = `${left}px`;
+        popover.style.top = below ? `${rect.bottom + 8}px` : `${Math.max(12, rect.top - estimatedHeight - 8)}px`;
+      }
+
+      function closeCalendar() {
+        popover.hidden = true;
+        activeInput?.setAttribute('aria-expanded', 'false');
+        activeInput = null;
+      }
+
+      function openCalendar(input) {
+        activeInput = input;
+        const parsed = parseValue(input.value) || parseValue(input.dataset.isoValue);
+        selectedDate = parsed || new Date();
+        viewDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+        const isDateTime = input.dataset.calendarMode === 'datetime-local';
+        timeRow.hidden = !isDateTime;
+        applyButton.hidden = !isDateTime;
+        timeInput.value = parsed ? `${pad(parsed.getHours())}:${pad(parsed.getMinutes())}` : `${pad(new Date().getHours())}:${pad(new Date().getMinutes())}`;
+        renderCalendar();
+        popover.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+        positionPopover();
+      }
+
+      calendarInputs.forEach(input => {
+        const mode = input.type;
+        const initial = parseValue(input.value);
+        input.dataset.calendarMode = mode;
+        input.dataset.isoValue = initial ? `${isoDate(initial)}${mode === 'datetime-local' ? `T${pad(initial.getHours())}:${pad(initial.getMinutes())}` : ''}` : '';
+        input.type = 'text';
+        input.readOnly = true;
+        input.autocomplete = 'off';
+        input.placeholder = mode === 'datetime-local' ? 'dd/mm/aaaa --:--' : 'dd/mm/aaaa';
+        input.classList.add('custom-calendar-input');
+        input.setAttribute('aria-haspopup', 'dialog');
+        input.setAttribute('aria-expanded', 'false');
+        if (initial) {
+          const initialTime = mode === 'datetime-local' ? `${pad(initial.getHours())}:${pad(initial.getMinutes())}` : '';
+          input.value = `${displayDate(initial)}${initialTime ? ` ${initialTime}` : ''}`;
+          input.defaultValue = input.value;
+        }
+        input.addEventListener('click', () => openCalendar(input));
+        input.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown') {
+            event.preventDefault();
+            openCalendar(input);
+          } else if (event.key === 'Escape') closeCalendar();
+        });
+      });
+
+      grid.addEventListener('click', event => {
+        const dayButton = event.target.closest('[data-date]');
+        if (!dayButton || !activeInput) return;
+        selectedDate = parseValue(dayButton.dataset.date);
+        if (activeInput.dataset.calendarMode === 'date') {
+          setInputDate(activeInput, selectedDate);
+          closeCalendar();
+        } else {
+          renderCalendar();
+        }
+      });
+
+      popover.addEventListener('click', event => {
+        const action = event.target.closest('[data-calendar-action]')?.dataset.calendarAction;
+        if (!action || !activeInput) return;
+        if (action === 'previous' || action === 'next') {
+          viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + (action === 'next' ? 1 : -1), 1);
+          renderCalendar();
+        } else if (action === 'today') {
+          selectedDate = new Date();
+          viewDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+          if (activeInput.dataset.calendarMode === 'date') {
+            setInputDate(activeInput, selectedDate);
+            closeCalendar();
+          } else renderCalendar();
+        } else if (action === 'clear') {
+          activeInput.value = '';
+          activeInput.dataset.isoValue = '';
+          activeInput.dispatchEvent(new Event('change', { bubbles: true }));
+          closeCalendar();
+        } else if (action === 'apply' && selectedDate) {
+          setInputDate(activeInput, selectedDate, timeInput.value || '00:00');
+          closeCalendar();
+        }
+      });
+
+      document.addEventListener('click', event => {
+        if (!popover.hidden && !popover.contains(event.target) && !calendarInputs.includes(event.target)) closeCalendar();
+      });
+      document.addEventListener('reset', event => {
+        setTimeout(() => {
+          calendarInputs.filter(input => event.target.contains(input)).forEach(input => {
+            const parsed = parseValue(input.value);
+            input.dataset.isoValue = parsed ? `${isoDate(parsed)}${input.dataset.calendarMode === 'datetime-local' ? `T${pad(parsed.getHours())}:${pad(parsed.getMinutes())}` : ''}` : '';
+          });
+        }, 0);
+      }, true);
+      window.addEventListener('resize', closeCalendar);
+      window.addEventListener('scroll', closeCalendar, true);
+    })();
+
+    // Seletor visual próprio para todos os campos de horário independentes.
+    (() => {
+      const timeFields = Array.from(document.querySelectorAll('input[type="time"]')).filter(input => input.id !== 'modern-calendar-time-input');
+      if (!timeFields.length) return;
+      const timePopover = document.createElement('div');
+      timePopover.id = 'modern-time-popover';
+      timePopover.hidden = true;
+      timePopover.setAttribute('role', 'dialog');
+      timePopover.setAttribute('aria-label', 'Selecionar horário');
+      timePopover.innerHTML = `
+        <div class="modern-time-title">Selecione o horário</div>
+        <div class="modern-time-columns">
+          <div><span class="modern-time-column-label">Hora</span><div class="modern-time-options" data-time-list="hours"></div></div>
+          <div><span class="modern-time-column-label">Minutos</span><div class="modern-time-options" data-time-list="minutes"></div></div>
+        </div>
+        <div class="modern-time-footer">
+          <div><button type="button" class="modern-calendar-link" data-time-action="clear">Limpar</button><button type="button" class="modern-calendar-link" data-time-action="now">Agora</button></div>
+          <button type="button" class="modern-calendar-apply" data-time-action="apply">Aplicar</button>
+        </div>`;
+      document.body.appendChild(timePopover);
+      const hoursList = timePopover.querySelector('[data-time-list="hours"]');
+      const minutesList = timePopover.querySelector('[data-time-list="minutes"]');
+      let activeTimeField = null;
+      let chosenHour = null;
+      let chosenMinute = null;
+      const padTime = value => String(value).padStart(2, '0');
+
+      hoursList.innerHTML = Array.from({ length: 24 }, (_, hour) => `<button type="button" class="modern-time-option" data-hour="${hour}">${padTime(hour)}</button>`).join('');
+      minutesList.innerHTML = Array.from({ length: 60 }, (_, minute) => `<button type="button" class="modern-time-option" data-minute="${minute}">${padTime(minute)}</button>`).join('');
+
+      function renderTimeSelection() {
+        hoursList.querySelectorAll('[data-hour]').forEach(button => button.classList.toggle('is-selected', +button.dataset.hour === chosenHour));
+        minutesList.querySelectorAll('[data-minute]').forEach(button => button.classList.toggle('is-selected', +button.dataset.minute === chosenMinute));
+        hoursList.querySelector('.is-selected')?.scrollIntoView({ block: 'center' });
+        minutesList.querySelector('.is-selected')?.scrollIntoView({ block: 'center' });
+      }
+      function positionTimePopover() {
+        if (!activeTimeField) return;
+        const rect = activeTimeField.getBoundingClientRect();
+        const width = Math.min(330, window.innerWidth - 24);
+        const left = Math.max(12, Math.min(rect.left, window.innerWidth - width - 12));
+        const height = 340;
+        const below = rect.bottom + height <= window.innerHeight - 12;
+        timePopover.style.left = `${left}px`;
+        timePopover.style.top = below ? `${rect.bottom + 8}px` : `${Math.max(12, rect.top - height - 8)}px`;
+      }
+      function closeTimePopover() {
+        timePopover.hidden = true;
+        activeTimeField?.setAttribute('aria-expanded', 'false');
+        activeTimeField = null;
+      }
+      function openTimePopover(input) {
+        activeTimeField = input;
+        const match = input.value.match(/^(\d{2}):(\d{2})$/);
+        const now = new Date();
+        chosenHour = match ? +match[1] : now.getHours();
+        chosenMinute = match ? +match[2] : now.getMinutes();
+        renderTimeSelection();
+        timePopover.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+        positionTimePopover();
+      }
+      function applyTime() {
+        if (!activeTimeField || chosenHour === null || chosenMinute === null) return;
+        activeTimeField.value = `${padTime(chosenHour)}:${padTime(chosenMinute)}`;
+        activeTimeField.dispatchEvent(new Event('input', { bubbles: true }));
+        activeTimeField.dispatchEvent(new Event('change', { bubbles: true }));
+        closeTimePopover();
+      }
+
+      timeFields.forEach(input => {
+        input.type = 'text';
+        input.readOnly = true;
+        input.autocomplete = 'off';
+        input.placeholder = '--:--';
+        input.classList.add('custom-time-input');
+        input.setAttribute('aria-haspopup', 'dialog');
+        input.setAttribute('aria-expanded', 'false');
+        input.addEventListener('click', () => openTimePopover(input));
+        input.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown') {
+            event.preventDefault();
+            openTimePopover(input);
+          } else if (event.key === 'Escape') closeTimePopover();
+        });
+      });
+      timePopover.addEventListener('click', event => {
+        const hourButton = event.target.closest('[data-hour]');
+        const minuteButton = event.target.closest('[data-minute]');
+        const action = event.target.closest('[data-time-action]')?.dataset.timeAction;
+        if (hourButton) { chosenHour = +hourButton.dataset.hour; renderTimeSelection(); }
+        else if (minuteButton) { chosenMinute = +minuteButton.dataset.minute; renderTimeSelection(); }
+        else if (action === 'apply') applyTime();
+        else if (action === 'now') {
+          const now = new Date();
+          chosenHour = now.getHours();
+          chosenMinute = now.getMinutes();
+          applyTime();
+        } else if (action === 'clear' && activeTimeField) {
+          activeTimeField.value = '';
+          activeTimeField.dispatchEvent(new Event('change', { bubbles: true }));
+          closeTimePopover();
+        }
+      });
+      document.addEventListener('click', event => {
+        if (!timePopover.hidden && !timePopover.contains(event.target) && !timeFields.includes(event.target)) closeTimePopover();
+      });
+      window.addEventListener('resize', closeTimePopover);
+      window.addEventListener('scroll', closeTimePopover, true);
+    })();
+
+    // Dropdowns personalizados das companhias aéreas na qualificação do réu.
+    (() => {
+      const selects = ['def-voo-vendedora', 'def-voo-operadora']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+      if (!selects.length) return;
+
+      const dropdowns = [];
+
+      function closeDropdown(dropdown, returnFocus = false) {
+        dropdown.menu.hidden = true;
+        dropdown.button.setAttribute('aria-expanded', 'false');
+        dropdown.wrapper.classList.remove('is-open');
+        if (returnFocus) dropdown.button.focus();
+      }
+
+      function closeAll(except = null) {
+        dropdowns.forEach(dropdown => {
+          if (dropdown !== except) closeDropdown(dropdown);
+        });
+      }
+
+      function syncDropdown(dropdown) {
+        const selected = Array.from(dropdown.select.options)
+          .find(option => option.value === dropdown.select.value && option.value);
+        dropdown.label.textContent = selected?.textContent || 'Selecione...';
+        dropdown.label.classList.toggle('text-gray-500', !selected);
+        dropdown.label.classList.toggle('text-gray-800', Boolean(selected));
+        dropdown.button.classList.toggle('has-value', Boolean(selected));
+        dropdown.options.forEach(optionButton => {
+          const isSelected = optionButton.dataset.value === dropdown.select.value;
+          optionButton.classList.toggle('is-selected', isSelected);
+          optionButton.setAttribute('aria-selected', String(isSelected));
+        });
+      }
+
+      selects.forEach(select => {
+        select.required = false;
+        select.hidden = true;
+        select.setAttribute('aria-hidden', 'true');
+        select.tabIndex = -1;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'airline-dropdown';
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.id = `${select.id}-custom-trigger`;
+        button.className = 'airline-dropdown-trigger';
+        button.setAttribute('aria-haspopup', 'listbox');
+        button.setAttribute('aria-expanded', 'false');
+        button.innerHTML = '<span class="airline-dropdown-label text-gray-500">Selecione...</span><i class="fa fa-chevron-down" aria-hidden="true"></i>';
+
+        const menu = document.createElement('div');
+        menu.className = 'airline-dropdown-menu';
+        menu.id = `${select.id}-custom-menu`;
+        menu.setAttribute('role', 'listbox');
+        menu.setAttribute('aria-labelledby', button.id);
+        menu.hidden = true;
+        button.setAttribute('aria-controls', menu.id);
+
+        Array.from(select.options).filter(option => option.value).forEach(option => {
+          const optionButton = document.createElement('button');
+          optionButton.type = 'button';
+          optionButton.className = 'airline-dropdown-option';
+          optionButton.dataset.value = option.value;
+          optionButton.setAttribute('role', 'option');
+          optionButton.textContent = option.textContent;
+          menu.appendChild(optionButton);
+        });
+
+        wrapper.append(button, menu);
+        select.insertAdjacentElement('afterend', wrapper);
+        const associatedLabel = document.querySelector(`label[for="${select.id}"]`);
+        if (associatedLabel) associatedLabel.htmlFor = button.id;
+
+        const dropdown = {
+          select,
+          wrapper,
+          button,
+          menu,
+          label: button.querySelector('.airline-dropdown-label'),
+          options: Array.from(menu.querySelectorAll('.airline-dropdown-option'))
+        };
+        dropdowns.push(dropdown);
+
+        button.addEventListener('click', () => {
+          const willOpen = menu.hidden;
+          closeAll(dropdown);
+          menu.hidden = !willOpen;
+          button.setAttribute('aria-expanded', String(willOpen));
+          wrapper.classList.toggle('is-open', willOpen);
+          if (willOpen) {
+            (menu.querySelector('.is-selected') || dropdown.options[0])?.focus();
+          }
+        });
+
+        button.addEventListener('keydown', event => {
+          if (['ArrowDown', 'Enter', ' '].includes(event.key) && menu.hidden) {
+            event.preventDefault();
+            button.click();
+          } else if (event.key === 'Escape') {
+            closeDropdown(dropdown);
+          }
+        });
+
+        menu.addEventListener('click', event => {
+          const optionButton = event.target.closest('.airline-dropdown-option');
+          if (!optionButton) return;
+          select.value = optionButton.dataset.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+          syncDropdown(dropdown);
+          closeDropdown(dropdown, true);
+        });
+
+        menu.addEventListener('keydown', event => {
+          const current = event.target.closest('.airline-dropdown-option');
+          if (!current) return;
+          const index = dropdown.options.indexOf(current);
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            const direction = event.key === 'ArrowDown' ? 1 : -1;
+            dropdown.options[(index + direction + dropdown.options.length) % dropdown.options.length].focus();
+          } else if (event.key === 'Escape') {
+            event.preventDefault();
+            closeDropdown(dropdown, true);
+          }
+        });
+
+        select.addEventListener('change', () => syncDropdown(dropdown));
+        syncDropdown(dropdown);
+      });
+
+      document.addEventListener('click', event => {
+        dropdowns.forEach(dropdown => {
+          if (!dropdown.wrapper.contains(event.target)) closeDropdown(dropdown);
+        });
+      });
+
+      document.addEventListener('reset', event => {
+        setTimeout(() => dropdowns
+          .filter(dropdown => event.target.contains(dropdown.select))
+          .forEach(syncDropdown), 0);
+      }, true);
+    })();
 
   </script>
  
