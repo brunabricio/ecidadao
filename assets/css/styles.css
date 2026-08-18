@@ -1,0 +1,242 @@
+body { font-family: "Segoe UI", Roboto, sans-serif; }
+    .tag { font-size: 12px; color: #1d4ed8; }
+    .highlight-badge { background: #f59e0b; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+    
+    /* Tema de Alto Contraste */
+    body.contrast-theme,
+    body.contrast-theme *,
+    body.contrast-theme [data-template-id],
+    body.contrast-theme .canva-text,
+    body.contrast-theme .canva-tag,
+    body.contrast-theme .canva-button,
+    body.contrast-theme h1,
+    body.contrast-theme h2,
+    body.contrast-theme h3,
+    body.contrast-theme h4,
+    body.contrast-theme p,
+    body.contrast-theme span,
+    body.contrast-theme a,
+    body.contrast-theme i {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border-color: #ffffff !important;
+      fill: #ffffff !important;
+      stroke: #ffffff !important;
+      box-shadow: none !important;
+    }
+    body.contrast-theme img {
+      filter: brightness(0) invert(1) !important;
+    }
+
+    /* Sete etapas compactas e sempre visíveis no fluxo de acidente. */
+    .traffic-stepper > .flex-1 {
+      min-width: 0;
+    }
+    .traffic-stepper > .flex-1 > div:first-of-type {
+      flex-shrink: 0;
+    }
+    .traffic-stepper > .flex-1 > span {
+      max-width: 100%;
+      font-size: 11px !important;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    /* Campos nativos de data e hora com aparência moderna e consistente. */
+    input[type="date"],
+    input[type="time"],
+    input[type="datetime-local"] {
+      color-scheme: light;
+      min-height: 46px;
+      padding: 0.625rem 0.75rem;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      color: #1e293b;
+      font-variant-numeric: tabular-nums;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+    input[type="date"]:hover,
+    input[type="time"]:hover,
+    input[type="datetime-local"]:hover {
+      border-color: #93c5fd;
+      background-color: #f8fbff;
+    }
+    input[type="date"]:focus,
+    input[type="time"]:focus,
+    input[type="datetime-local"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14), 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      box-sizing: content-box;
+      padding: 0.45rem;
+      margin-left: 0.5rem;
+      border-radius: 0.5rem;
+      background-color: #eff6ff;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: background-color 160ms ease, transform 160ms ease, opacity 160ms ease;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator:hover,
+    input[type="time"]::-webkit-calendar-picker-indicator:hover,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+      background-color: #dbeafe;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="time"]::-webkit-datetime-edit,
+    input[type="datetime-local"]::-webkit-datetime-edit {
+      padding: 0.1rem 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      input[type="date"],
+      input[type="time"],
+      input[type="datetime-local"],
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator,
+      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        transition: none;
+      }
+    }
+    .custom-calendar-input {
+      padding-right: 3rem !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='3'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      cursor: pointer;
+    }
+    #modern-calendar-popover {
+      position: fixed;
+      z-index: 99999;
+      width: min(340px, calc(100vw - 24px));
+      padding: 1rem;
+      border: 1px solid #dbe3ee;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2), 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+    #modern-calendar-popover[hidden] { display: none; }
+    .modern-calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .modern-calendar-title { color: #0f172a; font-size: 0.95rem; font-weight: 700; text-transform: capitalize; }
+    .modern-calendar-nav { width: 2.25rem; height: 2.25rem; border-radius: 0.65rem; color: #1d4ed8; background: #eff6ff; transition: background-color 150ms ease; }
+    .modern-calendar-nav:hover { background: #dbeafe; }
+    .modern-calendar-weekdays, .modern-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+    .modern-calendar-weekdays span { padding: 0.35rem 0; color: #64748b; font-size: 0.7rem; font-weight: 700; text-align: center; }
+    .modern-calendar-day { aspect-ratio: 1; border-radius: 0.65rem; color: #334155; font-size: 0.8rem; font-weight: 600; transition: background-color 120ms ease, color 120ms ease, transform 120ms ease; }
+    .modern-calendar-day:hover { color: #1d4ed8; background: #eff6ff; transform: translateY(-1px); }
+    .modern-calendar-day.is-today { box-shadow: inset 0 0 0 1px #60a5fa; }
+    .modern-calendar-day.is-selected { color: #ffffff; background: #2563eb; box-shadow: 0 5px 12px rgba(37, 99, 235, 0.28); }
+    .modern-calendar-empty { aspect-ratio: 1; }
+    .modern-calendar-time { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid #e2e8f0; }
+    .modern-calendar-time input { width: 8rem; min-height: 2.5rem; }
+    .modern-calendar-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; }
+    .modern-calendar-link { padding: 0.45rem 0.65rem; border-radius: 0.55rem; color: #2563eb; font-size: 0.78rem; font-weight: 700; }
+    .modern-calendar-link:hover { background: #eff6ff; }
+    .modern-calendar-apply { padding: 0.55rem 0.9rem; border-radius: 0.65rem; color: #ffffff; background: #2563eb; font-size: 0.78rem; font-weight: 700; }
+    #def-voo-vendedora,
+    #def-voo-operadora {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0.65rem 3rem 0.65rem 0.9rem !important;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      color: #334155;
+      font-weight: 500;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      cursor: pointer;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+    #def-voo-vendedora:hover,
+    #def-voo-operadora:hover { border-color: #93c5fd; background-color: #f8fbff; }
+    #def-voo-vendedora:focus,
+    #def-voo-operadora:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14); }
+    .custom-time-input {
+      padding-right: 3rem !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 7 12 12 15 14'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      cursor: pointer;
+    }
+    #modern-time-popover {
+      position: fixed;
+      z-index: 100000;
+      width: min(330px, calc(100vw - 24px));
+      padding: 1rem;
+      border: 1px solid #dbe3ee;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2), 0 4px 14px rgba(15, 23, 42, 0.08);
+    }
+    #modern-time-popover[hidden] { display: none; }
+    .modern-time-title { margin-bottom: 0.8rem; color: #0f172a; font-size: 0.95rem; font-weight: 700; }
+    .modern-time-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .modern-time-column-label { display: block; margin-bottom: 0.35rem; color: #64748b; font-size: 0.68rem; font-weight: 700; text-align: center; text-transform: uppercase; }
+    .modern-time-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.25rem; max-height: 180px; padding: 0.25rem; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #f8fafc; }
+    .modern-time-option { padding: 0.45rem 0.25rem; border-radius: 0.5rem; color: #475569; font-size: 0.75rem; font-weight: 700; }
+    .modern-time-option:hover { color: #1d4ed8; background: #eaf2ff; }
+    .modern-time-option.is-selected { color: #ffffff; background: #2563eb; }
+    .modern-time-footer { display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid #e2e8f0; }
+    .airline-dropdown { position: relative; width: 100%; }
+    .airline-dropdown-trigger {
+      display: flex;
+      width: 100%;
+      height: 44px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      color: #1f2937;
+      font-size: 0.875rem;
+      font-weight: 400;
+      text-align: left;
+      transition: border-color 150ms ease;
+    }
+    .airline-dropdown-trigger:hover { border-color: #d1d5db; background: #ffffff; }
+    .airline-dropdown-trigger:focus,
+    .airline-dropdown-trigger[aria-expanded="true"] { outline: none; border-color: #3b82f6; box-shadow: none; }
+    .airline-dropdown-trigger .fa { color: #9ca3af; font-size: 0.75rem; transition: transform 150ms ease; }
+    .airline-dropdown-trigger[aria-expanded="true"] .fa { transform: rotate(180deg); }
+    .airline-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+      right: 0;
+      left: 0;
+      z-index: 80;
+      max-height: 12rem;
+      overflow-y: auto;
+      padding: 0;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+    .airline-dropdown-menu[hidden] { display: none; }
+    .airline-dropdown-option {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 0.625rem 0.75rem;
+      border-bottom: 1px solid #f3f4f6;
+      color: #374151;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+      transition: background-color 150ms ease;
+    }
+    .airline-dropdown-option:last-child { border-bottom: 0; }
+    .airline-dropdown-option:hover,
+    .airline-dropdown-option:focus { outline: none; color: #374151; background: #f8fafc; }
+    .airline-dropdown-option.is-selected { color: #374151; background: #f8fafc; }
