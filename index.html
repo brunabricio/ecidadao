@@ -3,19 +3,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petição Cidadã</title>
+  <title>e-Cidadão</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
  </head>
- <body data-template-id="__page-root" class="min-h-screen bg-[#E9EEF4] flex flex-col" style="background: rgb(233, 238, 244);"><!-- Wrapper principal do Petição Cidadã -->
+ <body data-template-id="__page-root" class="min-h-screen bg-[#E9EEF4] flex flex-col" style="background: rgb(233, 238, 244);"><!-- Wrapper principal do e-Cidadão -->
   <div id="app-wrapper" class="flex flex-col min-h-screen w-full">
-   <header class="bg-white border-b border-gray-200">
+   <header class="legacy-header bg-white border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
-     <div class="flex items-center gap-3"><a href="#" id="header-logo-link" class="flex items-center gap-3"><img data-template-id="header-logo" loading="lazy" class="canva-image h-11 md:h-12 w-auto object-contain" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTns4EN0kSnXtq3sEdS2sCyXVnjPdU-vap0pD-qrBMWfw&s" alt="Logo do Poder Judiciário do Estado do Rio de Janeiro - PJERJ" style="height: 5rem !important;"></a>
+     <div class="flex items-center gap-3"><a href="#" id="header-logo-link" class="petition-citizen-logo" aria-label="e-Cidadão"><i class="fa fa-comment-o" aria-hidden="true"></i><span><strong>e-Cidadão</strong></span></a>
      </div>
-     <div class="text-center hidden md:block cursor-pointer" id="header-title-container"><span data-template-id="header-app-title" class="canva-text font-bold text-gray-800 text-lg uppercase tracking-wide" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 19px; letter-spacing: 0.073rem;">Petição Cidadã</span> <span class="text-gray-400 mx-2">|</span> <span data-template-id="header-app-subtitle" class="canva-text text-xs text-gray-500 uppercase font-semibold" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Peticionamento nos Juizados Especiais Cíveis</span>
+     <div class="text-center hidden md:block cursor-pointer" id="header-title-container"><span data-template-id="header-app-title" class="canva-text font-bold text-gray-800 text-lg uppercase tracking-wide" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 19px; letter-spacing: 0.073rem;">e-Cidadão</span> <span class="text-gray-400 mx-2">|</span> <span data-template-id="header-app-subtitle" class="canva-text text-xs text-gray-500 uppercase font-semibold" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Experiência digital</span>
      </div>
      <div class="flex items-center gap-3 md:gap-4 shrink-0"><!-- Informações do Usuário com Tooltip -->
       <div class="relative group flex items-center gap-3 cursor-pointer">
@@ -36,25 +36,172 @@
       </div><!-- Ícone de Ajuda --> <button class="text-[#0f2c59] hover:text-blue-700 transition p-1" aria-label="Ajuda"> <i class="fa fa-question-circle-o text-xl" aria-hidden="true"></i> </button> <!-- Ícone de Sair --> <button class="text-red-600 hover:text-red-800 transition p-1" aria-label="Sair"> <i class="fa fa-sign-out text-xl" aria-hidden="true"></i> </button>
      </div>
     </div><!-- Título mobile fora do flex principal para melhor responsividade -->
-    <div class="text-center md:hidden pb-3 border-b border-gray-100 cursor-pointer" id="header-title-container-mobile"><span data-template-id="header-app-title" class="canva-text font-bold text-gray-800 text-base uppercase tracking-wide" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 19px; letter-spacing: 0.073rem;">Petição Cidadã</span> <span class="text-gray-400 mx-1">|</span> <span data-template-id="header-app-subtitle" class="canva-text text-[10px] text-gray-500 uppercase font-semibold" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Peticionamento nos Juizados Especiais Cíveis</span>
+    <div class="text-center md:hidden pb-3 border-b border-gray-100 cursor-pointer" id="header-title-container-mobile"><span data-template-id="header-app-title" class="canva-text font-bold text-gray-800 text-base uppercase tracking-wide" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 19px; letter-spacing: 0.073rem;">e-Cidadão</span> <span class="text-gray-400 mx-1">|</span> <span data-template-id="header-app-subtitle" class="canva-text text-[10px] text-gray-500 uppercase font-semibold" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Experiência digital</span>
     </div>
     <div id="header-subnav" class="bg-slate-50/50 border-t border-b border-gray-200/60 py-2">
      <div class="max-w-7xl mx-auto px-4 flex justify-center">
-      <nav class="flex flex-wrap items-center justify-center gap-5 text-[11px] font-medium text-blue-700"><a href="https://tjrj.pje.jus.br/1g/ConsultaPublica/listView.seam" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-search text-[12px]" aria-hidden="true"></i> <span data-template-id="nav-consultar" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Consultar reclamação</span></a> <a href="#" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-refresh text-[12px]" aria-hidden="true"></i> <span data-template-id="nav-continuar" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Continuar preenchimento</span></a> <span class="text-gray-300 hidden sm:inline">|</span> <a href="https://www.youtube.com/playlist?list=PL1y72VhuodD76ZL0ZdFsJ0HjMPxka6xjy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-play-circle-o text-[12px]" aria-hidden="true"></i> <span data-template-id="nav-videos" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Ver vídeos</span></a> <a href="https://portaltj.tjrj.jus.br/documents/d/guest/manual_do_usuario_sistema_de_peticao_cidada-pje_v1-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-file-text-o text-[12px]" aria-hidden="true"></i> <span data-template-id="nav-manual" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Manual</span></a>
+      <nav class="flex flex-wrap items-center justify-center gap-5 text-[11px] font-medium text-blue-700"><a href="#" id="nav-new-evaluation" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-commenting-o text-[12px]" aria-hidden="true"></i> <span class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Nova avaliação</span></a><a href="#" id="nav-track" class="flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-search" aria-hidden="true"></i><span class="canva-text" style="color: rgb(29, 78, 216); font-size: 16px;">Acompanhar protocolo</span></a><a href="#" id="nav-dashboard" class="header-dashboard-link flex items-center gap-1.5 hover:text-blue-900 transition"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="canva-text" style="color: rgb(29, 78, 216); font-size: 16px;">Mapa e dashboard</span></a>
       </nav>
      </div>
     </div>
    </header>
    <div class="fixed right-2 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2 bg-white p-1.5 rounded-lg shadow-lg border border-gray-200"><button id="float-contrast-btn" class="p-2 hover:bg-blue-50 text-blue-800 rounded transition" title="Contraste"><i class="fa fa-adjust text-xl" aria-hidden="true"></i></button> <button id="float-libras-btn" class="p-2 hover:bg-blue-50 text-blue-800 rounded transition" title="Língua de Sinais"><i class="fa fa-universal-access text-xl" aria-hidden="true"></i></button> <button id="float-zoom-btn" class="p-2 hover:bg-blue-50 text-blue-800 rounded transition" title="Tamanho do Texto"><i class="fa fa-font text-xl" aria-hidden="true"></i></button>
    </div>
-   <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full"><!-- PAGE 1: HOME -->
-    <div id="page-home" class="space-y-6">
-     <p data-template-id="complaint-intro" class="canva-text text-sm text-center text-gray-600 mb-2" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 17px;">Aqui você pode criar e enviar uma reclamação aos Juizados Especiais Cíveis de forma simples e rápida.</p>
-     <h2 data-template-id="complaint-title" class="canva-text font-bold text-center text-2xl text-gray-900 mb-6" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 24px;">Qual reclamação deseja fazer?</h2>
-     <div class="relative mb-3 max-w-2xl mx-auto"><i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" aria-hidden="true"></i> <input id="search-input" type="text" data-template-id="search-input" class="canva-input w-full border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-[0_4px_12px_rgba(0,0,0,0.03)] bg-white" placeholder="Ex: produto com defeito, falta de luz..." style="font-weight: 400; font-style: normal; font-size: 16px;">
+   <main class="max-w-4xl mx-auto px-4 py-8 flex-1 w-full"><!-- ACESSO ACADÊMICO -->
+    <div id="page-academic-access" class="academic-access-page">
+     <section class="academic-access-intro">
+      <span class="academic-kicker">PESQUISA DE EXPERIÊNCIA</span>
+      <h1>Ajude a melhorar os serviços digitais do TJERJ</h1>
+      <p>O e-Cidadão reúne avaliações de quem utilizou os sistemas públicos do Tribunal para identificar dificuldades e apoiar melhorias.</p>
+      <ul>
+       <li><i class="fa fa-check-circle" aria-hidden="true"></i> Avaliação de cada etapa da experiência</li>
+       <li><i class="fa fa-check-circle" aria-hidden="true"></i> Registro de dificuldades técnicas e de acessibilidade</li>
+       <li><i class="fa fa-check-circle" aria-hidden="true"></i> Indicadores agregados para apoiar decisões de melhoria</li>
+      </ul>
+      <p class="academic-disclaimer"><i class="fa fa-info-circle" aria-hidden="true"></i> Este é um protótipo acadêmico independente. Ele não representa o TJERJ e não realiza ajuizamento de processos.</p>
+     </section>
+     <section class="academic-access-card" aria-labelledby="academic-access-title">
+      <div class="academic-auth-tabs" role="tablist" aria-label="Acesso ao e-Cidadão">
+       <button type="button" id="academic-tab-login" class="is-active" role="tab" aria-selected="true">Entrar</button>
+       <button type="button" id="academic-tab-register" role="tab" aria-selected="false">Criar conta</button>
+      </div>
+      <form id="academic-login-form" class="academic-auth-form">
+       <div><span class="academic-form-eyebrow">BEM-VINDO DE VOLTA</span><h2 id="academic-access-title">Acesse para avaliar</h2><p>Use dados fictícios para testar esta apresentação.</p></div>
+       <label>E-mail <input id="academic-login-email" type="email" placeholder="nome@exemplo.com" required autocomplete="off"></label>
+       <label>Senha <input id="academic-login-password" type="password" placeholder="Digite sua senha" minlength="4" required autocomplete="off"></label>
+       <button type="submit" class="academic-primary-btn">Entrar e continuar <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </form>
+      <form id="academic-register-form" class="academic-auth-form hidden">
+       <div><span class="academic-form-eyebrow">PRIMEIRO ACESSO</span><h2>Crie seu perfil</h2><p>O cadastro é apenas demonstrativo e não será armazenado.</p></div>
+       <label>Nome <input id="academic-register-name" type="text" placeholder="Como podemos chamar você?" required autocomplete="off"></label>
+       <label>E-mail <input id="academic-register-email" type="email" placeholder="nome@exemplo.com" required autocomplete="off"></label>
+       <label>Senha <input id="academic-register-password" type="password" placeholder="Crie uma senha" minlength="4" required autocomplete="off"></label>
+       <button type="submit" class="academic-primary-btn">Criar perfil demonstrativo <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+      </form>
+     </section>
+    </div><!-- IDENTIFICAÇÃO E ENDEREÇO -->
+    <div id="page-evaluation-profile" class="evaluation-page hidden">
+     <div class="evaluation-heading"><span class="academic-kicker">IDENTIFICAÇÃO DO PARTICIPANTE</span><h1>Confirme seus dados</h1><p>A identificação evita avaliações duplicadas e permite organizar indicadores por região.</p></div>
+     <form id="evaluation-profile-form" class="evaluation-card" novalidate>
+      <div class="evaluation-card-heading"><span class="evaluation-number"><i class="fa fa-id-card-o" aria-hidden="true"></i></span><div><h2>Identidade e residência</h2><p>Neste protótipo, a conferência dos documentos é apenas demonstrativa.</p></div></div>
+      <div class="evaluation-grid">
+       <label class="evaluation-field">Nome completo *<input id="profile-name" type="text" required autocomplete="off"></label>
+       <label class="evaluation-field">CPF *<input id="profile-cpf" type="text" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required autocomplete="off"></label>
+       <label class="evaluation-field">CEP *<input id="profile-cep" type="text" inputmode="numeric" maxlength="9" placeholder="00000-000" required autocomplete="off"></label>
+       <label class="evaluation-field">Estado *<select id="profile-state" required><option value="">Selecione</option><option value="RJ">Rio de Janeiro</option><option value="ES">Espírito Santo</option><option value="MG">Minas Gerais</option><option value="SP">São Paulo</option><option value="outro">Outro</option></select></label>
+       <label class="evaluation-field">Município *<input id="profile-city" type="text" required autocomplete="off"></label>
+       <label class="evaluation-field">Bairro *<input id="profile-neighborhood" type="text" required autocomplete="off"></label>
+       <label class="evaluation-field evaluation-field--wide">Endereço *<input id="profile-address" type="text" required placeholder="Rua, número e complemento" autocomplete="off"></label>
+       <div class="evaluation-field"><span>Documento de identificação *</span><button type="button" id="profile-id-upload" class="evaluation-upload"><i class="fa fa-id-card-o"></i> Selecionar documento</button><small id="profile-id-file">Nenhum arquivo selecionado.</small><input id="profile-id-confirmed" type="hidden" required></div>
+       <div class="evaluation-field"><span>Comprovante de residência *</span><button type="button" id="profile-address-upload" class="evaluation-upload"><i class="fa fa-file-text-o"></i> Selecionar comprovante</button><small id="profile-address-file">Nenhum arquivo selecionado.</small><input id="profile-address-confirmed" type="hidden" required></div>
+      </div>
+      <p id="profile-error" class="evaluation-error hidden" role="alert">Preencha os dados e selecione os dois documentos.</p>
+      <div class="evaluation-actions"><button type="submit" class="academic-primary-btn">Validar e continuar <i class="fa fa-arrow-right"></i></button></div>
+     </form>
+    </div><!-- AVALIAÇÃO DO PETIÇÃO CIDADÃ -->
+    <div id="page-service-evaluation" class="evaluation-page hidden">
+     <div class="evaluation-heading"><span class="academic-kicker">AVALIAÇÃO DE SERVIÇO DIGITAL</span><h1>Como foi utilizar este serviço?</h1><p>Sua experiência ajuda a identificar dificuldades e orientar melhorias no atendimento digital.</p></div>
+     <div id="evaluation-selected-subject" class="evaluation-subject" aria-live="polite"></div>
+     <ol id="evaluation-stepper" class="evaluation-stepper" aria-label="Etapas da avaliação">
+      <li class="is-active"><span>1</span><small>Contexto</small></li><li><span>2</span><small>Etapas</small></li><li><span>3</span><small>Problemas</small></li><li><span>4</span><small>Experiência</small></li><li><span>5</span><small>Revisão</small></li>
+     </ol>
+     <form id="service-evaluation-form" novalidate>
+      <section class="evaluation-step" data-evaluation-step="1">
+       <div class="evaluation-card"><div class="evaluation-card-heading"><div><h2>Sobre a utilização</h2><p>Não informe o conteúdo da petição ou documentos pessoais.</p></div></div>
+        <div class="evaluation-grid">
+         <label class="evaluation-field evaluation-field--wide">Número do processo (opcional)<input id="evaluation-process-number" type="text" inputmode="numeric" maxlength="25" placeholder="0000000-00.0000.8.19.0000"><small>Usado somente para relacionar a avaliação ao atendimento informado.</small></label>
+         <label class="evaluation-field">Estado *<select id="evaluation-state" required><option value="">Selecione</option><option value="RJ">Rio de Janeiro</option><option value="outro">Outro estado</option></select></label>
+         <label class="evaluation-field">Município *<input id="evaluation-city" type="text" required placeholder="Onde você utilizou o serviço?"></label>
+         <label class="evaluation-field">Data da utilização *<input id="evaluation-date" type="date" required></label>
+         <label class="evaluation-field">Dispositivo utilizado *<select id="evaluation-device" required><option value="">Selecione</option><option>Computador</option><option>Celular</option><option>Tablet</option></select></label>
+         <label class="evaluation-field">Navegador *<select id="evaluation-browser" required><option value="">Selecione</option><option>Google Chrome</option><option>Microsoft Edge</option><option>Mozilla Firefox</option><option>Safari</option><option>Outro</option></select></label>
+        </div>
+        <fieldset class="evaluation-question"><legend>Você conseguiu concluir o que precisava nesse serviço? *</legend><div class="evaluation-options"><label><input type="radio" name="evaluation-completed" value="sim" required><span>Sim, concluí</span></label><label><input type="radio" name="evaluation-completed" value="parcial"><span>Concluí parcialmente</span></label><label><input type="radio" name="evaluation-completed" value="nao"><span>Não consegui</span></label></div></fieldset>
+       </div>
+      </section>
+      <section class="evaluation-step hidden" data-evaluation-step="2">
+       <div class="evaluation-card"><div class="evaluation-card-heading"><div><h2>Avalie cada etapa</h2><p>Use 1 para “muito difícil” e 5 para “muito fácil”.</p></div></div>
+        <div id="system-specific-question" class="system-specific-question"></div>
+        <div class="stage-rating-list">
+         <div class="stage-rating" data-stage-name="Escolha do assunto"><strong>Escolha do assunto</strong><div class="rating-scale" role="radiogroup" aria-label="Escolha do assunto"><label><input type="radio" name="rate-subject" value="1" required><span>1</span></label><label><input type="radio" name="rate-subject" value="2"><span>2</span></label><label><input type="radio" name="rate-subject" value="3"><span>3</span></label><label><input type="radio" name="rate-subject" value="4"><span>4</span></label><label><input type="radio" name="rate-subject" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Dados pessoais"><strong>Dados pessoais</strong><div class="rating-scale"><label><input type="radio" name="rate-personal" value="1" required><span>1</span></label><label><input type="radio" name="rate-personal" value="2"><span>2</span></label><label><input type="radio" name="rate-personal" value="3"><span>3</span></label><label><input type="radio" name="rate-personal" value="4"><span>4</span></label><label><input type="radio" name="rate-personal" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Parte reclamada"><strong>Identificação da parte reclamada</strong><div class="rating-scale"><label><input type="radio" name="rate-defendant" value="1" required><span>1</span></label><label><input type="radio" name="rate-defendant" value="2"><span>2</span></label><label><input type="radio" name="rate-defendant" value="3"><span>3</span></label><label><input type="radio" name="rate-defendant" value="4"><span>4</span></label><label><input type="radio" name="rate-defendant" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Relato"><strong>Relato dos fatos</strong><div class="rating-scale"><label><input type="radio" name="rate-facts" value="1" required><span>1</span></label><label><input type="radio" name="rate-facts" value="2"><span>2</span></label><label><input type="radio" name="rate-facts" value="3"><span>3</span></label><label><input type="radio" name="rate-facts" value="4"><span>4</span></label><label><input type="radio" name="rate-facts" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Documentos"><strong>Envio de documentos</strong><div class="rating-scale"><label><input type="radio" name="rate-documents" value="1" required><span>1</span></label><label><input type="radio" name="rate-documents" value="2"><span>2</span></label><label><input type="radio" name="rate-documents" value="3"><span>3</span></label><label><input type="radio" name="rate-documents" value="4"><span>4</span></label><label><input type="radio" name="rate-documents" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Pedidos"><strong>Definição dos pedidos</strong><div class="rating-scale"><label><input type="radio" name="rate-requests" value="1" required><span>1</span></label><label><input type="radio" name="rate-requests" value="2"><span>2</span></label><label><input type="radio" name="rate-requests" value="3"><span>3</span></label><label><input type="radio" name="rate-requests" value="4"><span>4</span></label><label><input type="radio" name="rate-requests" value="5"><span>5</span></label></div></div>
+         <div class="stage-rating" data-stage-name="Revisão e envio"><strong>Revisão e envio</strong><div class="rating-scale"><label><input type="radio" name="rate-submit" value="1" required><span>1</span></label><label><input type="radio" name="rate-submit" value="2"><span>2</span></label><label><input type="radio" name="rate-submit" value="3"><span>3</span></label><label><input type="radio" name="rate-submit" value="4"><span>4</span></label><label><input type="radio" name="rate-submit" value="5"><span>5</span></label></div></div>
+        </div>
+       </div>
+      </section>
+      <section class="evaluation-step hidden" data-evaluation-step="3">
+       <div class="evaluation-card"><div class="evaluation-card-heading"><div><h2>Dificuldades encontradas</h2><p>Essas informações ajudam a equipe a reproduzir e priorizar problemas.</p></div></div>
+        <fieldset class="evaluation-question"><legend>Você encontrou algum problema? *</legend><div class="evaluation-options"><label><input type="radio" name="evaluation-has-problem" value="sim" required><span>Sim</span></label><label><input type="radio" name="evaluation-has-problem" value="nao"><span>Não</span></label></div></fieldset>
+        <div id="evaluation-problem-details" class="evaluation-grid hidden">
+         <label class="evaluation-field">Etapa afetada *<select id="evaluation-problem-stage"><option value="">Selecione</option><option>Escolha do assunto</option><option>Dados pessoais</option><option>Parte reclamada</option><option>Relato dos fatos</option><option>Documentos</option><option>Pedidos</option><option>Revisão e envio</option><option>Outra</option></select></label>
+         <label class="evaluation-field">Tipo de dificuldade *<select id="evaluation-problem-type"><option value="">Selecione</option><option>Erro técnico</option><option>Texto confuso</option><option>Botão sem resposta</option><option>Perda de dados</option><option>Problema no upload</option><option>Lentidão</option><option>Incompatibilidade com navegador</option><option>Barreira de acessibilidade</option><option>Outro</option></select></label>
+         <label class="evaluation-field evaluation-field--wide">O que aconteceu? *<textarea id="evaluation-problem-description" maxlength="2000" rows="5" placeholder="Conte o que você tentou fazer e o que ocorreu."></textarea><small><span id="evaluation-description-count">0</span>/2000 caracteres</small></label>
+         <div id="evaluation-auto-analysis" class="evaluation-auto-analysis evaluation-field--wide"><div><small>CLASSIFICAÇÃO SUGERIDA</small><strong id="auto-category">Aguardando relato</strong></div><div><small>PRIORIDADE CALCULADA</small><strong id="auto-priority">—</strong></div><span>Resultado demonstrativo calculado a partir do tipo de dificuldade e das palavras do relato.</span></div>
+         <div class="evaluation-field evaluation-field--wide"><span>Captura de tela (opcional)</span><button type="button" id="evaluation-screenshot-button" class="evaluation-upload"><i class="fa fa-image" aria-hidden="true"></i><span>Selecionar imagem</span></button><small id="evaluation-screenshot-name">Nenhum arquivo selecionado. Demonstração sem envio real.</small></div>
+        </div>
+       </div>
+      </section>
+      <section class="evaluation-step hidden" data-evaluation-step="4">
+       <div class="evaluation-card"><div class="evaluation-card-heading"><div><h2>Sua experiência geral</h2><p>Avalie clareza, esforço e acessibilidade.</p></div></div>
+        <fieldset class="evaluation-question"><legend>Qual foi sua satisfação geral? *</legend><div class="satisfaction-scale"><label><input type="radio" name="evaluation-satisfaction" value="1" required><span>😞<small>Muito ruim</small></span></label><label><input type="radio" name="evaluation-satisfaction" value="2"><span>🙁<small>Ruim</small></span></label><label><input type="radio" name="evaluation-satisfaction" value="3"><span>😐<small>Regular</small></span></label><label><input type="radio" name="evaluation-satisfaction" value="4"><span>🙂<small>Boa</small></span></label><label><input type="radio" name="evaluation-satisfaction" value="5"><span>😄<small>Ótima</small></span></label></div></fieldset>
+        <fieldset class="evaluation-question"><legend>Quanto esforço foi necessário? *</legend><div class="evaluation-options"><label><input type="radio" name="evaluation-effort" value="baixo" required><span>Pouco esforço</span></label><label><input type="radio" name="evaluation-effort" value="medio"><span>Esforço moderado</span></label><label><input type="radio" name="evaluation-effort" value="alto"><span>Muito esforço</span></label></div></fieldset>
+        <fieldset class="evaluation-question"><legend>Precisou de ajuda de outra pessoa? *</legend><div class="evaluation-options"><label><input type="radio" name="evaluation-needed-help" value="sim" required><span>Sim</span></label><label><input type="radio" name="evaluation-needed-help" value="nao"><span>Não</span></label></div></fieldset>
+        <fieldset class="evaluation-question"><legend>Encontrou alguma barreira de acessibilidade? *</legend><div class="evaluation-options"><label><input type="radio" name="evaluation-accessibility" value="sim" required><span>Sim</span></label><label><input type="radio" name="evaluation-accessibility" value="nao"><span>Não</span></label><label><input type="radio" name="evaluation-accessibility" value="nao-se-aplica"><span>Não se aplica</span></label></div></fieldset>
+        <label class="evaluation-field evaluation-field--wide">Sugestão ou comentário (opcional)<textarea id="evaluation-comment" maxlength="2000" rows="5" placeholder="O que poderia tornar o serviço mais simples?"></textarea></label>
+       </div>
+      </section>
+      <section class="evaluation-step hidden" data-evaluation-step="5">
+       <div class="evaluation-card"><div class="evaluation-card-heading"><div><h2>Revise sua avaliação</h2><p>Confira antes de gerar o protocolo.</p></div></div>
+        <div id="evaluation-review" class="evaluation-review"></div>
+        <label class="evaluation-consent"><input id="evaluation-consent" type="checkbox" required><span>Autorizo o uso das respostas de forma agregada para produzir indicadores de experiência. Dados pessoais, número do processo e textos livres não devem aparecer em relatórios públicos.</span></label>
+       </div>
+      </section>
+      <div class="evaluation-actions"><button type="button" id="evaluation-back" class="academic-secondary-btn hidden"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button><button type="button" id="evaluation-next" class="academic-primary-btn">Continuar <i class="fa fa-arrow-right" aria-hidden="true"></i></button><button type="submit" id="evaluation-submit" class="academic-primary-btn hidden">Enviar avaliação <i class="fa fa-check" aria-hidden="true"></i></button></div>
+      <p id="evaluation-error" class="evaluation-error hidden" role="alert">Preencha os campos obrigatórios desta etapa para continuar.</p>
+     </form>
+    </div>
+    <div id="page-evaluation-complete" class="evaluation-page hidden">
+     <div class="evaluation-complete-card"><div class="evaluation-complete-icon"><i class="fa fa-check" aria-hidden="true"></i></div><span class="academic-kicker">AVALIAÇÃO REGISTRADA</span><h1>Obrigado por compartilhar sua experiência</h1><p>Sua resposta poderá contribuir para indicadores agregados de melhoria dos serviços digitais do TJERJ.</p><div><small>Protocolo da avaliação</small><strong id="evaluation-protocol">EC-AV-000000</strong></div><pre id="evaluation-report-preview" class="evaluation-report-preview"></pre><p class="evaluation-privacy-note">Neste protótipo, nenhuma informação é transmitida ou armazenada.</p><div class="evaluation-complete-actions"><button type="button" id="evaluation-print" class="academic-secondary-btn"><i class="fa fa-print"></i> Imprimir</button><button type="button" id="evaluation-download" class="academic-secondary-btn"><i class="fa fa-download"></i> Baixar relatório</button><button type="button" id="evaluation-open-dashboard" class="academic-secondary-btn"><i class="fa fa-bar-chart"></i> Ver painel</button><button type="button" id="evaluation-finish" class="academic-primary-btn">Fazer nova avaliação</button></div></div>
+    </div><!-- PAINEL DE AVALIAÇÕES -->
+    <div id="page-evaluation-dashboard" class="evaluation-page hidden">
+     <div class="dashboard-heading"><div><span class="academic-kicker">TRANSPARÊNCIA E EXPERIÊNCIA</span><h1>Painel de avaliações</h1><p>Visão demonstrativa de indicadores agregados dos serviços digitais.</p><div class="dashboard-view-switch"><button id="dashboard-public-view" class="is-active" type="button">Visão pública</button><button id="dashboard-manager-view" type="button"><i class="fa fa-lock"></i> Visão gerencial</button></div></div><div class="dashboard-heading-actions"><button type="button" id="dashboard-public-report" class="academic-primary-btn"><i class="fa fa-file-excel-o"></i> Baixar relatório público</button><button type="button" id="dashboard-back" class="academic-secondary-btn"><i class="fa fa-arrow-left"></i> Voltar</button></div></div>
+     <div class="dashboard-metrics"><article><small>Avaliações</small><strong id="metric-total">1.284</strong><span>últimos 12 meses</span></article><article><small>Satisfação média</small><strong id="metric-satisfaction">3,8/5</strong><span>+0,3 no período</span></article><article><small>Taxa de conclusão</small><strong>72%</strong><span>do fluxo avaliado</span></article><article><small>Com barreira relatada</small><strong>18%</strong><span>técnica ou acessibilidade</span></article></div>
+     <div class="dashboard-grid"><section class="dashboard-card brazil-map-card"><div class="map-card-heading"><div><h2>Mapa de avaliações do Brasil</h2><p>Selecione uma categoria e passe o cursor sobre um ponto para ver o total do estado.</p></div><label>Categoria<select id="map-theme-filter"><option value="all">Todos os serviços</option><option value="petition">Peticionamento e processos</option><option value="query">Consulta e acompanhamento</option><option value="support">Atendimento ao cidadão</option><option value="documents">Documentos e pagamentos</option><option value="information">Informação pública</option></select></label></div><div class="brazil-map-layout"><div><svg id="brazil-complaint-map" viewBox="0 0 620 610" role="img" aria-label="Mapa do Brasil com volume de avaliações por estado"></svg><small class="map-attribution">Mapa-base: Wikimedia Commons, domínio público.</small></div><aside><strong id="map-theme-total">0 avaliações</strong><span>no filtro selecionado</span><div class="map-legend"><i class="level-1"></i>Menor volume<i class="level-2"></i><i class="level-3"></i><i class="level-4"></i><i class="level-5"></i>Maior volume</div><div id="map-state-detail" class="map-state-detail"><small>DETALHES DO ESTADO</small><strong>Selecione um estado</strong><span>Clique em um ponto do mapa.</span></div></aside></div></section><section class="dashboard-card"><h2>Avaliações por categoria</h2><div class="dashboard-bars"><div><span>Peticionamento e processos</span><i style="--bar:88%"></i><b>31%</b></div><div><span>Consulta e acompanhamento</span><i style="--bar:70%"></i><b>25%</b></div><div><span>Atendimento ao cidadão</span><i style="--bar:54%"></i><b>19%</b></div><div><span>Documentos e pagamentos</span><i style="--bar:43%"></i><b>15%</b></div><div><span>Informação pública</span><i style="--bar:29%"></i><b>10%</b></div></div></section></div>
+     <section class="dashboard-card dashboard-table-card"><h2>Principais dificuldades</h2><div class="dashboard-table"><div><strong>Etapa</strong><strong>Ocorrências</strong><strong>Satisfação</strong></div><div><span>Envio de documentos</span><span>214</span><span>3,1/5</span></div><div><span>Revisão e envio</span><span>176</span><span>3,4/5</span></div><div><span>Identificação da parte reclamada</span><span>143</span><span>3,6/5</span></div></div></section>
+     <div id="dashboard-manager-panel" class="manager-panel hidden"><section class="manager-alerts"><h2><i class="fa fa-bell"></i> Alertas automáticos</h2><article class="critical"><strong>PJe: aumento de falhas no envio</strong><span>+46% nas últimas 24 horas · prioridade crítica</span></article><article><strong>GRERJ: queda na satisfação</strong><span>Média passou de 3,8 para 3,1 nesta semana</span></article></section><section class="dashboard-card"><div class="manager-section-heading"><div><h2>Fila de ocorrências</h2><p>Classificação e encaminhamento sugeridos.</p></div><select id="manager-queue-filter"><option value="all">Todas</option><option value="critical">Críticas</option><option value="high">Altas</option></select></div><div id="manager-queue" class="manager-queue"><article data-priority="critical"><b>EC-AV-2026-842193</b><span>PJe · Upload bloqueado</span><em class="priority-critical">Crítica</em><small>Equipe PJe</small></article><article data-priority="high"><b>EC-AV-2026-730421</b><span>Balcão Virtual · Sem atendimento</span><em class="priority-high">Alta</em><small>Atendimento</small></article><article data-priority="medium"><b>EC-AV-2026-693107</b><span>GRERJ · Texto confuso</span><em class="priority-medium">Média</em><small>Conteúdo</small></article></div></section><section class="dashboard-card"><div class="manager-section-heading"><div><h2>Editor de questionários</h2><p>Crie perguntas específicas sem alterar o código.</p></div></div><form id="question-editor-form" class="question-editor"><label>Sistema<select id="question-system" required><option value="">Selecione</option><option>Petição Cidadã</option><option>eproc</option><option>PJe</option><option>Balcão Virtual</option><option>GRERJ Eletrônica</option></select></label><label class="wide">Nova pergunta<input id="question-text" required placeholder="Ex.: Você encontrou a informação que procurava?"></label><label>Tipo<select id="question-type"><option>Escala de 1 a 5</option><option>Sim ou não</option><option>Texto livre</option></select></label><button class="academic-primary-btn" type="submit">Adicionar pergunta</button></form><div id="custom-question-list" class="custom-question-list"><p>Nenhuma pergunta personalizada criada nesta sessão.</p></div></section></div>
+     <section id="advanced-questionnaire-editor" class="dashboard-card questionnaire-builder hidden"><div class="manager-section-heading"><div><h2>Construtor avançado de questionários</h2><p>Edite integralmente os formulários do perfil gerencial.</p></div></div><div class="questionnaire-toolbar"><label>Questionário do sistema<select id="question-system-filter"><option>Petição Cidadã</option><option>eproc</option><option>PJe</option><option>Portal de Serviços</option><option>Consulta Processual</option><option>Balcão Virtual</option><option>GRERJ Eletrônica</option><option>Portal da Transparência</option></select></label><div><span id="questionnaire-status" class="questionnaire-status draft">Rascunho</span><button type="button" id="question-preview-button" class="academic-secondary-btn"><i class="fa fa-eye"></i> Pré-visualizar</button><button type="button" id="question-publish-button" class="academic-primary-btn"><i class="fa fa-cloud-upload"></i> Publicar versão</button></div></div><form id="advanced-question-form" class="question-editor advanced"><input id="question-edit-id" type="hidden"><label class="wide">Texto da pergunta *<input id="advanced-question-text" required maxlength="240" placeholder="Ex.: Você encontrou a informação que procurava?"></label><label>Tipo de resposta<select id="advanced-question-type"><option value="scale">Escala de 1 a 5</option><option value="yesno">Sim ou não</option><option value="single">Escolha única</option><option value="multiple">Múltipla escolha</option><option value="text">Texto curto</option><option value="longtext">Texto longo</option><option value="date">Data</option></select></label><label>Seção<select id="advanced-question-section"><option>Acesso</option><option>Navegação</option><option>Execução do serviço</option><option>Documentos</option><option>Resultado</option><option>Experiência geral</option></select></label><label class="wide">Texto de ajuda (opcional)<input id="advanced-question-help" maxlength="180" placeholder="Orientação exibida abaixo da pergunta"></label><label id="advanced-question-options-field" class="wide hidden">Alternativas, uma por linha<textarea id="advanced-question-options" rows="4" placeholder="Primeira alternativa&#10;Segunda alternativa"></textarea></label><label>Lógica condicional<select id="advanced-question-condition"><option value="">Sempre exibir</option><option value="problem-yes">Se encontrou um problema</option><option value="completed-no">Se não conseguiu concluir</option><option value="help-yes">Se precisou de ajuda</option></select></label><label class="question-check"><input id="advanced-question-required" type="checkbox" checked> Resposta obrigatória</label><div class="question-editor-actions wide"><button class="academic-primary-btn" type="submit"><i class="fa fa-save"></i> <span id="advanced-question-save-label">Adicionar pergunta</span></button><button id="advanced-question-cancel" class="academic-secondary-btn hidden" type="button">Cancelar edição</button></div></form><div id="advanced-question-feedback" class="question-editor-feedback hidden" role="status"></div><div id="advanced-question-list" class="custom-question-list"></div><div id="advanced-question-preview" class="question-preview hidden"><div class="question-preview-heading"><h3>Pré-visualização do questionário</h3><button id="advanced-question-preview-close" type="button" aria-label="Fechar"><i class="fa fa-times"></i></button></div><div id="advanced-question-preview-content"></div></div></section>
+    </div><!-- ACOMPANHAMENTO -->
+    <div id="page-evaluation-tracking" class="evaluation-page hidden"><div class="evaluation-heading"><span class="academic-kicker">ACOMPANHAMENTO</span><h1>Consulte sua avaliação</h1><p>Informe o protocolo gerado ao final do envio.</p></div><form id="tracking-form" class="tracking-search"><input id="tracking-protocol" required placeholder="EC-AV-2026-000000"><button class="academic-primary-btn" type="submit"><i class="fa fa-search"></i> Consultar</button></form><div id="tracking-result" class="tracking-result hidden"><div><small>PROTOCOLO</small><strong id="tracking-code"></strong><span>Serviço: <b id="tracking-system">Serviço digital</b></span></div><ol><li class="done"><i class="fa fa-check"></i><strong>Avaliação recebida</strong><span>Registro concluído</span></li><li class="active"><i class="fa fa-search"></i><strong>Em análise</strong><span>Classificação automática realizada</span></li><li><i class="fa fa-share"></i><strong>Encaminhada</strong><span>Aguardando equipe responsável</span></li><li><i class="fa fa-wrench"></i><strong>Melhoria planejada</strong><span>Próxima etapa</span></li><li><i class="fa fa-check-circle"></i><strong>Concluída</strong><span>Resultado será publicado</span></li></ol><p>Este acompanhamento é demonstrativo e não corresponde a um protocolo oficial do TJERJ.</p></div></div><!-- TRIAGEM INICIAL -->
+    <div id="page-academic-triage" class="space-y-6 hidden">
+     <div class="academic-page-heading"><span class="academic-kicker">ETAPA DE ORIENTAÇÃO</span><h1>Vamos entender sua situação</h1><p>Responda às perguntas abaixo para receber uma orientação inicial antes de escolher o assunto.</p></div>
+     <form id="academic-triage-form" class="academic-triage-card">
+      <fieldset><legend>Você é maior de 18 anos?</legend><label><input type="radio" name="triage-age" value="sim" required> Sim</label><label><input type="radio" name="triage-age" value="nao"> Não</label></fieldset>
+      <fieldset><legend>O problema aconteceu no estado do Rio de Janeiro?</legend><label><input type="radio" name="triage-state" value="sim" required> Sim</label><label><input type="radio" name="triage-state" value="nao"> Não</label></fieldset>
+      <fieldset><legend>O valor estimado da solicitação é de até R$ 32.420,00?</legend><label><input type="radio" name="triage-value" value="sim" required> Sim</label><label><input type="radio" name="triage-value" value="nao"> Não</label><label><input type="radio" name="triage-value" value="nao-sei"> Não sei</label></fieldset>
+      <fieldset><legend>Já existe um processo judicial sobre os mesmos fatos?</legend><label><input type="radio" name="triage-existing" value="sim" required> Sim</label><label><input type="radio" name="triage-existing" value="nao"> Não</label></fieldset>
+      <fieldset><legend>Você possui algum documento relacionado ao problema?</legend><label><input type="radio" name="triage-docs" value="sim" required> Sim</label><label><input type="radio" name="triage-docs" value="nao"> Ainda não</label></fieldset>
+      <div id="academic-triage-result" class="academic-triage-result hidden" aria-live="polite"></div>
+      <div class="academic-triage-actions"><button type="button" id="academic-triage-back" class="academic-secondary-btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button><button type="submit" id="academic-triage-evaluate" class="academic-primary-btn">Ver orientação</button><button type="button" id="academic-triage-continue" class="academic-primary-btn hidden">Escolher o assunto <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+     </form>
+    </div><!-- PAGE 1: HOME -->
+    <div id="page-home" class="space-y-6 hidden">
+     <p data-template-id="complaint-intro" class="canva-text text-sm text-center text-gray-600 mb-2" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 17px;">Conte como foi sua experiência com um dos serviços digitais do TJERJ.</p>
+     <h2 data-template-id="complaint-title" class="canva-text font-bold text-center text-2xl text-gray-900 mb-6" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 24px;">Qual sistema ou serviço você deseja avaliar?</h2>
+     <div class="relative mb-3 max-w-2xl mx-auto"><i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" aria-hidden="true"></i> <input id="search-input" type="text" data-template-id="search-input" class="canva-input w-full border border-gray-200 rounded-2xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-[0_4px_12px_rgba(0,0,0,0.03)] bg-white" placeholder="Busque por uma situação: voo, cobrança, produto..." style="font-weight: 400; font-style: normal; font-size: 16px;">
      </div>
-     <p data-template-id="complaint-warning" class="canva-text text-xs text-center text-orange-600 font-semibold mb-6" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 13px;">Atenção! A escolha do assunto indevido poderá acarretar a extinção do seu processo.</p>
-     <div id="complaint-list" class="space-y-3 max-w-2xl mx-auto"><!-- Card 1 -->
+     <p data-template-id="complaint-warning" class="canva-text text-xs text-center text-orange-600 font-semibold mb-6" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 13px;">Os serviços estão organizados por finalidade. Use a busca ou escolha uma das opções abaixo.</p>
+     <div id="system-directory" class="system-directory">
+      <section class="system-group"><div class="system-group-title"><i class="fa fa-file-text-o"></i><div><h3>Peticionamento e processos</h3><p>Envio, movimentação e acompanhamento processual.</p></div></div><div class="system-service-grid"><button class="system-service-item" data-system="Petição Cidadã" data-system-group="Peticionamento"><strong>Petição Cidadã</strong><span>Demandas dos Juizados Especiais</span></button><button class="system-service-item" data-system="eproc" data-system-group="Peticionamento"><strong>eproc</strong><span>Processo judicial eletrônico</span></button><button class="system-service-item" data-system="PJe" data-system-group="Peticionamento"><strong>PJe</strong><span>Processo Judicial Eletrônico</span></button><button class="system-service-item" data-system="Portal de Serviços" data-system-group="Peticionamento"><strong>Portal de Serviços</strong><span>Petições, intimações e documentos</span></button></div></section>
+      <section class="system-group"><div class="system-group-title"><i class="fa fa-search"></i><div><h3>Consulta e acompanhamento</h3><p>Pesquisa de processos, movimentações e comunicações.</p></div></div><div class="system-service-grid"><button class="system-service-item" data-system="Consulta Processual" data-system-group="Consulta"><strong>Consulta Processual</strong><span>Busca por processo, nome ou OAB</span></button><button class="system-service-item" data-system="Sistema Push" data-system-group="Consulta"><strong>Sistema Push</strong><span>Avisos de movimentação por e-mail</span></button><button class="system-service-item" data-system="Diário da Justiça Eletrônico" data-system-group="Consulta"><strong>Diário da Justiça</strong><span>Publicações e atos judiciais</span></button></div></section>
+      <section class="system-group"><div class="system-group-title"><i class="fa fa-comments-o"></i><div><h3>Atendimento ao cidadão</h3><p>Orientação, atendimento remoto e manifestações.</p></div></div><div class="system-service-grid"><button class="system-service-item" data-system="Balcão Virtual" data-system-group="Atendimento"><strong>Balcão Virtual</strong><span>Atendimento remoto das serventias</span></button><button class="system-service-item" data-system="Primeiro Atendimento dos Juizados" data-system-group="Atendimento"><strong>Primeiro Atendimento</strong><span>Orientação nos Juizados Especiais</span></button><button class="system-service-item" data-system="Ouvidoria e SIC" data-system-group="Atendimento"><strong>Ouvidoria e SIC</strong><span>Manifestações e acesso à informação</span></button><button class="system-service-item" data-system="CEJUSC e Conciliação" data-system-group="Atendimento"><strong>CEJUSC e Conciliação</strong><span>Solução consensual de conflitos</span></button></div></section>
+      <section class="system-group"><div class="system-group-title"><i class="fa fa-certificate"></i><div><h3>Documentos e pagamentos</h3><p>Certidões, custas, depósitos e valores judiciais.</p></div></div><div class="system-service-grid"><button class="system-service-item" data-system="Certidão Judicial Eletrônica" data-system-group="Documentos"><strong>Certidões eletrônicas</strong><span>Solicitação e validação</span></button><button class="system-service-item" data-system="GRERJ Eletrônica" data-system-group="Documentos"><strong>GRERJ Eletrônica</strong><span>Custas e guias judiciais</span></button><button class="system-service-item" data-system="Depósito Judicial" data-system-group="Documentos"><strong>Depósito Judicial</strong><span>Guias e consultas</span></button><button class="system-service-item" data-system="Precatórios e RPV" data-system-group="Documentos"><strong>Precatórios e RPV</strong><span>Consulta de pagamentos</span></button></div></section>
+      <section class="system-group"><div class="system-group-title"><i class="fa fa-university"></i><div><h3>Informação pública</h3><p>Pesquisa jurídica, dados e transparência institucional.</p></div></div><div class="system-service-grid"><button class="system-service-item" data-system="Jurisprudência" data-system-group="Informação pública"><strong>Jurisprudência</strong><span>Decisões e acórdãos</span></button><button class="system-service-item" data-system="Portal da Transparência" data-system-group="Informação pública"><strong>Portal da Transparência</strong><span>Dados administrativos e estatísticos</span></button><button class="system-service-item" data-system="Atos Oficiais" data-system-group="Informação pública"><strong>Atos Oficiais</strong><span>Resoluções, avisos e portarias</span></button></div></section>
+     </div>
+     <template id="legacy-complaint-cards"><!-- Cards preservados apenas como referência histórica; não integram a interface. -->
       <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="interrupção serviço essencial energia luz água gás telefonia internet apagão corte sinal" data-index="1" data-route="./pages/interrupcao-servico/index.html">
        <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12">
         <i class="fa fa-bolt text-2xl" aria-hidden="true"></i>
@@ -75,25 +222,13 @@
         <p data-template-id="card2-tags" class="canva-text tag mt-1" style="color: rgb(108, 117, 125); font-weight: 400; font-style: italic; font-size: 12px; line-height: 1.125;">#quebrado #faltando #defeito #celular #nota #tv</p>
        </div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
       </div><!-- Card 3 -->
-      <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="atraso cancelamento voo bagagens extraviadas danificadas embarque check-in overbooking" data-index="3" data-route="./pages/voo-bagagens/index.html">
-       <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12">
-        <i class="fa fa-plane text-2xl" aria-hidden="true"></i>
-       </div>
-       <div class="flex-1">
-        <h3 data-template-id="card3-title" class="canva-text font-bold text-gray-900" style="color: rgb(0, 86, 179); font-weight: 500; font-style: normal; font-size: 19px; line-height: 1.375;">Atraso/cancelamento de voo ou problemas com bagagens</h3>
-        <p data-template-id="card3-desc" class="canva-text text-sm text-gray-600 mt-1" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 13px; line-height: 1.54;">Atraso ou cancelamento de voo, além de bagagens extraviadas, atrasadas, violadas ou danificadas.</p>
-        <p data-template-id="card3-tags" class="canva-text tag mt-1" style="color: rgb(108, 117, 125); font-weight: 400; font-style: italic; font-size: 12px; line-height: 1.125;">#embarque #mala #check-in #overbooking #conexão #quebrada #perdida</p>
-       </div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
+      <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="atraso cancelamento voo bagagem embarque mala check-in overbooking conexão quebrada perdida" data-index="3">
+       <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12"><i class="fa fa-plane text-2xl" aria-hidden="true"></i></div>
+       <div class="flex-1"><h3 class="font-bold text-gray-900" style="color: rgb(0, 86, 179); font-size: 19px;">Atraso/cancelamento de voo ou problemas com bagagens</h3><p class="text-sm mt-1" style="color: rgb(0, 86, 179); font-size: 13px; line-height: 1.54;">Atraso ou cancelamento de voo, além de bagagens extraviadas, atrasadas, violadas ou danificadas.</p><p class="tag mt-1" style="color: rgb(108, 117, 125); font-style: italic; font-size: 12px;">#embarque #mala #check-in #overbooking #conexão #quebrada #perdida</p></div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
       </div><!-- Card 4 -->
-      <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="acidente trânsito batida colisão atropelamento veículo moto carro" data-index="4" data-route="./pages/acidente-transito/index.html">
-       <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12">
-        <i class="fa fa-car text-2xl" aria-hidden="true"></i>
-       </div>
-       <div class="flex-1">
-        <h3 data-template-id="card4-title" class="canva-text font-bold text-gray-900" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 19px;">Acidente de trânsito</h3>
-        <p data-template-id="card4-desc" class="canva-text text-sm text-gray-600 mt-1" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 13px; line-height: 1.54;">Batidas, colisões ou atropelamentos envolvendo veículos automotores.</p>
-        <p data-template-id="card4-tags" class="canva-text tag mt-1" style="color: rgb(108, 117, 125); font-weight: 400; font-style: italic; font-size: 12px; line-height: 1.125;">#carro #moto #trânsito #abalroamento #engavetamento</p>
-       </div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
+      <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="acidente trânsito carro moto abalroamento engavetamento colisão atropelamento" data-index="4">
+       <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12"><i class="fa fa-car text-2xl" aria-hidden="true"></i></div>
+       <div class="flex-1"><h3 class="font-bold text-gray-900" style="color: rgb(0, 86, 179); font-size: 19px;">Acidente de trânsito</h3><p class="text-sm mt-1" style="color: rgb(0, 86, 179); font-size: 13px; line-height: 1.54;">Batidas, colisões ou atropelamentos envolvendo veículos automotores.</p><p class="tag mt-1" style="color: rgb(108, 117, 125); font-style: italic; font-size: 12px;">#carro #moto #trânsito #abalroamento #engavetamento</p></div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
       </div><!-- Card 5 -->
       <div class="complaint-item border border-gray-200 rounded-xl p-4 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer flex gap-4 items-start" data-keywords="cobrança negativação indevida serasa spc dívida restritivo nome sujo" data-index="5" data-route="./pages/negativacao/index.html">
        <div class="text-blue-800 shrink-0 flex items-center justify-center w-12 h-12">
@@ -115,27 +250,24 @@
         <p data-template-id="card6-tags" class="canva-text tag mt-1" style="color: rgb(108, 117, 125); font-weight: 400; font-style: italic; font-size: 12px; line-height: 1.125;">#TOI #consumo #vistoria #agua #luz</p>
        </div><i class="fa fa-chevron-right text-blue-800/40 shrink-0 self-center text-xs" aria-hidden="true"></i>
       </div>
-     </div>
-     <div class="mt-12 text-center max-w-2xl mx-auto px-4 mb-8">
-      <h4 data-template-id="footer-help-title" class="canva-text font-bold text-gray-900 text-sm mb-1" style="color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 18px;">Não encontrou o assunto da sua reclamação?</h4>
-      <p data-template-id="footer-help-text" class="canva-text text-xs text-gray-600 mb-2" style="color: rgb(75, 85, 99); font-weight: 700; font-style: normal; font-size: 15px;">Você pode procurar o Juizado Especial Competente para obter ajuda na formulação de seu pedido.</p><a href="https://www3.tjrj.jus.br/novoconsultaportal/#/" target="_blank" rel="noopener noreferrer" data-template-id="footer-help-link" class="canva-text text-xs text-blue-800 font-bold hover:underline" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Consulte aqui os locais e a abrangência dos Juizados</a>
-     </div>
+     </template>
+     <div class="mt-10 text-center max-w-2xl mx-auto px-4 mb-8"><p class="text-sm text-gray-600">A escolha identifica qual sistema do TJERJ será avaliado.</p></div>
     </div><!-- PAGE 2: REQUIREMENTS -->
     <div id="page-requirements" class="space-y-6 hidden">
      <div class="max-w-3xl mx-auto flex items-center justify-between mb-4">
       <button id="req-back-btn" class="flex items-center gap-2 text-sm text-blue-700 hover:text-blue-900 transition font-semibold bg-white px-4 py-2 rounded-lg border border-gray-200 hover:border-gray-300 shadow-sm"> <i class="fa fa-arrow-left" aria-hidden="true"></i> <span data-template-id="req-back-btn-text" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 600; font-style: normal; font-size: 16px;">Voltar ao Início</span> </button>
      </div><!-- Warning banner -->
-     <div class="max-w-3xl mx-auto bg-[#fff9e6] border border-[#f5dca2] rounded-xl p-6 md:p-8 shadow-sm">
+     <div id="author-guidance-warning" class="w-full bg-[#fff9e6] border border-[#f5dca2] rounded-xl p-6 shadow-sm">
       <div class="text-center mb-4">
-       <h3 class="flex items-center justify-center gap-2"><i class="fa fa-exclamation-triangle text-[#856404]" aria-hidden="true"></i> <span data-template-id="req-warn-title" class="canva-text" style="color: rgb(133, 100, 4); font-weight: 500; font-style: normal; font-size: 20px; line-height: 1.2;">Antes de começar, um aviso importante:</span></h3>
+       <h3 class="flex items-center justify-center gap-2"><i class="fa fa-compass text-[#856404]" aria-hidden="true"></i> <span data-template-id="req-warn-title" class="canva-text" style="color: rgb(133, 100, 4); font-weight: 500; font-style: normal; font-size: 20px; line-height: 1.2;">Antes de organizar sua solicitação</span></h3>
       </div>
       <div class="space-y-4 text-justify md:text-left">
        <p class="canva-text"><span data-template-id="req-warn-p1-pt1" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Para usar este formulário, o valor do seu pedido não pode passar de </span> <strong data-template-id="req-warn-p1-bold" class="font-bold" style="color: rgb(133, 100, 4); font-weight: 700; font-style: normal; font-size: 14px; line-height: 1.5;">R$ 32.420,00</strong> <span data-template-id="req-warn-p1-pt2" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;"> (equivalente a 20 salários-mínimos). Se o valor for maior, você vai precisar de um advogado e não poderá usar este formulário.</span></p>
-       <p class="canva-text"><span data-template-id="req-warn-p2-pt1" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Ao finalizar a sua reclamação, você saberá o dia e hora da </span> <strong data-template-id="req-warn-p2-bold1" class="font-bold" style="color: rgb(133, 100, 4); font-weight: 700; font-style: normal; font-size: 14px; line-height: 1.5;">audiência</strong> <span data-template-id="req-warn-p2-pt2" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;"> a ser realizada no Juizado Especial Competente. </span> <strong data-template-id="req-warn-p2-bold2" class="font-bold" style="color: rgb(133, 100, 4); font-weight: 700; font-style: normal; font-size: 14px; line-height: 1.5;">Seu comparecimento pessoal é obrigatório</strong> <span data-template-id="req-warn-p2-pt3" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">, sob pena de extinção do processo e pagamento de custas do processo.</span></p>
+       <p class="canva-text"><span data-template-id="req-warn-p2-pt1" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Ao finalizar, o e-Cidadão produzirá um </span> <strong data-template-id="req-warn-p2-bold1" class="font-bold" style="color: rgb(133, 100, 4); font-weight: 700; font-style: normal; font-size: 14px; line-height: 1.5;">relatório de preparação</strong> <span data-template-id="req-warn-p2-pt2" style="color: rgb(133, 100, 4); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;"> e um protocolo interno. Esses resultados não equivalem a processo judicial nem confirmam a competência de um órgão.</span></p>
       </div>
      </div><!-- You will need card -->
-     <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-      <h3 data-template-id="req-need-title" class="canva-text text-center text-blue-800 font-bold text-lg mb-6" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 19px;">Você vai precisar:</h3>
+     <div id="author-guidance-documents" class="w-full bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+      <h3 data-template-id="req-need-title" class="canva-text text-center text-blue-800 font-bold text-lg mb-6" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 19px;">Separe, se possível:</h3>
       <ul class="space-y-4 text-sm text-gray-700">
        <li class="flex items-start gap-3">
         <svg class="w-5 h-5 text-blue-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect> <circle cx="7" cy="11" r="2" fill="white"></circle> <path d="M4 16c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5v1H4v-1z" fill="white"></path> <rect x="12" y="9" width="7" height="1.5" rx="0.75" fill="white"></rect> <rect x="12" y="12" width="7" height="1.5" rx="0.75" fill="white"></rect> <rect x="12" y="15" width="5" height="1.5" rx="0.75" fill="white"></rect>
@@ -148,25 +280,23 @@
         </svg><span data-template-id="req-need-item4" class="canva-text" style="font-weight: 400; font-style: normal; font-size: 16px;">Comprovante de residência atualizado (até 3 meses)</span></li>
        <li class="flex items-start gap-3">
         <svg class="w-5 h-5 text-blue-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path> <polygon points="14,2 14,8 20,8" fill="white" opacity="0.4"></polygon> <path d="M12 11l-3 3h2v4h2v-4h2l-3-3z" fill="white"></path>
-        </svg><span data-template-id="req-need-item5" class="canva-text leading-relaxed" style="font-weight: 400; font-style: normal; font-size: 16px;">Os documentos e provas referente à sua reclamação, tais como emails, recibos, faturas, fotos, extratos, audios, vídeos, testemunhas, etc.</span></li>
+        </svg><span data-template-id="req-need-item5" class="canva-text leading-relaxed" style="font-weight: 400; font-style: normal; font-size: 16px;">Documentos e registros relacionados à situação, como e-mails, recibos, faturas, fotos, extratos, áudios, vídeos e informações de testemunhas.</span></li>
        <li class="flex items-start gap-3">
         <svg class="w-5 h-5 text-blue-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect> <rect x="7" y="5" width="10" height="3" fill="white"></rect> <rect x="7" y="10" width="2" height="2" rx="0.5" fill="white"></rect> <rect x="11" y="10" width="2" height="2" rx="0.5" fill="white"></rect> <rect x="15" y="10" width="2" height="2" rx="0.5" fill="white"></rect> <rect x="7" y="14" width="2" height="2" rx="0.5" fill="white"></rect> <rect x="11" y="14" width="2" height="2" rx="0.5" fill="white"></rect> <rect x="15" y="14" width="2" height="5" rx="0.5" fill="white"></rect> <rect x="7" y="18" width="6" height="2" rx="0.5" fill="white"></rect>
-        </svg><span data-template-id="req-need-item6" class="canva-text leading-relaxed" style="font-weight: 400; font-style: normal; font-size: 16px;">Indicar o valor que você pretende receber de indenização, se for o caso, ou o que você pretende obter com a reclamação.</span></li>
+        </svg><span data-template-id="req-need-item6" class="canva-text leading-relaxed" style="font-weight: 400; font-style: normal; font-size: 16px;">Uma estimativa do valor envolvido e uma ideia clara do resultado que você procura, quando isso se aplicar.</span></li>
       </ul>
      </div><!-- Requirements checklist -->
-     <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-center">
+     <div id="author-guidance-requirements" class="w-full bg-white border border-gray-200 rounded-xl p-6 shadow-sm text-center">
       <h3 data-template-id="req-checklist-title" class="canva-text text-blue-800 font-bold text-base mb-4" style="color: rgb(0, 86, 179); font-weight: 400; font-style: normal; font-size: 19px;">É preciso atender aos seguintes requisitos:</h3>
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-700"><span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true" style="color: #008C32;"></i> <span data-template-id="req-check-item1" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">ser pessoa física/natural</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item2" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">ser maior</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item3" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">não estar preso</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item4" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">ser capaz</span></span>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-700"><span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true" style="color: #008C32;"></i> <span data-template-id="req-check-item1" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">Ser pessoa física</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item2" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">Ter 18 anos ou mais</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item3" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">Não estar em situação de prisão</span></span> <span class="flex items-center gap-1.5"><i class="fa fa-check text-green-600" aria-hidden="true"></i> <span data-template-id="req-check-item4" class="canva-text" style="font-weight: 700; font-style: normal; font-size: 16px;">Possuir capacidade civil</span></span>
       </div>
      </div><!-- Ação para iniciar o formulário -->
      <div class="max-w-3xl mx-auto text-center space-y-3 pt-4">
-      <p class="canva-text text-xs text-gray-600" style="font-weight: 400; font-style: normal; font-size: 16px;">Clique no botão abaixo para iniciar o preenchimento.</p>
+      <p class="canva-text text-xs text-gray-600" style="font-weight: 400; font-style: normal; font-size: 16px;">Você poderá revisar tudo antes de gerar o relatório.</p>
       <div class="flex justify-center"><button id="req-continue-btn" class="canva-button bg-[#0056b3] hover:bg-[#004094] text-white font-bold py-2.5 px-6 rounded-lg shadow-md transition flex items-center gap-2 text-sm"><span class="canva-text" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Continuar</span> <i class="fa fa-chevron-right text-xs" aria-hidden="true"></i></button></div>
      </div>
     </div><!-- PAGE 3: QUALIFICAÇÃO DO AUTOR -->
-    <div id="page-author-qualification" class="space-y-6 hidden"><!-- Auto-save Banner -->
-     <div class="max-w-4xl mx-auto bg-gray-100 border border-gray-200 rounded-xl p-4 text-xs text-gray-600 shadow-sm leading-relaxed"><span data-template-id="auth-save-banner-text" class="canva-text" style="font-weight: 400; font-style: normal; font-size: 16px;">Esta é uma simulação para apresentação. Os dados preenchidos não são enviados nem armazenados e serão descartados ao reiniciar ou atualizar a página.</span>
-     </div><!-- Stepper Progress -->
+    <div id="page-author-qualification" class="space-y-6 hidden"><!-- Stepper Progress -->
      <div class="max-w-4xl mx-auto py-4 bg-white border border-gray-200 rounded-xl shadow-sm px-2 md:px-6">
       <div class="flex items-center justify-between text-center relative">
        <div class="absolute left-4 right-4 top-5 h-0.5 bg-gray-200 -z-10"></div>
@@ -203,8 +333,8 @@
       </div>
      </div><!-- Main Title & Form -->
      <div class="max-w-4xl mx-auto">
-      <h2 data-template-id="auth-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Qualificação do autor</h2>
-      <p data-template-id="auth-main-sub" class="canva-text text-sm text-gray-600 mt-1 mb-6" style="font-weight: 400; font-style: normal; font-size: 16px;">Preencha aqui seus dados de quem está fazendo o pedido à Justiça — o autor do processo.</p>
+      <h2 data-template-id="auth-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Seus dados</h2>
+      <p data-template-id="auth-main-sub" class="canva-text text-sm text-gray-600 mt-1 mb-6" style="font-weight: 400; font-style: normal; font-size: 16px;">Informe os dados de quem está organizando esta solicitação.</p>
       <form id="author-form" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6"><!-- Header Section Inside Form -->
        <div class="flex justify-between items-start border-b border-gray-100 pb-4">
         <div class="flex items-center gap-3">
@@ -391,8 +521,8 @@
       </div>
      </div><!-- Defendant Title & Card Form -->
      <div class="max-w-4xl mx-auto">
-      <h2 data-template-id="def-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Qualificação do réu</h2>
-      <p data-template-id="def-main-sub" class="canva-text text-sm text-gray-600 mt-1 mb-6" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">O réu é a pessoa ou empresa contra quem a reclamação está sendo feita — ou seja, quem precisa responder ao que está sendo reclamado.</p><!-- Form para Interrupção de serviço essencial (Card 1) -->
+      <h2 data-template-id="def-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Quem está envolvido</h2>
+      <p data-template-id="def-main-sub" class="canva-text text-sm text-gray-600 mt-1 mb-6" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Informe somente quem forneceu o produto ou serviço relacionado ao problema.</p><!-- Form para Interrupção de serviço essencial (Card 1) -->
       <form id="defendant-form" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6">
        <div class="flex justify-end"><span data-template-id="def-required-legend" class="canva-text text-xs text-red-500 font-medium" style="font-weight: 400; font-style: normal; font-size: 16px;">* Campos obrigatórios</span>
        </div>
@@ -613,7 +743,8 @@
       </div>
      </div><!-- Facts Content Card Form -->
      <div class="max-w-4xl mx-auto">
-      <h2 data-template-id="facts-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Fatos e fundamentos</h2><!-- Normal Facts Form (Services) -->
+      <h2 data-template-id="facts-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Relato do problema</h2>
+      <p class="guided-stage-intro">Comece pelo que ocorreu e depois acrescente datas, contatos e impactos.</p><!-- Normal Facts Form (Services) -->
       <form id="facts-form" class="hidden bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
        <div class="flex justify-end"><span data-template-id="facts-required-legend" class="canva-text text-xs text-red-500 font-medium" style="font-weight: 400; font-style: normal; font-size: 16px;">* Campos obrigatórios</span>
        </div><!-- Fields -->
@@ -1479,7 +1610,8 @@
       </div>
      </div><!-- Proofs Content Card Form -->
      <div class="max-w-4xl mx-auto">
-      <h2 data-template-id="proofs-main-title" class="canva-text font-bold text-gray-900 text-xl text-center md:text-left" style="font-weight: 700; font-style: normal; font-size: 24px;">Outras provas</h2>
+      <h2 data-template-id="proofs-main-title" class="canva-text font-bold text-gray-900 text-xl text-center md:text-left" style="font-weight: 700; font-style: normal; font-size: 24px;">O que ajuda a comprovar?</h2>
+      <p class="text-sm text-gray-600 mt-1">Adicione apenas o que estiver disponível. Você pode continuar sem preencher itens opcionais.</p>
       <form id="proofs-form" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
        <div class="flex justify-end"><span data-template-id="proofs-required-legend" class="canva-text text-xs text-red-500 font-medium" style="font-weight: 400; font-style: normal; font-size: 16px;">* Campos obrigatórios</span>
        </div><!-- Sections -->
@@ -1588,7 +1720,8 @@
       </div>
      </div><!-- Requests Content Card Form -->
      <div class="max-w-4xl mx-auto">
-      <h2 data-template-id="requests-main-title" class="canva-text font-bold text-gray-900 text-xl"></h2><!-- FORMULARIO PADRÃO (Para outros casos que não TOI) -->
+      <h2 data-template-id="requests-main-title" class="canva-text font-bold text-gray-900 text-xl">Resultado desejado</h2>
+      <p class="text-sm text-gray-600 mt-1">Marque as soluções que fazem sentido para a sua situação.</p><!-- FORMULARIO PADRÃO (Para outros casos que não TOI) -->
       <form id="requests-form" class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6 mt-4">
        <div class="flex justify-end"><span data-template-id="requests-required-legend" class="canva-text text-xs text-red-500 font-medium" style="font-weight: 400; font-style: normal; font-size: 16px;">* Campos obrigatórios</span>
        </div><!-- Warning Limit Banner -->
@@ -1815,18 +1948,18 @@
        <div class="flex justify-end"><span class="text-xs text-red-500 font-medium">* Campos obrigatórios</span></div>
        <div>
         <h3 class="text-base font-semibold text-blue-800">Qual endereço deseja usar como local do seu processo? *</h3>
-        <p class="text-sm text-gray-600 mt-1">Com base no endereço escolhido, o sistema selecionará automaticamente onde sua audiência será realizada.</p>
+        <p class="text-sm text-gray-600 mt-1">O endereço escolhido será usado apenas para sugerir a região e os canais oficiais de atendimento.</p>
        </div>
        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <label id="location-author-card" class="block border border-gray-300 rounded-xl overflow-hidden cursor-pointer hover:border-blue-400 transition bg-white">
          <div class="flex items-center gap-2 px-5 py-4 border-b border-gray-200 text-blue-800 font-bold"><input type="radio" name="process-location" value="autor" class="w-4 h-4 text-blue-600"> <span id="location-author-title">Endereço do autor</span></div>
          <div class="p-5 text-sm text-gray-800 leading-relaxed"><span class="text-xs font-bold uppercase block mb-2">Endereço do autor:</span><p id="location-author-address">Não informado</p></div>
-         <div class="border-t border-gray-200 p-5 text-sm"><span class="text-xs font-bold text-blue-700 uppercase block mb-1">Região da audiência:</span><span>COMARCA DA CAPITAL - REGIONAL DA LEOPOLDINA</span></div>
+         <div class="border-t border-gray-200 p-5 text-sm"><span class="text-xs font-bold text-blue-700 uppercase block mb-1">Região sugerida:</span><span>COMARCA DA CAPITAL - REGIONAL DA LEOPOLDINA</span></div>
         </label>
         <label id="location-defendant-card" class="block border border-gray-300 rounded-xl overflow-hidden cursor-pointer hover:border-blue-400 transition bg-white">
          <div class="flex items-center gap-2 px-5 py-4 border-b border-gray-200 text-blue-800 font-bold"><input type="radio" name="process-location" value="reu" class="w-4 h-4 text-blue-600"> <span id="location-defendant-title">Endereço do réu</span></div>
          <div class="p-5 text-sm text-gray-800 leading-relaxed"><span class="text-xs font-bold uppercase block mb-2">Endereço do réu:</span><p id="location-defendant-address">Não informado</p></div>
-         <div class="border-t border-gray-200 p-5 text-sm"><span class="text-xs font-bold text-blue-700 uppercase block mb-1">Região da audiência:</span><span>COMARCA DA CAPITAL - REGIONAL DA LEOPOLDINA</span></div>
+         <div class="border-t border-gray-200 p-5 text-sm"><span class="text-xs font-bold text-blue-700 uppercase block mb-1">Região sugerida:</span><span>COMARCA DA CAPITAL - REGIONAL DA LEOPOLDINA</span></div>
         </label>
        </div>
        <div id="process-location-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-xs font-semibold">Selecione um endereço para continuar.</div>
@@ -1872,20 +2005,20 @@
       </div>
      </div><!-- Preview Content Card -->
      <div class="max-w-4xl mx-auto space-y-4">
-      <h2 data-template-id="preview-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Prévia da Petição</h2>
-      <p data-template-id="preview-main-sub" class="canva-text text-sm text-gray-600 mt-1" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Prévia de sua reclamação.</p>
+      <h2 data-template-id="preview-main-title" class="canva-text font-bold text-gray-900 text-xl" style="font-weight: 700; font-style: normal; font-size: 24px;">Confira o resumo</h2>
+      <p data-template-id="preview-main-sub" class="canva-text text-sm text-gray-600 mt-1" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Confira as informações antes de gerar o relatório acadêmico.</p>
       <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-4">
-       <p data-template-id="preview-instructions" class="canva-text text-xs text-gray-500 font-medium" style="color: rgb(31, 41, 55); font-weight: 400; font-style: normal; font-size: 16px;">Segue abaixo a prévia da Petição que será enviada para o Juizado Especial Competente.</p><!-- Document Box -->
+       <p data-template-id="preview-instructions" class="canva-text text-xs text-gray-500 font-medium" style="color: rgb(31, 41, 55); font-weight: 400; font-style: normal; font-size: 16px;">Veja abaixo como as informações serão organizadas no relatório de preparação.</p><!-- Document Box -->
        <div class="border border-gray-300 rounded-lg p-6 bg-white font-serif text-sm text-gray-800 leading-relaxed shadow-inner max-h-96 overflow-y-auto space-y-4 select-text">
         <div class="text-center font-bold uppercase tracking-wider text-black border-b border-gray-100 pb-3">
-         Petição Automatizada - <span id="prev-doc-title-type">Interrupção de serviço essencial</span>
+         Relatório de orientação - <span id="prev-doc-title-type">Interrupção de serviço essencial</span>
         </div>
         <div class="italic text-gray-700">
-         Excelentíssimo(a) Senhor(a) Juiz(a) do Juizado Especial Civel.
+         Documento de apoio para análise e encaminhamento da solicitação.
         </div><!-- 1 - Qualificação do autor -->
         <div>
          <div class="font-bold border-b border-gray-200 pb-1 mb-1.5 uppercase text-xs text-gray-600 tracking-wide font-sans">
-          1 - QUALIFICAÇÃO DO AUTOR
+          1 - DADOS DO SOLICITANTE
          </div>
          <div id="prev-author-name-cpf" class="font-sans font-bold text-black text-sm uppercase">
           Não informado
@@ -1922,13 +2055,13 @@
         </div><!-- 2 - Qualificação do réu -->
         <div>
          <div class="font-bold border-b border-gray-200 pb-1 mb-1.5 uppercase text-xs text-gray-600 tracking-wide font-sans">
-          2 - QUALIFICAÇÃO DO RÉU
+          2 - PESSOA OU EMPRESA ENVOLVIDA
          </div>
          <p class="text-xs font-semibold text-gray-900">Réu: <span id="prev-val-concessionaria" class="font-bold">Não informado</span></p>
         </div><!-- 3 - Fatos e Fundamentos -->
         <div>
          <div class="font-bold border-b border-gray-200 pb-1 mb-1.5 uppercase text-xs text-gray-600 tracking-wide font-sans">
-          3 - FATOS E FUNDAMENTOS
+          3 - RELATO DO OCORRIDO
          </div>
          <div class="text-xs mt-1.5"><span id="prev-lbl-time" class="font-sans font-bold text-gray-500 uppercase tracking-wider block text-[10px]">Informações principais</span> <span id="prev-val-time" class="font-semibold text-gray-900">Não informado</span>
          </div>
@@ -1952,7 +2085,7 @@
         </div><!-- 4 - Outras provas -->
         <div>
          <div class="font-bold border-b border-gray-200 pb-1 mb-1.5 uppercase text-xs text-gray-600 tracking-wide font-sans">
-          4 - OUTRAS PROVAS
+          4 - DOCUMENTOS E EVIDÊNCIAS
          </div>
          <div class="grid grid-cols-1 gap-1.5 text-xs font-sans">
           <div class="flex justify-between"><span class="text-gray-600">TESTEMUNHAS</span> <span id="prev-val-witnesses" class="font-bold text-gray-800">Não informado</span>
@@ -1978,13 +2111,13 @@
          <p id="prev-val-process-location" class="text-xs font-semibold text-gray-900">Não informado</p>
         </div>
        </div><!-- Declaration Section -->
-       <div class="border border-gray-200 rounded-lg p-4 text-xs text-gray-700 flex items-start gap-3 bg-white"><input type="checkbox" id="preview-declaration-checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-0.5 cursor-pointer shrink-0"> <label for="preview-declaration-checkbox" class="leading-relaxed cursor-pointer font-medium select-none"> Declaro ciência de que a reclamação acima, será enviada para o Juizado Especial Competente. Comprometo-me a comparecer na audiência, com produção de todas as provas requeridas. Estou ciente de que meu comparecimento pessoal é obrigatório, <strong class="font-bold text-gray-900">sob pena de extinção do processo e pagamento de custas do processo.</strong> </label>
+       <div class="border border-gray-200 rounded-lg p-4 text-xs text-gray-700 flex items-start gap-3 bg-white"><input type="checkbox" id="preview-declaration-checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-0.5 cursor-pointer shrink-0"> <label for="preview-declaration-checkbox" class="leading-relaxed cursor-pointer font-medium select-none"> Confirmo que revisei as informações e compreendo que o relatório e o protocolo gerados pertencem apenas ao ambiente acadêmico, sem representar ajuizamento ou envio ao Poder Judiciário. </label>
        </div>
        <div class="text-right text-xs text-gray-500 italic pt-1">
         Rio de Janeiro, <span id="prev-val-date">22/07/2026</span>
        </div>
       </div><!-- Action Buttons -->
-      <div class="flex justify-between items-center pt-2"><button type="button" id="btn-preview-back" class="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"> <i class="fa fa-chevron-left text-xs" aria-hidden="true"></i> <span data-template-id="btn-preview-back-text" class="canva-text" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Voltar</span> </button> <button type="button" id="btn-preview-submit" disabled="" class="px-6 py-2.5 bg-emerald-600 disabled:bg-emerald-300 disabled:cursor-not-allowed text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <span data-template-id="btn-preview-submit-text" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Enviar reclamação</span> <i class="fa fa-paper-plane text-xs" aria-hidden="true"></i> </button>
+       <div class="flex justify-between items-center pt-2"><button type="button" id="btn-preview-back" class="px-4 py-2 border border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-lg text-sm flex items-center gap-1.5 transition shadow-sm"> <i class="fa fa-chevron-left text-xs" aria-hidden="true"></i> <span data-template-id="btn-preview-back-text" class="canva-text" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">Voltar</span> </button> <button type="button" id="btn-preview-submit" disabled="" class="px-6 py-2.5 bg-emerald-600 disabled:bg-emerald-300 disabled:cursor-not-allowed text-white font-bold rounded-lg text-sm flex items-center gap-2 transition shadow-md"> <span data-template-id="btn-preview-submit-text" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Gerar relatório</span> <i class="fa fa-file-text-o text-xs" aria-hidden="true"></i> </button>
       </div>
      </div>
     </div><!-- PAGE 9: PETIÇÃO ENVIADA -->
@@ -1996,20 +2129,29 @@
        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0"><i class="fa fa-check-circle text-2xl" aria-hidden="true"></i>
        </div>
        <div>
-        <h2 data-template-id="sent-main-title" class="canva-text font-bold text-gray-900 text-xl">Petição enviada</h2>
-        <p class="text-xs text-gray-500 mt-1">Petição enviada com sucesso em <span id="sent-date-time">23/07/2026 às 14:47</span></p>
+        <h2 data-template-id="sent-main-title" class="canva-text font-bold text-gray-900 text-xl">Relatório concluído</h2>
+        <p class="text-xs text-gray-500 mt-1">Relatório gerado em <span id="sent-date-time">23/07/2026 às 14:47</span></p>
        </div>
       </div>
-      <div class="flex flex-wrap gap-2 w-full md:w-auto"><button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-lock" aria-hidden="true"></i> Imprimir recibo </button> <button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-download" aria-hidden="true"></i> Baixar recibo </button> <button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-download" aria-hidden="true"></i> Baixar Petição assinada </button>
+      <div class="flex flex-wrap gap-2 w-full md:w-auto"><button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-print" aria-hidden="true"></i> Imprimir resumo </button> <button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-download" aria-hidden="true"></i> Baixar relatório </button> <button type="button" class="flex-1 md:flex-none px-4 py-2 border border-blue-200 hover:bg-blue-50 text-blue-800 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition"> <i class="fa fa-list-check" aria-hidden="true"></i> Baixar checklist </button>
       </div>
      </div><!-- Box 1: Process and Court Info -->
      <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6"><span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Processo número</span> <span id="sent-process-number" class="text-base font-bold text-gray-900 font-mono">0800332-70.2026.8.19.0210</span>
+      <div class="border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-6"><span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Protocolo interno e-Cidadão</span> <span id="sent-process-number" class="text-base font-bold text-gray-900 font-mono">EC-2026-000184</span>
       </div>
-      <div><span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Petição enviada para</span> <span class="text-base font-bold text-gray-900">11º Juizado Especial Cível da Regional da Leopoldina</span>
+      <div><span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Situação</span> <span class="text-base font-bold text-gray-900">Pronto para análise e encaminhamento</span>
       </div>
-     </div><!-- Box 2: Audience Schedule and Important Instructions -->
-     <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm space-y-6">
+     </div><!-- Box 2: Academic next steps -->
+     <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm space-y-5">
+      <div class="flex items-center gap-2 border-b border-gray-100 pb-3"><i class="fa fa-compass text-blue-800 text-lg" aria-hidden="true"></i><h3 class="font-bold text-gray-900 text-base">Próximos passos sugeridos</h3></div>
+      <ul class="space-y-3 text-sm text-gray-700">
+       <li class="flex items-start gap-2"><i class="fa fa-check-circle text-emerald-600 mt-0.5" aria-hidden="true"></i><span>Revise os dados e confirme se os documentos indicados no checklist estão disponíveis.</span></li>
+       <li class="flex items-start gap-2"><i class="fa fa-check-circle text-emerald-600 mt-0.5" aria-hidden="true"></i><span>Baixe o relatório para utilizá-lo como apoio na orientação ou no atendimento presencial.</span></li>
+       <li class="flex items-start gap-2"><i class="fa fa-check-circle text-emerald-600 mt-0.5" aria-hidden="true"></i><span>Consulte os canais oficiais para confirmar o órgão competente e a forma correta de encaminhamento.</span></li>
+      </ul>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-xs text-blue-900 leading-relaxed"><strong>Importante:</strong> este é um protocolo interno de um projeto acadêmico. Ele não cria processo judicial, não agenda audiência e não envia dados ao TJERJ.</div>
+     </div>
+     <div class="hidden max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-6 shadow-sm space-y-6">
       <div class="flex items-center gap-2 border-b border-gray-100 pb-3"><i class="fa fa-calendar text-blue-800 text-lg" aria-hidden="true"></i>
        <h3 class="font-bold text-gray-900 text-base">Sua audiência foi marcada!</h3>
       </div>
@@ -2028,18 +2170,22 @@
        </div>
       </div>
      </div><!-- Box 3: Consultation Link -->
-     <div class="max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-center gap-2 text-xs"><i class="fa fa-search text-blue-600 shrink-0" aria-hidden="true"></i> <span class="text-gray-700">Para consultar o andamento do seu processo, acesse <a href="https://tjrj.pje.jus.br/1g/ConsultaPublica/listView.seam" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-semibold hover:underline">https://tjrj.pje.jus.br/1g/ConsultaPublica/listView.seam</a></span>
+     <div class="hidden max-w-4xl mx-auto bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex items-center gap-2 text-xs"><i class="fa fa-search text-blue-600 shrink-0" aria-hidden="true"></i> <span class="text-gray-700">Para consultar o andamento do seu processo, acesse o portal oficial.</span>
      </div><!-- Return Button to Home -->
      <div class="max-w-4xl mx-auto flex justify-center pt-2"><button type="button" id="btn-petition-sent-finish" class="px-6 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg text-sm transition shadow-md"> Voltar para o Início </button>
      </div>
     </div>
    </main><!-- Modal Overlay -->
    <div id="modal-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl overflow-hidden border border-gray-100 flex flex-col max-h-[85vh]"><!-- Header -->
+    <div class="subject-confirm-modal bg-white rounded-xl shadow-2xl w-full max-w-4xl overflow-hidden border border-gray-100 flex flex-col max-h-[85vh]"><!-- Header -->
      <div class="bg-[#0056b3] px-6 py-3.5 flex justify-between items-center text-white shrink-0">
-      <h3 data-template-id="modal-header-title" class="canva-text font-bold text-lg md:text-xl" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 22px;">Confirme o assunto de sua reclamação</h3><button id="modal-close-btn" class="text-white/80 hover:text-white transition p-1 text-xl" aria-label="Fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+      <h3 data-template-id="modal-header-title" class="canva-text font-bold text-lg md:text-xl" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 22px;">Confirme o assunto da sua reclamação</h3><button id="modal-close-btn" class="text-white/80 hover:text-white transition p-1 text-xl" aria-label="Fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
      </div><!-- Body (Scrollable if needed) -->
-     <div class="p-6 overflow-y-auto space-y-4"><!-- Detail 1 -->
+     <div class="p-6 overflow-y-auto space-y-4">
+      <div id="modal-detail-system" class="modal-detail hidden">
+       <div class="flex items-center gap-2.5 text-blue-800 font-bold text-xl mb-2.5"><i class="fa fa-check-circle-o" aria-hidden="true"></i><span id="modal-system-title" class="canva-text">Serviço selecionado</span></div>
+       <p id="modal-system-description" class="canva-text text-gray-700 leading-relaxed">Confirme se este é o serviço sobre o qual você deseja registrar sua avaliação.</p>
+      </div><!-- Detail 1 -->
       <div id="modal-detail-1" class="modal-detail hidden">
        <div class="flex items-center gap-2.5 text-blue-800 font-bold text-xl mb-2.5"><i class="fa fa-bolt" aria-hidden="true"></i> <span data-template-id="m1-title" class="canva-text" style="color: rgb(0, 86, 179); font-weight: 600; font-style: normal; font-size: 23px; line-height: 1.39;">Interrupção de serviço essencial</span>
        </div>
@@ -2171,14 +2317,14 @@
    <div id="modal-confirm-submit" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden border border-gray-100 flex flex-col"><!-- Header -->
      <div class="bg-white px-6 py-4 flex justify-between items-center text-slate-800 border-b border-gray-100">
-      <h3 data-template-id="modal-submit-title" class="canva-text font-bold text-lg">Confirmar envio</h3><button id="modal-submit-close" class="text-gray-400 hover:text-gray-600 transition text-xl" aria-label="Fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
+      <h3 data-template-id="modal-submit-title" class="canva-text font-bold text-lg">Gerar relatório</h3><button id="modal-submit-close" class="text-gray-400 hover:text-gray-600 transition text-xl" aria-label="Fechar"><i class="fa fa-times" aria-hidden="true"></i></button>
      </div><!-- Body -->
      <div class="p-6 space-y-4 text-sm text-gray-600 leading-relaxed text-left">
-      <p>Sua reclamação será assinada digitalmente e enviado para o Juizado Especial Competente e nesse momento sua audiência será marcada.</p>
-      <p>Estou ciente de que meu comparecimento pessoal na audiência é obrigatório, <strong class="text-gray-900">sob pena de extinção do processo e pagamento de custas do processo.</strong></p>
-      <p class="font-semibold text-gray-800">Deseja enviar sua reclamação?</p>
+      <p>O sistema organizará as informações preenchidas em um relatório e criará um protocolo interno para acompanhamento acadêmico.</p>
+      <p>Nenhum dado será enviado ao TJERJ ou a qualquer outro órgão, e esta ação não criará um processo judicial.</p>
+      <p class="font-semibold text-gray-800">Deseja concluir e gerar o relatório?</p>
      </div><!-- Footer -->
-     <div class="bg-slate-50 border-t border-gray-100 px-6 py-4 flex justify-end gap-3"><button id="btn-submit-modal-cancel" class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition"> Cancelar </button> <button id="btn-submit-modal-confirm" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition flex items-center gap-1.5"> <span data-template-id="btn-preview-submit-modal-confirm-text">Enviar reclamação</span> <i class="fa fa-paper-plane" aria-hidden="true"></i> </button>
+     <div class="bg-slate-50 border-t border-gray-100 px-6 py-4 flex justify-end gap-3"><button id="btn-submit-modal-cancel" class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition"> Cancelar </button> <button id="btn-submit-modal-confirm" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition flex items-center gap-1.5"> <span data-template-id="btn-preview-submit-modal-confirm-text">Gerar relatório</span> <i class="fa fa-file-text-o" aria-hidden="true"></i> </button>
      </div>
     </div>
    </div><!-- Modal Overlay -->
@@ -2230,7 +2376,6 @@
       </div>
       <p class="mt-4"><strong data-template-id="privacy-modal-objetivo-label" class="font-bold text-gray-800" style="color: rgb(30, 41, 59); font-weight: 700; font-style: normal; font-size: 16px;">Objetivo:</strong> <span data-template-id="privacy-modal-objetivo-val" class="canva-text" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 16px;">Distribuir processos de competência Juizado Especial Cível para causas com valor até 20 salários mínimos.</span></p>
       <p><strong data-template-id="privacy-modal-retencao-label" class="font-bold text-gray-800" style="color: rgb(30, 41, 59); font-weight: 700; font-style: normal; font-size: 16px;">Retenção:</strong> <span data-template-id="privacy-modal-retencao-val" class="canva-text" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 16px;">enquanto perdurar o uso do aplicativo.</span></p>
-      <p class="pt-2 flex flex-wrap items-center gap-x-2 gap-y-1"><strong data-template-id="privacy-modal-info-label" class="font-bold text-gray-800" style="color: rgb(30, 41, 59); font-weight: 700; font-style: normal; font-size: 16px;">Maiores Informações:</strong> <a href="https://www.tjrj.jus.br/web/guest/lgpd/politica-de-privacidade-do-tjrj" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800" data-template-id="privacy-modal-link-privacy" style="color: rgb(37, 99, 235); font-weight: 400; font-style: normal; font-size: 16px;">Política de privacidade</a> <a href="https://wwwh3.tjrj.jus.br/hpeticao-cidada/#/termos-uso" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800" data-template-id="privacy-modal-link-terms" style="color: rgb(37, 99, 235); font-weight: 400; font-style: normal; font-size: 16px;">Termo de Uso</a> <a href="https://wwwh3.tjrj.jus.br/hpeticao-cidada/#/politica-cookies" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800" data-template-id="privacy-modal-link-cookies" style="color: rgb(37, 99, 235); font-weight: 400; font-style: normal; font-size: 16px;">Política de Cookies</a></p>
      </div><!-- Footer -->
      <div class="mt-6 flex justify-end">
       <button id="privacy-modal-btn-close" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow transition text-sm"> <span data-template-id="privacy-modal-btn-close-text" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Fechar</span> </button>
@@ -2333,10 +2478,8 @@
     </div>
    </div>
    <footer class="mt-auto bg-white border-t border-gray-200 py-4 text-xs text-gray-500">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-     <div class="flex flex-wrap items-center justify-start gap-3"><a href="https://www.youtube.com/playlist?list=PL1y72VhuodD76ZL0ZdFsJ0HjMPxka6xjy" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-blue-800 font-semibold hover:underline"><i class="fa fa-play-circle-o text-sm" aria-hidden="true"></i> <span data-template-id="footer-link-videos" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Ver vídeos</span></a> <span class="text-gray-300">|</span> <a href="https://portaltj.tjrj.jus.br/documents/d/guest/manual_do_usuario_sistema_de_peticao_cidada-pje_v1-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-blue-800 font-semibold hover:underline"><i class="fa fa-file-text-o text-sm" aria-hidden="true"></i> <span data-template-id="footer-link-manual" class="canva-text" style="color: rgb(29, 78, 216); font-weight: 400; font-style: normal; font-size: 16px;">Manual</span></a> <span class="text-gray-300">|</span> <span class="flex items-center gap-1.5 text-gray-700 font-semibold"><i class="fa fa-phone text-sm" aria-hidden="true"></i> <span data-template-id="footer-atendimento" class="canva-text" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Atendimento: 21 3133-9100</span></span>
-     </div>
-     <div class="flex flex-wrap items-center justify-start md:justify-end gap-3 text-gray-500"><a href="#" id="footer-link-privacy" class="hover:underline" data-template-id="footer-link-privacy" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Aviso de Privacidade</a> <span class="text-gray-300">|</span> <a href="https://wwwh3.tjrj.jus.br/hpeticao-cidada/#/termos-uso" target="_blank" rel="noopener noreferrer" class="hover:underline" data-template-id="footer-link-terms" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Termos de Uso</a> <span class="text-gray-300">|</span> <a href="https://www.tjrj.jus.br/web/guest/lgpd/politica-de-privacidade-do-tjrj" target="_blank" rel="noopener noreferrer" class="hover:underline" data-template-id="footer-link-policy" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Política de Privacidade</a> <span class="text-gray-300">|</span> <a href="https://wwwh3.tjrj.jus.br/hpeticao-cidada/#/politica-cookies" target="_blank" rel="noopener noreferrer" class="hover:underline" data-template-id="footer-link-cookies" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Política de Cookies</a>
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-end items-start md:items-center gap-4">
+     <div class="flex flex-wrap items-center justify-start md:justify-end gap-3 text-gray-500"><a href="#" id="footer-link-privacy" class="hover:underline" data-template-id="footer-link-privacy" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Aviso de Privacidade</a>
      </div>
     </div>
    </footer>
@@ -2346,7 +2489,7 @@
     <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
      <div class="flex items-center gap-3">
       <div class="flex items-center gap-1.5 select-none cursor-pointer" id="govbr-logo-back"><span class="text-2xl font-black tracking-tight text-[#0056b3]">gov<span class="text-[#f59e0b]">.</span><span class="text-[#10b981]">br</span></span>
-      </div><span class="text-gray-300">|</span> <img data-template-id="govbr-header-logo" loading="lazy" class="canva-image h-9 w-auto object-contain" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTns4EN0kSnXtq3sEdS2sCyXVnjPdU-vap0pD-qrBMWfw&s" alt="Logo do Poder Judiciário do Estado do Rio de Janeiro - PJERJ">
+      </div><span class="text-gray-300">|</span> <span class="petition-citizen-logo petition-citizen-logo--small" aria-label="e-Cidadão"><i class="fa fa-comment-o" aria-hidden="true"></i><span><strong>e-Cidadão</strong></span></span>
      </div>
      <div class="flex items-center gap-5 text-xs text-slate-600 font-medium"><button id="govbr-btn-contrast" class="flex items-center gap-1.5 hover:text-[#0056b3] transition"> <i class="fa fa-adjust text-sm" aria-hidden="true"></i> <span data-template-id="govbr-head-contrast-text" class="canva-text" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 16px;">Alto Contraste</span> </button> <button id="govbr-btn-libras" class="flex items-center gap-1.5 hover:text-[#0056b3] transition"> <i class="fa fa-universal-access text-sm" aria-hidden="true"></i> <span data-template-id="govbr-head-libras-text" class="canva-text" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 16px;">VLibras</span> </button>
      </div>
@@ -2377,8 +2520,6 @@
         </ul>
        </div><!-- Ajuda e Termos -->
        <div class="mt-8 pt-5 border-t border-slate-100 text-center space-y-2.5 text-xs"><a href="#" class="flex items-center justify-center gap-1.5 text-slate-500 hover:text-[#0056b3] transition font-medium"> <i class="fa fa-question-circle" aria-hidden="true"></i> <span data-template-id="govbr-card-help-link" class="canva-text" style="color: rgb(71, 85, 105); font-weight: 400; font-style: normal; font-size: 12px;">Está com dúvidas e precisa de ajuda?</span> </a>
-        <div><a href="#" class="text-[#0056b3] hover:underline font-semibold" data-template-id="govbr-card-terms-link" style="color: rgb(0, 86, 179); font-weight: 600; font-style: normal; font-size: 11px;">Termo de Uso e Aviso de Privacidade</a>
-        </div>
        </div>
       </div>
      </div>

@@ -1,4 +1,4 @@
-# Petição Cidadã — protótipo interativo
+# JusCidadão — protótipo interativo
 
 ## Estrutura
 

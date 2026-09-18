@@ -287,10 +287,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 4000);
     }
 
-    // Elements of Petição Cidadã
+    // Elements of e-Cidadão
     const appWrapper = document.getElementById('app-wrapper');
     const searchInput = document.getElementById('search-input');
     const items = document.querySelectorAll('.complaint-item');
+    const systemItems = document.querySelectorAll('.system-service-item');
     const modalOverlay = document.getElementById('modal-overlay');
     const modalCloseBtn = document.getElementById('modal-close-btn');
     const modalBtnCancel = document.getElementById('modal-btn-cancel');
@@ -298,6 +299,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalConfirmCheckbox = document.getElementById('modal-confirm-checkbox');
     const modalDetails = document.querySelectorAll('.modal-detail');
 
+    const pageAcademicAccess = document.getElementById('page-academic-access');
+    const pageEvaluationProfile = document.getElementById('page-evaluation-profile');
+    const pageServiceEvaluation = document.getElementById('page-service-evaluation');
+    const pageEvaluationComplete = document.getElementById('page-evaluation-complete');
+    const pageEvaluationDashboard = document.getElementById('page-evaluation-dashboard');
+    const pageEvaluationTracking = document.getElementById('page-evaluation-tracking');
+    const pageAcademicTriage = document.getElementById('page-academic-triage');
     const pageHome = document.getElementById('page-home');
     const pageRequirements = document.getElementById('page-requirements');
     const pageAuthorQualification = document.getElementById('page-author-qualification');
@@ -311,8 +319,154 @@ document.addEventListener("DOMContentLoaded", function () {
     const pagePreviewMain = document.getElementById('page-petition-preview');
     const pageSentMain = document.getElementById('page-petition-sent');
 
+    const simplifiedFormCopy = new Map([
+      ['Quem está envolvido', 'Quem participou da situação?'],
+      ['Indique a Concessionária do serviço público *', 'Qual empresa prestava o serviço? *'],
+      ['Indique o Fabricante do Produto *', 'Quem fabricou o produto? *'],
+      ['Indique o Vendedor do Produto *', 'Onde o produto foi comprado? *'],
+      ['Indique a Companhia Aérea que vendeu o bilhete (passagem) *', 'Qual empresa vendeu a passagem? *'],
+      ['Indique a Companhia Aérea que fez o voo *', 'Qual empresa operou o voo? *'],
+      ['Quem é o réu?', 'A outra parte é:'],
+      ['Indique o tempo de suspensão/interrupção do serviço *', 'Por quanto tempo o serviço ficou interrompido? *'],
+      ['Descreva brevemente o que aconteceu *', 'Conte o que aconteceu *'],
+      ['PROTOCOLOS', 'TENTATIVAS DE SOLUÇÃO'],
+      ['Tem protocolos de reclamação com a concessionária? *', 'Você entrou em contato com a empresa? *'],
+      ['Nº do protocolo *', 'Número de atendimento ou protocolo *'],
+      ['Comprovante do protocolo (opcional)', 'Registro desse contato (opcional)'],
+      ['PREJUÍZOS/DANOS', 'IMPACTOS DO PROBLEMA'],
+      ['PREJUÍZOS E DANOS', 'IMPACTOS DO PROBLEMA'],
+      ['Sofreu algum prejuízo material em razão da suspensão/interrupção? *', 'O problema gerou algum gasto ou perda financeira? *'],
+      ['Sofreu danos morais? *', 'O ocorrido causou algum impacto pessoal relevante? *'],
+      ['Descreva o prejuízo *', 'Explique o gasto ou a perda *'],
+      ['Valor do prejuízo *', 'Valor estimado *'],
+      ['Justifique/explique o dano moral *', 'Explique o impacto pessoal *'],
+      ['Qual o valor entende necessário para compensar os danos morais sofridos? *', 'Qual valor você considera adequado? *'],
+      ['Fatos e fundamentos', 'Relato da situação'],
+      ['Especifique qual o produto adquirido *', 'Qual produto apresentou problema? *'],
+      ['Indique a data da compra *', 'Quando o produto foi comprado? *'],
+      ['Valor pago pelo produto *', 'Quanto foi pago? *'],
+      ['CONTATO COM FABRICANTE OU VENDEDOR', 'CONTATO COM A EMPRESA'],
+      ['Entrou em contato com o fabricante ou vendedor? *', 'Tentou resolver diretamente com a empresa? *'],
+      ['ASSISTÊNCIA TÉCNICA', 'AVALIAÇÃO TÉCNICA'],
+      ['Levou o produto para assistência técnica? *', 'O produto foi avaliado por uma assistência técnica? *'],
+      ['TESTEMUNHAS', 'PESSOAS QUE PRESENCIARAM'],
+      ['Há testemunhas dos fatos? *', 'Alguém presenciou o ocorrido? *'],
+      ['OUTROS DOCUMENTOS', 'DOCUMENTOS COMPLEMENTARES'],
+      ['Tem outros documentos para apresentar? *', 'Você possui mais algum documento útil? *'],
+      ['MÍDIA', 'FOTOS, ÁUDIOS E VÍDEOS'],
+      ['Tem mídia (fotografia, gravação, vídeo etc.) para apresentar? *', 'Você possui fotos, áudios ou vídeos relacionados? *'],
+      ['Carregue aqui os documentos *', 'Adicione os documentos *'],
+      ['Carregue aqui a(s) mídia(s) *', 'Adicione os arquivos de mídia *'],
+      ['O que você espera', 'Resultado desejado'],
+      ['Quer o restabelecimento imediato do serviço? *', 'Deseja que o serviço volte a funcionar? *'],
+      ['Quer indenização pelos danos materiais? *', 'Deseja receber de volta os gastos e perdas? *'],
+      ['Quer indenização pelos danos morais? *', 'Deseja solicitar compensação pelo impacto pessoal? *'],
+      ['Quer a anulação das cobranças e da dívida? *', 'Deseja cancelar a cobrança questionada? *'],
+      ['Quer a retirada imediata dos seus dados dos cadastros de devedores – exclusão da negativação? *', 'Deseja retirar seu nome do cadastro de inadimplentes? *'],
+      ['Quer impedir que o réu inclua seus dados no cadastro de devedores (Serasa, SPC, etc)? *', 'Deseja evitar uma nova inclusão em cadastro de inadimplentes? *'],
+      ['Revise sua solicitação', 'Confira o resumo'],
+      ['Veja abaixo como as informações serão organizadas no relatório de preparação.', 'Confira os dados organizados por assunto antes de gerar seu relatório.']
+    ]);
+
+    function applySimplifiedFormCopy() {
+      document.querySelectorAll('h2, h3, h4, label, span, p').forEach(element => {
+        if (element.children.length > 0) return;
+        const currentText = element.textContent.trim();
+        const replacement = simplifiedFormCopy.get(currentText);
+        if (replacement) element.textContent = replacement;
+      });
+    }
+
+    applySimplifiedFormCopy();
+
+    function reorderSimplifiedForms() {
+      const serviceDescription = document.getElementById('facts-description')?.parentElement;
+      const serviceDuration = document.getElementById('facts-time')?.parentElement;
+      const serviceFields = serviceDuration?.parentElement;
+      if (serviceDescription && serviceDuration && serviceFields) {
+        serviceFields.insertBefore(serviceDescription, serviceDuration);
+      }
+
+      const productForm = document.getElementById('facts-form-vicio');
+      const productDescription = document.getElementById('facts-vicio-desc')?.parentElement;
+      if (productForm && productDescription && productForm.children.length > 1) {
+        productForm.insertBefore(productDescription, productForm.children[1]);
+      }
+
+      const witnessesSection = document.querySelector('[data-template-id="sect-witnesses-title"]')?.closest('.space-y-2');
+      const documentsSection = document.querySelector('[data-template-id="sect-documents-title"]')?.closest('.space-y-2');
+      const mediaSection = document.querySelector('[data-template-id="sect-media-title"]')?.closest('.space-y-2');
+      const proofsSections = witnessesSection?.parentElement;
+      if (proofsSections && documentsSection && mediaSection && witnessesSection) {
+        proofsSections.append(documentsSection, mediaSection, witnessesSection);
+      }
+    }
+
+    reorderSimplifiedForms();
+
+    const guidedFormIds = [
+      'defendant-form', 'defendant-form-vicio', 'defendant-form-voo', 'defendant-form-transito',
+      'facts-form', 'facts-form-voo', 'facts-form-vicio', 'facts-form-transito',
+      'facts-form-toi', 'facts-form-negativacao', 'flight-problem-form', 'flight-losses-form',
+      'proofs-form', 'requests-form', 'requests-form-voo', 'requests-form-transito',
+      'requests-form-negativacao', 'requests-form-toi'
+    ];
+    const guidedForms = guidedFormIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function syncGuidedChoices() {
+      guidedForms.forEach(form => {
+        form.querySelectorAll('input[type="radio"]').forEach(input => {
+          const label = input.closest('label');
+          if (!label) return;
+          label.classList.add('guided-choice');
+          label.classList.toggle('is-selected', input.checked);
+        });
+      });
+    }
+
+    guidedForms.forEach(form => {
+      form.classList.add('guided-form');
+      form.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]), textarea, select').forEach(field => {
+        field.classList.add('guided-field');
+      });
+      form.addEventListener('change', syncGuidedChoices);
+    });
+    syncGuidedChoices();
+
+    const previewDocument = document.querySelector('#page-petition-preview .font-serif.max-h-96');
+    if (previewDocument) previewDocument.classList.add('guided-review');
+
+    // As orientações pertencem à primeira etapa do formulário. Mantemos os
+    // blocos no HTML original para preservar os identificadores usados pelo
+    // protótipo, mas os posicionamos visualmente antes do título "Seus dados".
+    const authorMainTitle = document.querySelector('[data-template-id="auth-main-title"]');
+    const authorMainContainer = authorMainTitle?.parentElement;
+    const authorGuidance = document.createElement('section');
+    authorGuidance.id = 'author-guidance';
+    authorGuidance.className = 'author-guidance';
+    [
+      document.getElementById('author-guidance-warning'),
+      document.getElementById('author-guidance-documents'),
+      document.getElementById('author-guidance-requirements')
+    ].forEach(block => {
+      if (block) {
+        block.classList.add('author-guidance-block');
+        authorGuidance.appendChild(block);
+      }
+    });
+    if (authorMainContainer && authorMainTitle && authorGuidance.children.length) {
+      authorMainContainer.insertBefore(authorGuidance, authorMainTitle);
+    }
+
     // Mantém somente uma página principal visível por vez.
     const mainPages = [
+      pageAcademicAccess,
+      pageEvaluationProfile,
+      pageServiceEvaluation,
+      pageEvaluationComplete,
+      pageEvaluationDashboard,
+      pageEvaluationTracking,
+      pageAcademicTriage,
       pageHome,
       pageRequirements,
       pageAuthorQualification,
@@ -330,6 +484,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function showOnlyPage(pageToShow) {
       mainPages.forEach(page => page.classList.add('hidden'));
       if (pageToShow) pageToShow.classList.remove('hidden');
+      window.setTimeout(() => {
+        applySimplifiedFormCopy();
+        syncGuidedChoices();
+      }, 0);
     }
 
     const authorForm = document.getElementById('author-form');
@@ -337,6 +495,650 @@ document.addEventListener("DOMContentLoaded", function () {
     const factsForm = document.getElementById('facts-form');
     const proofsForm = document.getElementById('proofs-form');
     const btnProofsBack = document.getElementById('btn-proofs-back');
+
+    function syncAuthorGuidanceVisibility() {
+      if (!authorGuidance || !authorForm) return;
+      authorGuidance.classList.toggle('hidden', authorForm.classList.contains('hidden'));
+    }
+
+    // Fluxo principal do e-Cidadão: avaliação da experiência no Petição Cidadã.
+    const evaluationForm = document.getElementById('service-evaluation-form');
+    const evaluationSteps = Array.from(document.querySelectorAll('.evaluation-step'));
+    const evaluationStepperItems = Array.from(document.querySelectorAll('#evaluation-stepper li'));
+    const evaluationBack = document.getElementById('evaluation-back');
+    const evaluationNext = document.getElementById('evaluation-next');
+    const evaluationSubmit = document.getElementById('evaluation-submit');
+    const evaluationError = document.getElementById('evaluation-error');
+    const evaluationProblemDetails = document.getElementById('evaluation-problem-details');
+    const evaluationDescription = document.getElementById('evaluation-problem-description');
+    const evaluationDescriptionCount = document.getElementById('evaluation-description-count');
+    const evaluationScreenshotButton = document.getElementById('evaluation-screenshot-button');
+    const evaluationScreenshotName = document.getElementById('evaluation-screenshot-name');
+    const evaluationReview = document.getElementById('evaluation-review');
+    let currentEvaluationStep = 1;
+    let selectedEvaluationSubject = '';
+    let selectedEvaluationGroup = '';
+    let evaluationProfile = null;
+    let lastEvaluationReport = '';
+
+    function selectedEvaluationValue(name) {
+      return evaluationForm?.querySelector(`input[name="${name}"]:checked`)?.value || '';
+    }
+
+    function syncEvaluationChoices() {
+      evaluationForm?.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.closest('label')?.classList.toggle('is-selected', input.checked);
+      });
+    }
+
+    function syncEvaluationProblemFields() {
+      const showDetails = selectedEvaluationValue('evaluation-has-problem') === 'sim';
+      evaluationProblemDetails?.classList.toggle('hidden', !showDetails);
+      ['evaluation-problem-stage', 'evaluation-problem-type', 'evaluation-problem-description'].forEach(id => {
+        const field = document.getElementById(id);
+        if (field) field.required = showDetails;
+      });
+    }
+
+    function showEvaluationStep(step) {
+      currentEvaluationStep = Math.min(5, Math.max(1, step));
+      evaluationSteps.forEach(section => {
+        section.classList.toggle('hidden', Number(section.dataset.evaluationStep) !== currentEvaluationStep);
+      });
+      evaluationStepperItems.forEach((item, index) => {
+        item.classList.toggle('is-active', index + 1 === currentEvaluationStep);
+        item.classList.toggle('is-complete', index + 1 < currentEvaluationStep);
+      });
+      evaluationBack?.classList.toggle('hidden', currentEvaluationStep === 1);
+      evaluationNext?.classList.toggle('hidden', currentEvaluationStep === 5);
+      evaluationSubmit?.classList.toggle('hidden', currentEvaluationStep !== 5);
+      evaluationError?.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateEvaluationStep(step) {
+      const section = evaluationForm?.querySelector(`[data-evaluation-step="${step}"]`);
+      if (!section) return true;
+      let firstInvalid = null;
+      const checkedNames = new Set();
+      section.querySelectorAll('[required]').forEach(field => {
+        let valid = true;
+        if (field.type === 'radio') {
+          if (checkedNames.has(field.name)) return;
+          checkedNames.add(field.name);
+          valid = Boolean(section.querySelector(`input[name="${field.name}"]:checked`));
+        } else if (field.type === 'checkbox') {
+          valid = field.checked;
+        } else {
+          valid = Boolean(field.value.trim());
+        }
+        field.closest('label, fieldset')?.classList.toggle('has-error', !valid);
+        if (!valid && !firstInvalid) firstInvalid = field;
+      });
+      evaluationError?.classList.toggle('hidden', !firstInvalid);
+      firstInvalid?.focus();
+      return !firstInvalid;
+    }
+
+    function labelForRadio(name) {
+      const input = evaluationForm?.querySelector(`input[name="${name}"]:checked`);
+      return input?.closest('label')?.textContent.trim() || 'Não informado';
+    }
+
+    function buildEvaluationReview() {
+      if (!evaluationReview) return;
+      const ratings = Array.from(evaluationForm.querySelectorAll('.stage-rating')).map(row => ({
+        stage: row.querySelector('strong')?.textContent.trim() || '',
+        score: Number(row.querySelector('input:checked')?.value || 0)
+      }));
+      const average = ratings.length ? (ratings.reduce((sum, item) => sum + item.score, 0) / ratings.length).toFixed(1) : '-';
+      const processNumber = document.getElementById('evaluation-process-number')?.value.trim() || 'Não informado';
+      const values = [
+        ['Sistema avaliado', selectedEvaluationSubject || 'Não informado'],
+        ['Categoria do serviço', selectedEvaluationGroup || 'Não informado'],
+        ['Número do processo', processNumber],
+        ['Local da utilização', `${document.getElementById('evaluation-city')?.value || '-'} / ${document.getElementById('evaluation-state')?.value || '-'}`],
+        ['Data', document.getElementById('evaluation-date')?.value || '-'],
+        ['Dispositivo e navegador', `${document.getElementById('evaluation-device')?.value || '-'} · ${document.getElementById('evaluation-browser')?.value || '-'}`],
+        ['Conseguiu concluir?', labelForRadio('evaluation-completed')],
+        ['Média das etapas', `${average} de 5`],
+        ['Problema encontrado?', labelForRadio('evaluation-has-problem')],
+        ['Satisfação geral', `${selectedEvaluationValue('evaluation-satisfaction') || '-'} de 5`],
+        ['Esforço necessário', labelForRadio('evaluation-effort')],
+        ['Precisou de ajuda?', labelForRadio('evaluation-needed-help')],
+        ['Barreira de acessibilidade?', labelForRadio('evaluation-accessibility')]
+      ];
+      if (selectedEvaluationValue('evaluation-has-problem') === 'sim') {
+        values.splice(7, 0,
+          ['Etapa afetada', document.getElementById('evaluation-problem-stage')?.value || '-'],
+          ['Tipo de dificuldade', document.getElementById('evaluation-problem-type')?.value || '-']
+        );
+      }
+      const list = document.createElement('dl');
+      values.forEach(([term, description]) => {
+        const row = document.createElement('div');
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = term;
+        dd.textContent = description;
+        row.append(dt, dd);
+        list.appendChild(row);
+      });
+      evaluationReview.replaceChildren(list);
+    }
+
+    function formatProcessNumber(value) {
+      const digits = value.replace(/\D/g, '').slice(0, 20);
+      const groups = [digits.slice(0, 7), digits.slice(7, 9), digits.slice(9, 13), digits.slice(13, 14), digits.slice(14, 16), digits.slice(16, 20)];
+      const separators = ['', '-', '.', '.', '.', '.'];
+      return groups.reduce((result, group, index) => group ? result + separators[index] + group : result, '');
+    }
+
+    function initializeEvaluation() {
+      if (!evaluationForm) return;
+      const date = document.getElementById('evaluation-date');
+      if (date && !date.value) date.value = new Date().toISOString().slice(0, 10);
+      syncEvaluationProblemFields();
+      syncEvaluationChoices();
+      showEvaluationStep(1);
+    }
+
+    document.getElementById('evaluation-process-number')?.addEventListener('input', event => {
+      event.target.value = formatProcessNumber(event.target.value);
+    });
+    evaluationDescription?.addEventListener('input', () => {
+      if (evaluationDescriptionCount) evaluationDescriptionCount.textContent = String(evaluationDescription.value.length);
+    });
+    evaluationForm?.addEventListener('change', () => {
+      syncEvaluationChoices();
+      syncEvaluationProblemFields();
+    });
+    evaluationScreenshotButton?.addEventListener('click', () => {
+      if (evaluationScreenshotName) evaluationScreenshotName.textContent = 'captura_peticao_cidada.png (arquivo demonstrativo; não enviado)';
+    });
+    evaluationNext?.addEventListener('click', () => {
+      if (!validateEvaluationStep(currentEvaluationStep)) return;
+      if (currentEvaluationStep === 4) buildEvaluationReview();
+      showEvaluationStep(currentEvaluationStep + 1);
+    });
+    evaluationBack?.addEventListener('click', () => showEvaluationStep(currentEvaluationStep - 1));
+    evaluationForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!validateEvaluationStep(5)) return;
+      const protocol = `EC-AV-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
+      const protocolElement = document.getElementById('evaluation-protocol');
+      if (protocolElement) protocolElement.textContent = protocol;
+      const processNumber = document.getElementById('evaluation-process-number')?.value || 'Não informado';
+      lastEvaluationReport = [
+        'e-Cidadão — Relatório de avaliação do Petição Cidadã',
+        `Protocolo: ${protocol}`,
+        `Sistema avaliado: ${selectedEvaluationSubject}`,
+        `Categoria: ${selectedEvaluationGroup}`,
+        `Participante: ${evaluationProfile?.name || 'Não informado'}`,
+        `Município/UF: ${evaluationProfile?.city || '-'} / ${evaluationProfile?.state || '-'}`,
+        `Número do processo: ${processNumber}`,
+        `Satisfação geral: ${selectedEvaluationValue('evaluation-satisfaction') || '-'} de 5`,
+        `Conseguiu concluir: ${labelForRadio('evaluation-completed')}`,
+        `Problema encontrado: ${labelForRadio('evaluation-has-problem')}`,
+        '',
+        'Documento gerado por protótipo acadêmico. Não equivale a protocolo oficial do TJERJ.'
+      ].join('\n');
+      const reportPreview = document.getElementById('evaluation-report-preview');
+      if (reportPreview) reportPreview.textContent = lastEvaluationReport;
+      const metricTotal = document.getElementById('metric-total');
+      const metricSatisfaction = document.getElementById('metric-satisfaction');
+      if (metricTotal) metricTotal.textContent = '1.285';
+      if (metricSatisfaction) metricSatisfaction.textContent = `${selectedEvaluationValue('evaluation-satisfaction') || '-'},0/5`;
+      if (selectedEvaluationValue('evaluation-has-problem') === 'sim') {
+        const queue = document.getElementById('manager-queue');
+        const priorityText = document.getElementById('auto-priority')?.textContent || 'Média';
+        const priorityKey = priorityText === 'Crítica' ? 'critical' : priorityText === 'Alta' ? 'high' : 'medium';
+        const occurrence = document.createElement('article'); occurrence.dataset.priority = priorityKey;
+        const code = document.createElement('b'); code.textContent = protocol;
+        const summary = document.createElement('span'); summary.textContent = `${selectedEvaluationSubject} · ${document.getElementById('auto-category')?.textContent || 'Ocorrência'}`;
+        const priority = document.createElement('em'); priority.className = `priority-${priorityKey}`; priority.textContent = priorityText === '—' ? 'Média' : priorityText;
+        const owner = document.createElement('small'); owner.textContent = selectedEvaluationGroup;
+        occurrence.append(code, summary, priority, owner);
+        queue?.prepend(occurrence);
+      }
+      showOnlyPage(pageEvaluationComplete);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('evaluation-print')?.addEventListener('click', () => window.print());
+    document.getElementById('evaluation-download')?.addEventListener('click', () => {
+      if (!lastEvaluationReport) return;
+      const file = new Blob([lastEvaluationReport], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'relatorio-avaliacao-e-cidadao.txt';
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    function openEvaluationDashboard() {
+      if (!academicSessionUser) {
+        showOnlyPage(pageAcademicAccess);
+        return;
+      }
+      showOnlyPage(pageEvaluationDashboard);
+      document.getElementById('header-subnav')?.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('evaluation-open-dashboard')?.addEventListener('click', openEvaluationDashboard);
+    document.getElementById('nav-dashboard')?.addEventListener('click', event => {
+      event.preventDefault();
+      openEvaluationDashboard();
+    });
+    document.getElementById('dashboard-back')?.addEventListener('click', () => {
+      showOnlyPage(pageHome);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Cartograma interativo do Brasil. Os valores são demonstrativos e não
+    // representam estatísticas oficiais do TJERJ.
+    const brazilStates = [
+      ['AC','Acre',87,240,18],['AM','Amazonas',165,165,46],['RR','Roraima',209,77,12],['RO','Rondônia',193,256,21],
+      ['PA','Pará',324,161,68],['AP','Amapá',343,85,15],['TO','Tocantins',391,250,31],['MA','Maranhão',434,176,54],
+      ['PI','Piauí',465,209,39],['CE','Ceará',513,179,73],['RN','Rio Grande do Norte',553,191,38],['PB','Paraíba',551,209,44],
+      ['PE','Pernambuco',534,225,82],['AL','Alagoas',552,243,33],['SE','Sergipe',540,257,29],['BA','Bahia',480,280,96],
+      ['MT','Mato Grosso',287,283,57],['MS','Mato Grosso do Sul',302,384,48],['GO','Goiás',369,329,71],['DF','Distrito Federal',390,323,64],
+      ['MG','Minas Gerais',437,361,138],['ES','Espírito Santo',489,379,61],['RJ','Rio de Janeiro',463,413,186],['SP','São Paulo',381,412,224],
+      ['PR','Paraná',342,443,105],['SC','Santa Catarina',359,480,76],['RS','Rio Grande do Sul',321,513,91]
+    ];
+    const mapThemeFactors = { all: 1, petition: .31, query: .25, support: .19, documents: .15, information: .10 };
+    const mapThemeNames = { all: 'Todos os serviços', petition: 'Peticionamento e processos', query: 'Consulta e acompanhamento', support: 'Atendimento ao cidadão', documents: 'Documentos e pagamentos', information: 'Informação pública' };
+    const brazilMap = document.getElementById('brazil-complaint-map');
+    const mapThemeFilter = document.getElementById('map-theme-filter');
+    const mapStateDetail = document.getElementById('map-state-detail');
+
+    function complaintColor(value, maximum) {
+      const ratio = maximum ? value / maximum : 0;
+      if (ratio > .75) return '#07595b';
+      if (ratio > .5) return '#16817f';
+      if (ratio > .3) return '#4da8a1';
+      if (ratio > .15) return '#8bc9c3';
+      return '#cbe7e3';
+    }
+
+    function stateComplaintValue(state, theme) {
+      if (theme === 'all') return state[4];
+      const variation = 0.82 + ((state[0].charCodeAt(0) + state[0].charCodeAt(1) + theme.length) % 8) / 20;
+      return Math.max(1, Math.round(state[4] * mapThemeFactors[theme] * variation));
+    }
+
+    function renderBrazilComplaintMap(theme = 'all') {
+      if (!brazilMap) return;
+      const namespace = 'http://www.w3.org/2000/svg';
+      const values = brazilStates.map(state => stateComplaintValue(state, theme));
+      const maximum = Math.max(...values);
+      const total = values.reduce((sum, value) => sum + value, 0);
+      brazilMap.replaceChildren();
+      const mapImage = document.createElementNS(namespace, 'image');
+      mapImage.setAttribute('class', 'brazil-map-image');
+      mapImage.setAttribute('href', 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Brazilian_States.PNG');
+      mapImage.setAttribute('x', '35'); mapImage.setAttribute('y', '0');
+      mapImage.setAttribute('width', '560'); mapImage.setAttribute('height', '600');
+      mapImage.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      brazilMap.appendChild(mapImage);
+      brazilStates.forEach((state, index) => {
+        const [uf, name, x, y] = state;
+        const value = values[index];
+        const group = document.createElementNS(namespace, 'g');
+        group.setAttribute('class', 'brazil-state');
+        group.setAttribute('tabindex', '0');
+        group.setAttribute('role', 'button');
+        group.setAttribute('aria-label', `${name}: ${value} avaliações`);
+        const marker = document.createElementNS(namespace, 'circle');
+        marker.setAttribute('cx', String(x)); marker.setAttribute('cy', String(y));
+        marker.setAttribute('r', String(10 + Math.round((value / maximum) * 7)));
+        marker.setAttribute('fill', complaintColor(value, maximum));
+        const label = document.createElementNS(namespace, 'text');
+        label.setAttribute('x', String(x)); label.setAttribute('y', String(y - 1)); label.textContent = uf;
+        const count = document.createElementNS(namespace, 'text');
+        count.setAttribute('x', String(x)); count.setAttribute('y', String(y + 8)); count.setAttribute('class', 'state-count'); count.textContent = String(value);
+        const showState = () => {
+          if (!mapStateDetail) return;
+          mapStateDetail.replaceChildren();
+          const eyebrow = document.createElement('small'); eyebrow.textContent = name.toUpperCase();
+          const strong = document.createElement('strong'); strong.textContent = `${value} avaliações`;
+          const span = document.createElement('span'); span.textContent = mapThemeNames[theme];
+          mapStateDetail.append(eyebrow, strong, span);
+          brazilMap.querySelectorAll('.brazil-state').forEach(item => item.classList.remove('is-selected'));
+          group.classList.add('is-selected');
+        };
+        group.addEventListener('click', showState);
+        group.addEventListener('mouseenter', showState);
+        group.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') showState(); });
+        group.append(marker, label, count);
+        brazilMap.appendChild(group);
+      });
+      const totalElement = document.getElementById('map-theme-total');
+      if (totalElement) totalElement.textContent = `${total.toLocaleString('pt-BR')} avaliações`;
+    }
+
+    mapThemeFilter?.addEventListener('change', event => renderBrazilComplaintMap(event.target.value));
+    renderBrazilComplaintMap();
+    document.getElementById('dashboard-public-report')?.addEventListener('click', () => {
+      const themes = Object.keys(mapThemeNames);
+      const rows = [['UF', 'Estado', ...themes.map(theme => mapThemeNames[theme])]];
+      brazilStates.forEach(state => {
+        rows.push([state[0], state[1], ...themes.map(theme => stateComplaintValue(state, theme))]);
+      });
+      const csv = rows.map(row => row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(';')).join('\r\n');
+      const file = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `relatorio-publico-e-cidadao-${new Date().toISOString().slice(0, 10)}.csv`;
+      link.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+
+    const managerPanel = document.getElementById('dashboard-manager-panel');
+    const publicViewButton = document.getElementById('dashboard-public-view');
+    const managerViewButton = document.getElementById('dashboard-manager-view');
+    function setDashboardView(mode) {
+      const manager = mode === 'manager';
+      managerPanel?.classList.toggle('hidden', !manager);
+      document.getElementById('advanced-questionnaire-editor')?.classList.toggle('hidden', !manager);
+      publicViewButton?.classList.toggle('is-active', !manager);
+      managerViewButton?.classList.toggle('is-active', manager);
+      if (manager) managerPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    publicViewButton?.addEventListener('click', () => setDashboardView('public'));
+    managerViewButton?.addEventListener('click', () => setDashboardView('manager'));
+
+    document.getElementById('manager-queue-filter')?.addEventListener('change', event => {
+      document.querySelectorAll('#manager-queue article').forEach(item => {
+        item.classList.toggle('hidden', event.target.value !== 'all' && item.dataset.priority !== event.target.value);
+      });
+    });
+
+    document.getElementById('question-editor-form')?.addEventListener('submit', event => {
+      event.preventDefault();
+      const system = document.getElementById('question-system')?.value;
+      const question = document.getElementById('question-text')?.value.trim();
+      const type = document.getElementById('question-type')?.value;
+      if (!system || !question) return;
+      const list = document.getElementById('custom-question-list');
+      if (list?.querySelector('p')) list.replaceChildren();
+      const item = document.createElement('article');
+      const strong = document.createElement('strong'); strong.textContent = question;
+      const meta = document.createElement('span'); meta.textContent = `${system} · ${type} · versão de rascunho`;
+      item.append(strong, meta);
+      list?.appendChild(item);
+      event.target.reset();
+    });
+    document.getElementById('question-editor-form')?.closest('.dashboard-card')?.classList.add('hidden');
+
+    const questionnaireStore = new Map();
+    const publishedQuestionnaireStore = new Map();
+    let questionSequence = 10;
+    const defaultManagerQuestions = [
+      { id: 1, text: 'Foi fácil acessar e autenticar-se no sistema?', type: 'scale', section: 'Acesso', help: 'Avalie de 1 (muito difícil) a 5 (muito fácil).', options: [], condition: '', required: true, active: true },
+      { id: 2, text: 'Você conseguiu concluir o que precisava?', type: 'yesno', section: 'Resultado', help: '', options: ['Sim', 'Não'], condition: '', required: true, active: true },
+      { id: 3, text: 'Descreva a principal dificuldade encontrada.', type: 'longtext', section: 'Experiência geral', help: 'Não informe senhas ou dados sensíveis.', options: [], condition: 'problem-yes', required: false, active: true }
+    ];
+    const managerSystemFilter = document.getElementById('question-system-filter');
+    if (managerSystemFilter) {
+      managerSystemFilter.replaceChildren();
+      systemItems.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.dataset.system;
+        option.textContent = item.dataset.system;
+        managerSystemFilter.appendChild(option);
+      });
+    }
+    document.querySelectorAll('#question-system-filter option').forEach(option => {
+      questionnaireStore.set(option.value, defaultManagerQuestions.map(question => ({ ...question, id: ++questionSequence })));
+    });
+    const advancedQuestionForm = document.getElementById('advanced-question-form');
+    const questionSystemFilter = document.getElementById('question-system-filter');
+    const advancedQuestionType = document.getElementById('advanced-question-type');
+    const advancedOptionsField = document.getElementById('advanced-question-options-field');
+    const typeLabels = { scale: 'Escala de 1 a 5', yesno: 'Sim ou não', single: 'Escolha única', multiple: 'Múltipla escolha', text: 'Texto curto', longtext: 'Texto longo', date: 'Data' };
+
+    function currentQuestionnaire() {
+      return questionnaireStore.get(questionSystemFilter?.value) || [];
+    }
+
+    function resetAdvancedQuestionForm() {
+      advancedQuestionForm?.reset();
+      const editId = document.getElementById('question-edit-id');
+      if (editId) editId.value = '';
+      document.getElementById('advanced-question-save-label').textContent = 'Adicionar pergunta';
+      document.getElementById('advanced-question-cancel')?.classList.add('hidden');
+      advancedOptionsField?.classList.add('hidden');
+    }
+
+    function setQuestionnaireDraft() {
+      const status = document.getElementById('questionnaire-status');
+      if (!status) return;
+      status.textContent = 'Alterações não publicadas';
+      status.className = 'questionnaire-status draft';
+    }
+
+    function renderAdvancedQuestionList() {
+      const list = document.getElementById('advanced-question-list');
+      if (!list) return;
+      list.replaceChildren();
+      currentQuestionnaire().forEach((question, index) => {
+        const item = document.createElement('article');
+        item.className = `question-builder-item${question.active ? '' : ' is-disabled'}`;
+        item.dataset.id = String(question.id);
+        const order = document.createElement('span'); order.className = 'question-order'; order.textContent = String(index + 1);
+        const content = document.createElement('div'); content.className = 'question-builder-content';
+        const title = document.createElement('strong'); title.textContent = question.text;
+        const meta = document.createElement('span'); meta.textContent = `${question.section} · ${typeLabels[question.type]} · ${question.required ? 'Obrigatória' : 'Opcional'}${question.condition ? ' · Condicional' : ''}`;
+        content.append(title, meta);
+        const actions = document.createElement('div'); actions.className = 'question-builder-actions';
+        [['up','Subir','fa-arrow-up'],['down','Descer','fa-arrow-down'],['edit','Editar','fa-pencil'],['duplicate','Duplicar','fa-copy'],['toggle',question.active ? 'Desativar' : 'Ativar',question.active ? 'fa-toggle-on' : 'fa-toggle-off'],['delete','Excluir','fa-trash']].forEach(([action,label,icon]) => {
+          const button = document.createElement('button'); button.type = 'button'; button.dataset.action = action; button.title = label; button.setAttribute('aria-label', label); button.innerHTML = `<i class="fa ${icon}"></i>`; actions.appendChild(button);
+        });
+        item.append(order, content, actions); list.appendChild(item);
+      });
+    }
+
+    advancedQuestionType?.addEventListener('change', () => {
+      advancedOptionsField?.classList.toggle('hidden', !['single', 'multiple'].includes(advancedQuestionType.value));
+    });
+    questionSystemFilter?.addEventListener('change', () => { resetAdvancedQuestionForm(); renderAdvancedQuestionList(); });
+    document.getElementById('advanced-question-cancel')?.addEventListener('click', resetAdvancedQuestionForm);
+    advancedQuestionForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const text = document.getElementById('advanced-question-text')?.value.trim();
+      if (!text) return;
+      const editId = Number(document.getElementById('question-edit-id')?.value || 0);
+      const question = {
+        id: editId || ++questionSequence,
+        text,
+        type: advancedQuestionType?.value || 'text',
+        section: document.getElementById('advanced-question-section')?.value || 'Experiência geral',
+        help: document.getElementById('advanced-question-help')?.value.trim() || '',
+        options: (document.getElementById('advanced-question-options')?.value || '').split('\n').map(value => value.trim()).filter(Boolean),
+        condition: document.getElementById('advanced-question-condition')?.value || '',
+        required: Boolean(document.getElementById('advanced-question-required')?.checked),
+        active: true
+      };
+      const questions = currentQuestionnaire();
+      const position = questions.findIndex(item => item.id === editId);
+      if (position >= 0) question.active = questions[position].active;
+      if (position >= 0) questions[position] = question; else questions.push(question);
+      setQuestionnaireDraft(); resetAdvancedQuestionForm(); renderAdvancedQuestionList();
+    });
+    document.getElementById('advanced-question-list')?.addEventListener('click', event => {
+      const button = event.target.closest('button[data-action]');
+      const item = event.target.closest('[data-id]');
+      if (!button || !item) return;
+      const questions = currentQuestionnaire();
+      const index = questions.findIndex(question => question.id === Number(item.dataset.id));
+      if (index < 0) return;
+      const action = button.dataset.action;
+      if (action === 'delete') questions.splice(index, 1);
+      if (action === 'duplicate') questions.splice(index + 1, 0, { ...questions[index], id: ++questionSequence, text: `${questions[index].text} (cópia)` });
+      if (action === 'toggle') questions[index].active = !questions[index].active;
+      if (action === 'up' && index > 0) [questions[index - 1], questions[index]] = [questions[index], questions[index - 1]];
+      if (action === 'down' && index < questions.length - 1) [questions[index + 1], questions[index]] = [questions[index], questions[index + 1]];
+      if (action === 'edit') {
+        const question = questions[index];
+        document.getElementById('question-edit-id').value = String(question.id);
+        document.getElementById('advanced-question-text').value = question.text;
+        advancedQuestionType.value = question.type;
+        document.getElementById('advanced-question-section').value = question.section;
+        document.getElementById('advanced-question-help').value = question.help;
+        document.getElementById('advanced-question-options').value = question.options.join('\n');
+        document.getElementById('advanced-question-condition').value = question.condition;
+        document.getElementById('advanced-question-required').checked = question.required;
+        advancedOptionsField?.classList.toggle('hidden', !['single', 'multiple'].includes(question.type));
+        document.getElementById('advanced-question-save-label').textContent = 'Salvar alterações';
+        document.getElementById('advanced-question-cancel')?.classList.remove('hidden');
+        advancedQuestionForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      setQuestionnaireDraft(); renderAdvancedQuestionList();
+    });
+    document.getElementById('question-preview-button')?.addEventListener('click', () => {
+      const preview = document.getElementById('advanced-question-preview');
+      const content = document.getElementById('advanced-question-preview-content');
+      if (!preview || !content) return;
+      content.replaceChildren();
+      currentQuestionnaire().filter(question => question.active).forEach((question, index) => {
+        const field = document.createElement('div'); field.className = 'preview-question';
+        const label = document.createElement('strong'); label.textContent = `${index + 1}. ${question.text}${question.required ? ' *' : ''}`;
+        field.appendChild(label);
+        if (question.help) { const help = document.createElement('small'); help.textContent = question.help; field.appendChild(help); }
+        if (question.type === 'longtext') { const input = document.createElement('textarea'); input.rows = 3; field.appendChild(input); }
+        else if (question.type === 'text' || question.type === 'date') { const input = document.createElement('input'); input.type = question.type === 'date' ? 'date' : 'text'; field.appendChild(input); }
+        else {
+          const choices = document.createElement('div'); choices.className = 'preview-choices';
+          const options = question.type === 'scale' ? ['1','2','3','4','5'] : question.type === 'yesno' ? ['Sim','Não'] : question.options;
+          options.forEach(option => { const chip = document.createElement('span'); chip.textContent = option; choices.appendChild(chip); });
+          field.appendChild(choices);
+        }
+        if (question.condition) { const condition = document.createElement('em'); condition.textContent = `Exibição condicional: ${question.condition}`; field.appendChild(condition); }
+        content.appendChild(field);
+      });
+      preview.classList.remove('hidden');
+      preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('advanced-question-preview-close')?.addEventListener('click', () => document.getElementById('advanced-question-preview')?.classList.add('hidden'));
+    document.getElementById('question-publish-button')?.addEventListener('click', () => {
+      const status = document.getElementById('questionnaire-status');
+      const feedback = document.getElementById('advanced-question-feedback');
+      publishedQuestionnaireStore.set(questionSystemFilter?.value, currentQuestionnaire().map(question => ({ ...question, options: [...question.options] })));
+      if (status) { status.textContent = `Versão ${new Date().toLocaleDateString('pt-BR')} publicada`; status.className = 'questionnaire-status published'; }
+      if (feedback) { feedback.textContent = `Questionário de ${questionSystemFilter?.value} publicado com ${currentQuestionnaire().filter(question => question.active).length} perguntas ativas.`; feedback.classList.remove('hidden'); }
+    });
+    renderAdvancedQuestionList();
+
+    function analyzeEvaluationProblem() {
+      const description = (evaluationDescription?.value || '').toLowerCase();
+      const selectedType = document.getElementById('evaluation-problem-type')?.value || '';
+      let category = selectedType || 'Aguardando relato';
+      if (/erro|trav|não abre|botão|falh/.test(description)) category = 'Erro técnico';
+      else if (/lento|demor|carreg/.test(description)) category = 'Lentidão';
+      else if (/leitor|teclado|contraste|acess/.test(description)) category = 'Barreira de acessibilidade';
+      else if (/entend|confus|linguagem|texto/.test(description)) category = 'Conteúdo ou linguagem';
+      const preventsCompletion = /não consegui|impediu|bloqueou|perdi|travou/.test(description);
+      const priority = preventsCompletion || selectedType === 'Perda de dados' ? 'Crítica' : description.length > 100 ? 'Alta' : description.length > 20 ? 'Média' : '—';
+      const categoryElement = document.getElementById('auto-category');
+      const priorityElement = document.getElementById('auto-priority');
+      if (categoryElement) categoryElement.textContent = category;
+      if (priorityElement) {
+        priorityElement.textContent = priority;
+        priorityElement.className = priority === 'Crítica' ? 'is-critical' : priority === 'Alta' ? 'is-high' : '';
+      }
+    }
+    evaluationDescription?.addEventListener('input', analyzeEvaluationProblem);
+    document.getElementById('evaluation-problem-type')?.addEventListener('change', analyzeEvaluationProblem);
+
+    document.getElementById('nav-track')?.addEventListener('click', event => {
+      event.preventDefault();
+      showOnlyPage(academicSessionUser ? pageEvaluationTracking : pageAcademicAccess);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('tracking-form')?.addEventListener('submit', event => {
+      event.preventDefault();
+      const code = document.getElementById('tracking-protocol')?.value.trim();
+      if (!code) return;
+      const trackingCode = document.getElementById('tracking-code');
+      const trackingSystem = document.getElementById('tracking-system');
+      if (trackingCode) trackingCode.textContent = code.toUpperCase();
+      if (trackingSystem) trackingSystem.textContent = selectedEvaluationSubject || 'Serviço digital do TJERJ';
+      document.getElementById('tracking-result')?.classList.remove('hidden');
+    });
+    document.getElementById('evaluation-finish')?.addEventListener('click', () => {
+      evaluationForm?.reset();
+      selectedEvaluationSubject = '';
+      selectedEvaluationGroup = '';
+      if (evaluationDescriptionCount) evaluationDescriptionCount.textContent = '0';
+      if (evaluationScreenshotName) evaluationScreenshotName.textContent = 'Nenhum arquivo selecionado. Demonstração sem envio real.';
+      showOnlyPage(pageHome);
+      document.getElementById('header-subnav')?.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const evaluationProfileForm = document.getElementById('evaluation-profile-form');
+    const profileError = document.getElementById('profile-error');
+    const profileCpf = document.getElementById('profile-cpf');
+    const profileCep = document.getElementById('profile-cep');
+    profileCpf?.addEventListener('input', event => {
+      const digits = event.target.value.replace(/\D/g, '').slice(0, 11);
+      event.target.value = digits.replace(/^(\d{3})(\d)/, '$1.$2').replace(/^(\d{3}\.\d{3})(\d)/, '$1.$2').replace(/^(\d{3}\.\d{3}\.\d{3})(\d{1,2})$/, '$1-$2');
+    });
+    profileCep?.addEventListener('input', event => {
+      const digits = event.target.value.replace(/\D/g, '').slice(0, 8);
+      event.target.value = digits.replace(/^(\d{5})(\d)/, '$1-$2');
+    });
+
+    function confirmDemonstrativeDocument(buttonId, inputId, labelId, filename) {
+      document.getElementById(buttonId)?.addEventListener('click', () => {
+        const input = document.getElementById(inputId);
+        const label = document.getElementById(labelId);
+        if (input) input.value = 'simulado';
+        if (label) label.textContent = `${filename} — validado na demonstração`;
+      });
+    }
+    confirmDemonstrativeDocument('profile-id-upload', 'profile-id-confirmed', 'profile-id-file', 'documento_identificacao.pdf');
+    confirmDemonstrativeDocument('profile-address-upload', 'profile-address-confirmed', 'profile-address-file', 'comprovante_residencia.pdf');
+
+    evaluationProfileForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const required = Array.from(evaluationProfileForm.querySelectorAll('[required]'));
+      const invalid = required.find(field => !field.value.trim());
+      profileError?.classList.toggle('hidden', !invalid);
+      if (invalid) {
+        invalid.focus();
+        return;
+      }
+      evaluationProfile = {
+        name: document.getElementById('profile-name')?.value.trim() || '',
+        cpf: profileCpf?.value || '',
+        cep: profileCep?.value || '',
+        state: document.getElementById('profile-state')?.value || '',
+        city: document.getElementById('profile-city')?.value.trim() || '',
+        neighborhood: document.getElementById('profile-neighborhood')?.value.trim() || '',
+        address: document.getElementById('profile-address')?.value.trim() || ''
+      };
+      const evaluationState = document.getElementById('evaluation-state');
+      const evaluationCity = document.getElementById('evaluation-city');
+      if (evaluationState) evaluationState.value = evaluationProfile.state === 'RJ' ? 'RJ' : 'outro';
+      if (evaluationCity) evaluationCity.value = evaluationProfile.city;
+      showOnlyPage(pageHome);
+      document.getElementById('header-subnav')?.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    syncAuthorGuidanceVisibility();
+    if (authorForm) {
+      new MutationObserver(syncAuthorGuidanceVisibility).observe(authorForm, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
 
     // GOV.BR Page Elements
     const govbrWrapper = document.getElementById('govbr-wrapper');
@@ -353,6 +1155,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const savedContinueBtns = document.querySelectorAll('.saved-continue-btn');
 
     let currentSelectedCardIndex = null;
+    let modalSelectionMode = 'legacy';
     // Mantida no escopo principal porque a lista também é usada na prévia da
     // petição e na limpeza final do fluxo.
     let witnessesArray = [];
@@ -367,6 +1170,92 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+
+    // Acesso e cadastro demonstrativos: os dados existem apenas durante esta
+    // execução da página e não são enviados nem gravados no navegador.
+    const academicTabLogin = document.getElementById('academic-tab-login');
+    const academicTabRegister = document.getElementById('academic-tab-register');
+    const academicLoginForm = document.getElementById('academic-login-form');
+    const academicRegisterForm = document.getElementById('academic-register-form');
+    const academicTriageForm = document.getElementById('academic-triage-form');
+    const academicTriageResult = document.getElementById('academic-triage-result');
+    const academicTriageContinue = document.getElementById('academic-triage-continue');
+    const academicTriageEvaluate = document.getElementById('academic-triage-evaluate');
+    const academicTriageBack = document.getElementById('academic-triage-back');
+    let academicSessionUser = null;
+
+    function selectAcademicAuthTab(mode) {
+      const isLogin = mode === 'login';
+      academicLoginForm?.classList.toggle('hidden', !isLogin);
+      academicRegisterForm?.classList.toggle('hidden', isLogin);
+      academicTabLogin?.classList.toggle('is-active', isLogin);
+      academicTabRegister?.classList.toggle('is-active', !isLogin);
+      academicTabLogin?.setAttribute('aria-selected', String(isLogin));
+      academicTabRegister?.setAttribute('aria-selected', String(!isLogin));
+    }
+
+    academicTabLogin?.addEventListener('click', () => selectAcademicAuthTab('login'));
+    academicTabRegister?.addEventListener('click', () => selectAcademicAuthTab('register'));
+
+    function openAcademicTriage() {
+      const profileName = document.getElementById('profile-name');
+      if (profileName && academicSessionUser?.name) profileName.value = academicSessionUser.name;
+      showOnlyPage(pageEvaluationProfile);
+      document.getElementById('header-subnav')?.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    academicLoginForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      academicSessionUser = {
+        email: document.getElementById('academic-login-email')?.value || '',
+        source: 'login'
+      };
+      openAcademicTriage();
+    });
+
+    academicRegisterForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      academicSessionUser = {
+        name: document.getElementById('academic-register-name')?.value || '',
+        email: document.getElementById('academic-register-email')?.value || '',
+        source: 'register'
+      };
+      const headerName = document.querySelector('[data-template-id="header-user-name"]');
+      if (headerName && academicSessionUser.name) {
+        headerName.textContent = academicSessionUser.name;
+      }
+      openAcademicTriage();
+    });
+
+    academicTriageBack?.addEventListener('click', () => {
+      showOnlyPage(pageAcademicAccess);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    academicTriageForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(academicTriageForm);
+      const needsSpecializedHelp = data.get('triage-age') === 'nao' ||
+        data.get('triage-state') === 'nao' ||
+        data.get('triage-value') === 'nao' ||
+        data.get('triage-existing') === 'sim';
+      const lacksDocuments = data.get('triage-docs') === 'nao';
+
+      academicTriageResult.classList.remove('hidden', 'is-attention', 'is-ready');
+      academicTriageResult.classList.add(needsSpecializedHelp ? 'is-attention' : 'is-ready');
+      academicTriageResult.innerHTML = needsSpecializedHelp
+        ? '<strong>Vale buscar orientação especializada.</strong><span>Algumas respostas indicam que o atendimento pode exigir uma análise específica. Você ainda pode conhecer o fluxo e preparar suas informações.</span>'
+        : `<strong>Sua situação pode seguir para preparação.</strong><span>${lacksDocuments ? 'Você poderá identificar no checklist quais documentos ainda precisa reunir.' : 'Continue para escolher o assunto e organizar os documentos disponíveis.'}</span>`;
+      academicTriageEvaluate.classList.add('hidden');
+      academicTriageContinue.classList.remove('hidden');
+    });
+
+    academicTriageContinue?.addEventListener('click', () => {
+      showOnlyPage(pageHome);
+      document.getElementById('header-subnav')?.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Go back from GOV.BR Logo
     if (govbrLogoBack) {
@@ -793,6 +1682,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (serviceForm) serviceForm.classList.remove('hidden');
         updateDefendantDropdown();
       }
+      window.setTimeout(() => {
+        applySimplifiedFormCopy();
+        syncGuidedChoices();
+      }, 0);
     }
 
     // Garante que o formulário correto seja exibido em qualquer caminho que abra
@@ -4242,8 +5135,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Navigate to the newly introduced Step 6: Petição Preview
         const pagePetitionPreview = document.getElementById('page-petition-preview');
         const prevDocTitleType = document.getElementById('prev-doc-title-type');
-        const sentProcessNumber = document.getElementById('sent-process-number');
-        const sentAudienceInfo = document.getElementById('sent-audience-info');
         const previewLocalStep = document.getElementById('preview-local-step');
         const previewPetitionStepNumber = document.getElementById('preview-petition-step-number');
 
@@ -4258,24 +5149,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentSelectedCardIndex === 2) {
           if (prevDocTitleType) prevDocTitleType.textContent = 'Vício do Produto';
-          if (sentProcessNumber) sentProcessNumber.textContent = '0800350-91.2026.8.19.0210';
-          if (sentAudienceInfo) sentAudienceInfo.textContent = 'Audiência de Conciliação designada para 07/09/2026 às 13:50 no 11º Juizado Especial Cível da Regional da Leopoldina.';
         } else if (currentSelectedCardIndex === 4) {
           if (prevDocTitleType) prevDocTitleType.textContent = 'Acidente de trânsito';
-          if (sentProcessNumber) sentProcessNumber.textContent = '0800339-44.2026.8.19.0210';
-          if (sentAudienceInfo) sentAudienceInfo.textContent = 'Audiência de Conciliação designada para 05/09/2026 às 13:30 no 11º Juizado Especial Cível da Regional da Leopoldina.';
         } else if (currentSelectedCardIndex === 5) {
           if (prevDocTitleType) prevDocTitleType.textContent = 'Cobrança ou negativação indevida';
-          if (sentProcessNumber) sentProcessNumber.textContent = '0800336-80.2026.8.19.0210';
-          if (sentAudienceInfo) sentAudienceInfo.textContent = 'Audiência de Conciliação designada para 03/09/2026 às 13:30 no 11º Juizado Especial Cível da Regional da Leopoldina.';
         } else if (currentSelectedCardIndex === 6) {
           if (prevDocTitleType) prevDocTitleType.textContent = 'Apontamento de irregularidade (TOI)';
-          if (sentProcessNumber) sentProcessNumber.textContent = '0800337-90.2026.8.19.0210';
-          if (sentAudienceInfo) sentAudienceInfo.textContent = 'Audiência de Conciliação designada para 04/09/2026 às 13:30 no 11º Juizado Especial Cível da Regional da Leopoldina.';
         } else {
           if (prevDocTitleType) prevDocTitleType.textContent = 'Interrupção de serviço essencial';
-          if (sentProcessNumber) sentProcessNumber.textContent = '0800332-70.2026.8.19.0210';
-          if (sentAudienceInfo) sentAudienceInfo.textContent = 'Audiência de Conciliação designada para 01/09/2026 às 13:30 no 11º Juizado Especial Cível da Regional da Leopoldina.';
         }
 
         if (pagePetitionPreview) {
@@ -4358,9 +5239,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Show Final Success Toast
+        const protocolNumber = `EC-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
+        const protocolElement = document.getElementById('sent-process-number');
+        if (protocolElement) protocolElement.textContent = protocolNumber;
+
         showNotification(
-            'Reclamação Enviada!',
-            'Sua petição foi distribuída com sucesso ao Juizado Competente.'
+            'Relatório concluído!',
+            `O protocolo interno ${protocolNumber} foi gerado somente para esta sessão.`
             );
 
         // Hide petition preview page
@@ -4939,14 +5824,14 @@ document.addEventListener("DOMContentLoaded", function () {
         'page-petition-preview': 8
       };
       const flightSteps = [
-        'Autor',
-        'Réu',
-        'Voo',
-        'Problema',
-        'Outros Prejuízos',
-        'Outras Provas',
-        'Pedido',
-        'Petição'
+        'Seus dados',
+        'Empresas',
+        'Sua viagem',
+        'Ocorrido',
+        'Impactos',
+        'Comprovantes',
+        'Resultado',
+        'Resumo'
       ];
 
       pageIds.forEach(pageId => {
@@ -4959,7 +5844,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const factsMainTitle = document.querySelector('[data-template-id="facts-main-title"]');
         if (factsMainTitle) {
-          factsMainTitle.textContent = currentSelectedCardIndex === 3 ? 'Voo' : 'Fatos e fundamentos';
+          factsMainTitle.textContent = currentSelectedCardIndex === 3 ? 'Dados do voo' : 'Relato do problema';
         }
 
         if (isFlight) {
@@ -4997,7 +5882,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const petitionStep = Array.from(stepper.children).find(child =>
           child.classList.contains('flex-1') &&
-          Array.from(child.querySelectorAll('span')).some(span => span.textContent.trim() === 'Petição')
+          Array.from(child.querySelectorAll('span')).some(span =>
+            span.dataset.templateId === 'step6-label' || ['Petição', 'Revisão'].includes(span.textContent.trim())
+          )
         );
         if (!petitionStep) return;
 
@@ -5022,6 +5909,20 @@ document.addEventListener("DOMContentLoaded", function () {
         if (petitionCircle && !petitionCircle.querySelector('i')) {
           petitionCircle.textContent = isTraffic ? '7' : '6';
         }
+
+        const academicLabels = {
+          'Autor': 'Seus dados',
+          'Réu': 'Outra parte',
+          'Fatos e Fundamentos': 'Relato',
+          'Outras Provas': 'Comprovantes',
+          'Pedidos': 'Resultado',
+          'Petição': 'Resumo',
+          'Local': 'Encaminhamento'
+        };
+        stepper.querySelectorAll('span').forEach(label => {
+          const replacement = academicLabels[label.textContent.trim()];
+          if (replacement) label.textContent = replacement;
+        });
       });
     }
 
@@ -5030,11 +5931,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.location.search) {
         window.history.replaceState({}, '', window.location.pathname);
       }
-      showOnlyPage(pageHome);
+      showOnlyPage(!academicSessionUser ? pageAcademicAccess : (evaluationProfile ? pageHome : pageEvaluationProfile));
       const subNav = document.getElementById('header-subnav');
       if (subNav) subNav.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    document.getElementById('nav-new-evaluation')?.addEventListener('click', event => {
+      event.preventDefault();
+      showOnlyPage(!academicSessionUser ? pageAcademicAccess : (evaluationProfile ? pageHome : pageEvaluationProfile));
+    });
 
     const backBtn = document.getElementById('req-back-btn');
     if (backBtn) {
@@ -5074,17 +5980,98 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = (item.textContent + ' ' + item.dataset.keywords).toLowerCase();
         item.style.display = text.includes(query) ? '' : 'none';
       });
+      systemItems.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+      document.querySelectorAll('.system-group').forEach(group => {
+        const visible = Array.from(group.querySelectorAll('.system-service-item')).some(item => item.style.display !== 'none');
+        group.style.display = visible ? '' : 'none';
+      });
+    });
+
+    function renderSystemSpecificQuestion(system) {
+      const container = document.getElementById('system-specific-question');
+      if (!container) return;
+      const questions = {
+        'Petição Cidadã': 'Foi fácil entender quais informações eram necessárias para preparar a petição?',
+        'eproc': 'Foi fácil localizar e acompanhar o processo desejado?',
+        'PJe': 'O acesso, a assinatura e o envio funcionaram sem interrupções?',
+        'Portal de Serviços': 'Você encontrou rapidamente o serviço que precisava?',
+        'Consulta Processual': 'As movimentações apresentadas foram fáceis de compreender?',
+        'Sistema Push': 'Os avisos recebidos foram claros e enviados no momento adequado?',
+        'Diário da Justiça Eletrônico': 'Foi fácil localizar a publicação procurada?',
+        'Balcão Virtual': 'O atendimento remoto resolveu sua necessidade?',
+        'Primeiro Atendimento dos Juizados': 'As orientações recebidas foram suficientes para prosseguir?',
+        'Ouvidoria e SIC': 'Foi fácil registrar e acompanhar sua manifestação?',
+        'CEJUSC e Conciliação': 'As etapas da tentativa de acordo foram explicadas com clareza?',
+        'Certidão Judicial Eletrônica': 'Foi fácil escolher e solicitar o modelo correto de certidão?',
+        'GRERJ Eletrônica': 'O cálculo e a emissão da guia foram compreensíveis?',
+        'Depósito Judicial': 'Foi fácil emitir ou consultar a guia desejada?',
+        'Precatórios e RPV': 'As informações sobre pagamento e situação estavam claras?',
+        'Jurisprudência': 'Os filtros ajudaram a encontrar decisões relevantes?',
+        'Portal da Transparência': 'Os dados públicos estavam organizados e compreensíveis?',
+        'Atos Oficiais': 'Foi fácil localizar o ato oficial desejado?'
+      };
+      const configuredQuestion = publishedQuestionnaireStore.get(system)?.find(question => question.active);
+      container.replaceChildren();
+      const strong = document.createElement('strong'); strong.textContent = 'PERGUNTA ESPECÍFICA DO SISTEMA';
+      const paragraph = document.createElement('p'); paragraph.textContent = configuredQuestion?.text || questions[system] || 'O serviço atendeu à sua necessidade?';
+      if (configuredQuestion && ['text', 'longtext', 'date'].includes(configuredQuestion.type)) {
+        const field = configuredQuestion.type === 'longtext' ? document.createElement('textarea') : document.createElement('input');
+        if (configuredQuestion.type === 'date') field.type = 'date';
+        if (configuredQuestion.type === 'text') field.type = 'text';
+        field.name = 'rate-specific';
+        field.required = configuredQuestion.required;
+        if (configuredQuestion.type === 'longtext') field.rows = 3;
+        container.append(strong, paragraph, field);
+        if (configuredQuestion.help) { const help = document.createElement('small'); help.textContent = configuredQuestion.help; container.appendChild(help); }
+        return;
+      }
+      const options = document.createElement('div'); options.className = 'evaluation-options';
+      const configuredOptions = configuredQuestion?.type === 'scale' ? ['1','2','3','4','5'] : configuredQuestion?.type === 'yesno' ? ['Sim','Não'] : configuredQuestion?.options?.length ? configuredQuestion.options : ['Sim','Parcialmente','Não'];
+      configuredOptions.forEach((label, index) => {
+        const optionLabel = document.createElement('label');
+        const input = document.createElement('input'); input.type = 'radio'; input.name = 'rate-specific'; input.value = label; if (index === 0 && (configuredQuestion?.required ?? true)) input.required = true;
+        const span = document.createElement('span'); span.textContent = label;
+        optionLabel.append(input, span); options.appendChild(optionLabel);
+      });
+      container.append(strong, paragraph, options);
+    }
+
+    const systemGroupTags = {
+      'Peticionamento': '#petição #processo #protocolo',
+      'Consulta': '#consulta #andamento #publicação',
+      'Atendimento': '#atendimento #orientação #conciliação',
+      'Documentos': '#certidão #custas #pagamento',
+      'Informação pública': '#transparência #jurisprudência #atos'
+    };
+    systemItems.forEach(item => {
+      const tags = document.createElement('em');
+      tags.textContent = systemGroupTags[item.dataset.systemGroup] || '#serviço #digital';
+      item.appendChild(tags);
+      item.addEventListener('click', () => {
+        modalSelectionMode = 'system';
+        selectedEvaluationSubject = item.dataset.system || 'Serviço digital';
+        selectedEvaluationGroup = item.dataset.systemGroup || 'Outros serviços';
+        modalDetails.forEach(detail => detail.classList.add('hidden'));
+        document.getElementById('modal-detail-system')?.classList.remove('hidden');
+        const modalSystemTitle = document.getElementById('modal-system-title');
+        const modalSystemDescription = document.getElementById('modal-system-description');
+        const warning = document.querySelector('[data-template-id="modal-warning-text"]');
+        if (modalSystemTitle) modalSystemTitle.textContent = selectedEvaluationSubject;
+        if (modalSystemDescription) modalSystemDescription.textContent = `Você selecionou ${selectedEvaluationSubject}, na categoria ${selectedEvaluationGroup}. Confirme para continuar.`;
+        if (warning) warning.textContent = 'Confira o nome do serviço antes de continuar. A avaliação será vinculada ao assunto selecionado.';
+        modalConfirmCheckbox.checked = false;
+        modalBtnContinue.disabled = true;
+        modalOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
     });
 
     // Open Modal
     items.forEach((item, index) => {
       item.addEventListener('click', () => {
-        const routedCategory = new URLSearchParams(window.location.search).get('categoria');
-        const categoryRoute = item.getAttribute('data-route');
-        if (!routedCategory && categoryRoute) {
-          window.location.href = categoryRoute;
-          return;
-        }
+        modalSelectionMode = 'legacy';
         currentSelectedCardIndex = parseInt(item.getAttribute('data-index') || (index + 1));
         syncTrafficStepperLayout();
         
@@ -5098,6 +6085,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (activeDetail) {
           activeDetail.classList.remove('hidden');
         }
+        const warning = document.querySelector('[data-template-id="modal-warning-text"]');
+        if (warning) warning.textContent = 'Atenção: A escolha do assunto indevido poderá acarretar a extinção do seu processo.';
 
         // Show Modal
         modalOverlay.classList.remove('hidden');
@@ -5126,6 +6115,31 @@ document.addEventListener("DOMContentLoaded", function () {
     modalBtnContinue.addEventListener('click', () => {
       if (!modalConfirmCheckbox.checked) return;
       closeModal();
+
+      if (modalSelectionMode === 'system') {
+        const evaluationSubject = document.getElementById('evaluation-selected-subject');
+        if (evaluationSubject) evaluationSubject.textContent = `Serviço avaliado: ${selectedEvaluationSubject}`;
+        const evaluationTitle = document.querySelector('#page-service-evaluation .evaluation-heading h1');
+        if (evaluationTitle) evaluationTitle.textContent = `Como foi usar ${selectedEvaluationSubject}?`;
+        renderSystemSpecificQuestion(selectedEvaluationSubject);
+        const genericStages = ['Acesso e autenticação','Localização do serviço','Preenchimento ou solicitação','Envio de documentos','Confirmação ou pagamento','Acompanhamento','Resultado obtido'];
+        document.querySelectorAll('.stage-rating strong').forEach((label, index) => { label.textContent = genericStages[index]; });
+        const problemStage = document.getElementById('evaluation-problem-stage');
+        if (problemStage) {
+          problemStage.replaceChildren();
+          ['Selecione', ...genericStages, 'Outra'].forEach((label, index) => {
+            const option = document.createElement('option');
+            option.value = index === 0 ? '' : label;
+            option.textContent = label;
+            problemStage.appendChild(option);
+          });
+        }
+        showOnlyPage(pageServiceEvaluation);
+        initializeEvaluation();
+        document.getElementById('header-subnav')?.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       
       const categoryTitles = {
         1: 'Interrupção de serviço essencial',
@@ -5137,15 +6151,17 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       const categoryTitle = categoryTitles[currentSelectedCardIndex] || 'Reclamação';
+      selectedEvaluationSubject = categoryTitle;
+      const evaluationSubject = document.getElementById('evaluation-selected-subject');
+      if (evaluationSubject) evaluationSubject.textContent = `Assunto avaliado: ${categoryTitle}`;
       document.querySelectorAll('[data-template-id="defendant-category-title"], [data-template-id="facts-category-title"], [data-template-id="proofs-category-title"], [data-template-id="requests-category-title"], [data-template-id="preview-category-title"], [data-template-id="sent-category-title"]').forEach(el => {
         el.textContent = categoryTitle;
       });
 
-      // Redireciona para a página de requisitos e garante que nenhuma
-      // página de uma navegação anterior continue visível.
-      showOnlyPage(pageRequirements);
+      showOnlyPage(pageServiceEvaluation);
+      initializeEvaluation();
       const subNav = document.getElementById('header-subnav');
-      if (subNav) subNav.classList.add('hidden');
+      if (subNav) subNav.classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -5259,14 +6275,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     });
 
-    // As páginas específicas retornam para o núcleo compartilhado indicando a
-    // categoria pela URL. Nenhum dado de formulário é persistido nesse processo.
-    (() => {
-      const requestedCategory = Number(new URLSearchParams(window.location.search).get('categoria'));
-      if (!Number.isInteger(requestedCategory) || requestedCategory < 1 || requestedCategory > 6) return;
-      const requestedCard = document.querySelector(`.complaint-item[data-index="${requestedCategory}"]`);
-      requestedCard?.click();
-    })();
+    // Parâmetros antigos de categoria não pulam o novo acesso e a triagem.
     }
 
     // Calendário visual próprio para todos os campos de data e data/hora.
